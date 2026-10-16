@@ -1,0 +1,6 @@
+/* 과제 D: 의미 구조를 유지하며 좁은 화면의 배치와 포커스 표시를 완성하세요. */
+:root { font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; color: #193347; background: #eef3f7; line-height: 1.6; }
+body { margin: 0; }
+.studio { padding: 24px; }
+.workspace { display: grid; grid-template-columns: minmax(360px, 1fr) minmax(360px, 1fr); gap: 24px; }
+button, input, select { font: inherit; }

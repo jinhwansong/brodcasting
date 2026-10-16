@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import semver from 'semver';
 const read = relative => JSON.parse(readFileSync(new URL('../../' + relative, import.meta.url), 'utf8'));
-for (const dir of ['', 'reference-solutions/part-00/']) {
+for (const dir of ['', 'reference-solutions/part-00/', 'reference-solutions/part-01/']) {
   test((dir || 'root') + ' advertises only Node versions supported by locked dependencies', () => {
     const declared = read(dir + 'package.json').engines?.node;
     assert.equal(typeof declared, 'string', 'Declare the supported Node range');

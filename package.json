@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "labs/part-00"
+    "labs/part-00",
+    "labs/part-01"
   ],
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -17,7 +18,12 @@
     "test:e2e:reference": "node checks/part-00/run.mjs reference browser",
     "dev": "npm run dev --workspace labs/part-00",
     "typecheck": "npm run typecheck --workspace labs/part-00",
-    "build": "npm run build --workspace labs/part-00"
+    "build": "npm run build --workspace labs/part-00",
+    "dev:part-01": "npm run dev --workspace labs/part-01",
+    "typecheck:part-01": "npm run typecheck --workspace labs/part-01",
+    "build:part-01": "npm run build --workspace labs/part-01",
+    "check:part-01": "node checks/part-01/run.mjs exercise unit",
+    "check:reference:part-01": "node checks/part-01/run.mjs reference unit"
   },
   "devDependencies": {
     "semver": "7.8.5",

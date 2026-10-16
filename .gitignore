@@ -3,5 +3,6 @@ dist/
 test-results/
 playwright-report/
 .superpowers/
+.worktrees/
 .env*
 !.env.example
