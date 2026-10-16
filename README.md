@@ -44,6 +44,15 @@ npm run check:part-01
 | 0단계 | [현재 실력 확인](docs/tasks/part-00/README.md) | [기록](docs/verification/part-00.md) |
 | 1단계 | [시청 화면과 사용자 상호작용](docs/tasks/part-01/README.md) | [기록](docs/verification/part-01.md) |
 
+## 보안·프론트·인프라 과정
+
+[보안 추가 커리큘럼](SECURITY_CURRICULUM.md)을 기존 단계와 함께 사용합니다. API·DB·로그인·채팅·가용성에 보안 과제를 연결하고 다음 전용 강의를 추가했습니다.
+
+- [프론트 보안 F1·F2·F3](docs/tasks/security-frontend/README.md): 출력과 링크, 인증 상태·CORS/CSRF, 번들·CSP·의존성
+- [맨 마지막 BunkerWeb 강의](docs/tasks/security-bunkerweb/README.md): 기본 11단계·알림 과정·앞선 보안 과제 뒤에 진행하는 네트워크·프록시·TLS·WAF·오탐·복구 실습
+
+현재 제공 범위는 강의 본문·실습 명세·제출 양식입니다. 별도 보안 실습 코드·공개 검증·BunkerWeb Compose 구현과 실행은 후속 제작입니다. 브라우저·Docker·TLS 검증은 실행하지 않았습니다. [작성·검토 기록](docs/verification/security-courseware.md)에서 구분합니다. 현재 학습 단계는 0·미시작을 유지합니다.
+
 ## 제작자만 명시적으로 실행
 
 `npm run check:reference`는 참고 완성본에 같은 공개 테스트를 적용합니다. 일반 학습 중에는 요청 없이 실행하지 않습니다. 완성본 자체의 설치·실행 안내와 한계는 해당 폴더 README에 있습니다.
