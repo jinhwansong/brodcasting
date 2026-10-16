@@ -1,0 +1,59 @@
+* { box-sizing: border-box; }
+:root { font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; color: #193347; background: #eef3f7; font-synthesis: none; line-height: 1.6; }
+body { margin: 0; }
+button, input, select { font: inherit; }
+button, select, input[type="checkbox"] { cursor: pointer; }
+button, select, input[type="search"] { min-height: 44px; border: 1px solid #8ca4b5; border-radius: 5px; background: white; color: #193347; }
+button { padding: .55rem .9rem; }
+:focus-visible { outline: 3px solid #195f91; outline-offset: 3px; }
+.studio { max-width: 1160px; margin: auto; padding: 40px 28px 24px; }
+.masthead { display: flex; align-items: center; gap: 18px; padding-bottom: 30px; }
+.station { display: grid; place-items: center; width: 52px; height: 60px; flex: none; background: #195f91; border-radius: 4px 16px 4px 4px; color: white; font-size: 26px; font-weight: 800; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: clamp(26px, 3vw, 34px); letter-spacing: -.05em; }
+.masthead p, footer, .experiment p, .program-title p { color: #516879; }
+.edition { margin-left: auto; font-size: 13px; text-align: right; }
+.workspace { display: grid; grid-template-columns: 240px minmax(0, 1fr); background: #fff; border: 1px solid #c5d3de; border-radius: 10px; overflow: hidden; }
+.controls { padding: 26px 22px; background: #f6f9fc; border-right: 1px solid #c5d3de; }
+h2 { font-size: 18px; }
+.controls h2 { margin-bottom: 20px; }
+.controls label:not(.check) { display: block; margin: 16px 0 6px; font-size: 14px; font-weight: 700; }
+.controls input[type="search"], .controls select { display: block; width: 100%; min-width: 0; padding: 8px; }
+.check { display: flex; align-items: center; gap: 9px; margin: 18px 0; font-size: 15px; min-height: 44px; }
+.check input { width: 19px; height: 19px; accent-color: #195f91; }
+.quiet { background: transparent; width: 100%; }
+.experiment { border-top: 1px solid #c5d3de; margin-top: 30px; padding-top: 24px; }
+.experiment p { font-size: 12px; margin-top: 10px; }
+.reload { width: 100%; margin-top: 10px; background: #195f91; color: white; border-color: #195f91; }
+.programs { padding: 28px; min-width: 0; }
+.section-heading { display: flex; gap: 16px; align-items: baseline; justify-content: space-between; border-bottom: 2px solid #193347; padding-bottom: 16px; }
+.section-heading span, .result-count { font-size: 12px; color: #516879; }
+.result-count { padding: 14px 0 0; }
+.broadcasts { list-style: none; padding: 0; margin: 0; }
+.broadcasts li { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto 44px; gap: 14px; align-items: center; padding: 24px 0; border-bottom: 1px solid #c5d3de; }
+.channel { color: #516879; font-size: 14px; font-variant-numeric: tabular-nums; }
+.program-title { min-width: 0; overflow-wrap: anywhere; }
+h3 { font-size: 16px; letter-spacing: -.025em; }
+.program-title p { font-size: 13px; margin-top: 4px; }
+.viewers { font-size: 12px; font-variant-numeric: tabular-nums; }
+.viewers strong { font-size: 15px; }
+.favorite { padding: 0; width: 44px; height: 44px; border-color: transparent; font-size: 25px; color: #195f91; }
+.favorite[aria-pressed="true"] { background: #e5eff8; }
+.notice { padding: 46px 16px; text-align: center; background: #f6f9fc; margin-top: 20px; }
+.error { border-left: 3px solid #a52f35; }
+.error button { margin-top: 16px; }
+footer { text-align: right; font-size: 12px; padding-top: 18px; }
+@media (max-width: 740px) {
+  .studio { padding: 24px 16px; }
+  .masthead { flex-wrap: wrap; gap: 12px; padding-bottom: 20px; }
+  .masthead p { font-size: 12px; }
+  .edition { margin-left: 64px; width: 100%; text-align: left; }
+  .workspace { grid-template-columns: minmax(0, 1fr); }
+  .controls { border-right: 0; border-bottom: 1px solid #c5d3de; padding: 20px; }
+  .programs { padding: 20px; }
+  .section-heading { flex-wrap: wrap; gap: 4px; }
+  .broadcasts li { grid-template-columns: 22px minmax(0, 1fr) 44px; gap: 10px; padding: 20px 0; }
+  .viewers { grid-column: 2; }
+  .favorite { grid-column: 3; grid-row: 1 / 3; }
+  footer { text-align: left; }
+}
