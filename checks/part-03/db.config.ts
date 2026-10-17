@@ -1,2 +1,4 @@
 import { defineConfig } from 'vitest/config';
-export default defineConfig({ test: { environment: 'node', include: ['checks/part-03/db.test.ts', 'checks/part-03/http.test.ts'], fileParallelism: false, testTimeout: 15000, hookTimeout: 30000 } });
+import {fileURLToPath} from 'node:url';
+const target=process.env.LAB_TARGET==='reference'?'reference-solutions/part-03':'labs/part-03';
+export default defineConfig({ resolve:{alias:{'@client-api':fileURLToPath(new URL('../../'+target+'/client/src/api.ts',import.meta.url))}}, test: { environment: 'node', include: ['checks/part-03/db.test.ts', 'checks/part-03/http.test.ts', 'checks/part-03/wire.test.ts'], fileParallelism: false, testTimeout: 15000, hookTimeout: 30000 } });

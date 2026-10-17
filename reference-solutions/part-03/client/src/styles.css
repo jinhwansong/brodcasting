@@ -53,6 +53,10 @@ h3 { font-size: 1rem; margin: 0; }
 .empty-detail { color: #516879; }
 .experiment { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border-top: 1px solid #c5d3de; margin-top: 32px; padding-top: 20px; }
 footer { color: #516879; font-size: .85rem; margin-top: 32px; }
+.page-nav { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 24px; }
+.page-nav span { font-variant-numeric: tabular-nums; }
+button:disabled { cursor: default; opacity: .55; }
+.broadcasts h2 { font-size: 1.1rem; margin: 0; }
 @media (max-width: 740px) {
   .studio { padding: 20px 16px; }
   .workspace { grid-template-columns: minmax(0, 1fr); gap: 24px; }
