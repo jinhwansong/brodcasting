@@ -7,7 +7,7 @@ export function requireLocalDatabase(raw:string|undefined,name:string):URL {
     ||url.pathname!=='/'+name||url.search||url.hash) throw new Error('Use the dedicated loopback PostgreSQL database');
   return url;
 }
-export async function grantAppAccess(pool:Pool,role:string,schema='public'):Promise<void> {
+export async function grantAppAccess(pool:Pick<Pool,'query'>,role:string,schema='public'):Promise<void> {
   if(!/^part03_(app|check_[0-9a-f]+)$/.test(role)||!(/^(public|part03_check_[0-9a-f]+)$/.test(schema))) throw new Error('Invalid internal role/schema');
   // 식별자는 내부의 고정 이름/hex만 사용합니다. 외부 검색값을 전달하지 않습니다.
   await pool.query(`REVOKE CREATE ON SCHEMA ${schema} FROM PUBLIC, ${role};
