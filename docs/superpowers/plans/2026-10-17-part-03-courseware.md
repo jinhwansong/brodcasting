@@ -50,7 +50,7 @@
 
 ### Task 3: 실행 계획 실험·3주 교재·독립 설치·최종 리뷰·게시
 
-**Files:** server/src/experiment.ts; docs/tasks/part-03/{README.md,explanation.md,submission.md,browser-checklist.md}; docs/experiments/part-03/native-postgres.json; docs/verification/part-03.md; reference-solutions/part-03/README.md; README.md, progress.md, AGENTS.md, SECURITY_CURRICULUM.md, engine policy.
+**Files:** server/src/experiment.ts; docs/tasks/part-03/{README.md,explanation.md,submission.md,browser-checklist.md}; docs/experiments/part-03/ci-postgres.json; docs/verification/part-03.md; reference-solutions/part-03/README.md; README.md, progress.md, AGENTS.md, SECURITY_CURRICULUM.md, engine policy.
 
 **Interfaces:** experiment CLI reads operator env, enforces local lab DB before connecting, TEMP-only 1000/10000/100000. JSON report has environment, version, row count, first/deep EXPLAIN before/after, all/page response bytes; no connection strings.
 
@@ -61,4 +61,4 @@
 
 **게시 절차:** 최신 main SHA를 확인하고 expected SHA·force false로 게시한다. 전체 원격 tree가 로컬 검증 tree와 같을 때 제목만 알린다. 이후 본 과정4단계로 이어간다.
 
-자체 검토: Page/HTTP/client 이름 일치, no per-user auth claim, migration operator와 app 권한 분리, 실제 native18.4와 미실행 Compose18.6 구분, 관측된 성능만 제출, 나머지 교재/학습0 보존. 이전 위임에 따라 승인 질문을 반복하지 않는다.
+자체 검토: Page/HTTP/client 이름 일치, no per-user auth claim, migration operator와 app 권한 분리, 실제 Actions18.6 service와 미실행 로컬 Compose 구분, 관측된 성능만 제출, 나머지 교재/학습0 보존. 이전 위임에 따라 승인 질문을 반복하지 않는다. native18.4 실행 가정은 UID mapping 제한 조사 후 Actions로 대체했다.

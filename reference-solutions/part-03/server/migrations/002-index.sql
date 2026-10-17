@@ -1,2 +1,3 @@
--- 과제 A: 정렬 조건의 보조 인덱스를 설계하고 쓰기·공간 비용도 설명하세요.
-SELECT 1;
+CREATE INDEX broadcasts_viewers_id_idx ON broadcasts(viewer_count DESC, id ASC);
+CREATE INDEX broadcasts_title_id_idx ON broadcasts(title COLLATE "C" ASC, id ASC);
+CREATE INDEX favorites_broadcast_idx ON favorites(broadcast_id);

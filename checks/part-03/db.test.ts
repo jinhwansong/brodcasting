@@ -68,9 +68,19 @@ it('시청자+id 보조 인덱스가 존재한다', async () => {
   const indexes=(await db.pool.query('SELECT indexdef FROM pg_indexes WHERE schemaname=current_schema() AND tablename=$1',['broadcasts'])).rows.map(x=>x.indexdef).join('\n');
   expect(indexes).toMatch(/viewer_count DESC, id/);
 });
-it('migrations는 처음2개·재실행0개이며 seed는 중복 없이6행이다', async () => {
+it('migrations는 처음2개·재실행0개다', async () => {
   const fresh=await fixture(false);
-  try { const {applyMigrations}=await load('migrate'); expect(await applyMigrations(fresh.pool)).toBe(2); expect(await applyMigrations(fresh.pool)).toBe(0); const {seed}=await load('fixtures'); await seed(fresh.pool); await seed(fresh.pool); expect(Number((await fresh.pool.query('SELECT count(*) FROM broadcasts')).rows[0].count)).toBe(6); } finally {await fresh.close();}
+  try { const {applyMigrations}=await load('migrate'); expect(await applyMigrations(fresh.pool)).toBe(2); expect(await applyMigrations(fresh.pool)).toBe(0); } finally {await fresh.close();}
+});
+it('seed 재실행은 원본6행과 demo 사용자 하나를 유지한다', async () => {
+  await db.pool.query('TRUNCATE favorites,broadcasts,demo_users CASCADE');
+  const {seed}=await load('fixtures'); await seed(db.pool); await seed(db.pool);
+  expect(Number((await db.pool.query('SELECT count(*) FROM broadcasts')).rows[0].count)).toBe(6);
+  expect((await db.pool.query('SELECT id FROM demo_users')).rows).toEqual([{id:'demo-user'}]);
+});
+it('동시 migrations 실행은 한 번만 적용한다', async () => {
+  const fresh=await fixture(false);
+  try {const {applyMigrations}=await load('migrate'); expect((await Promise.all([applyMigrations(fresh.pool),applyMigrations(fresh.pool)])).sort()).toEqual([0,2]);} finally {await fresh.close();}
 });
 it('적용한 migration 변경은 거부한다', async () => {
   const fresh=await fixture(false);
@@ -86,6 +96,7 @@ it('app 역할은 조회·즐겨찾기만 허용하고 방송 쓰기와 schema D
   await app.query('INSERT INTO favorites VALUES($1,$2)',['demo-user','a']);
   await app.query('DELETE FROM favorites WHERE user_id=$1',['demo-user']);
   await expect(app.query('DELETE FROM broadcasts')).rejects.toMatchObject({code:'42501'});
+  await expect(app.query('UPDATE favorites SET user_id=$1',['other'])).rejects.toMatchObject({code:'42501'});
   await expect(app.query('CREATE TABLE forbidden(id int)')).rejects.toMatchObject({code:'42501'});
 });
 it.each(['postgres://localhost/brodcasting_part03_test','postgres://example.com/brodcasting_part03_test','postgres://127.0.0.1/production','https://127.0.0.1/brodcasting_part03_test',undefined])('테스트 대상 오지정을 연결 전에 거부한다: %s', async raw => {

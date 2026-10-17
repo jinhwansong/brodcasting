@@ -1,11 +1,22 @@
 import type {Pool} from 'pg';
-import type {Broadcast,ListQuery,Page} from './types.js';
+import {DEMO_USER,type Broadcast,type ListQuery,type Page} from './types.js';
+const columns='b.id, b.title, b.host_name AS "hostName", b.viewer_count AS "viewerCount", b.description, (f.broadcast_id IS NOT NULL) AS favorite';
+const join='FROM broadcasts b LEFT JOIN favorites f ON f.broadcast_id=b.id AND f.user_id=$1';
 export class BroadcastRepository {
   constructor(private readonly pool:Pool) {}
-  async list(query:ListQuery):Promise<Page> { // 과제 B: 값 바인딩·안정 정렬·limit+1
-    return {items:[],limit:query.limit,offset:query.offset,hasMore:false};
+  async list(query:ListQuery):Promise<Page> {
+    const order=query.sort==='title-asc'?'b.title COLLATE "C" ASC, b.id ASC':'b.viewer_count DESC, b.id ASC';
+    const pattern='%'+query.search.trim().replace(/[\\%_]/g,character=>'\\'+character)+'%';
+    const {rows}=await this.pool.query<Broadcast>(`SELECT ${columns} ${join}
+      WHERE (b.title ILIKE $2 OR b.host_name ILIKE $2) AND (NOT $3::boolean OR f.broadcast_id IS NOT NULL)
+      ORDER BY ${order} LIMIT $4 OFFSET $5`,[DEMO_USER,pattern,query.favoritesOnly,query.limit+1,query.offset]);
+    return {items:rows.slice(0,query.limit),limit:query.limit,offset:query.offset,hasMore:rows.length>query.limit};
   }
-  async get(_id:string):Promise<Broadcast|null> {return null;}
-  async setFavorite(_id:string,_enabled:boolean):Promise<void> { // 과제 C: SQL 멱등 추가/삭제
+  async get(id:string):Promise<Broadcast|null> {
+    return (await this.pool.query<Broadcast>(`SELECT ${columns} ${join} WHERE b.id=$2`,[DEMO_USER,id])).rows[0]??null;
+  }
+  async setFavorite(id:string,enabled:boolean):Promise<void> {
+    if(enabled) await this.pool.query('INSERT INTO favorites(user_id,broadcast_id) VALUES($1,$2) ON CONFLICT(user_id,broadcast_id) DO NOTHING',[DEMO_USER,id]);
+    else await this.pool.query('DELETE FROM favorites WHERE user_id=$1 AND broadcast_id=$2',[DEMO_USER,id]);
   }
 }
