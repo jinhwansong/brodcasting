@@ -23,6 +23,10 @@ if(!['migrate','seed','provision-app','test-db'].includes(command)) {
       const client=await pool.connect();
       try {
         await client.query('BEGIN');
+        const permission=(await client.query('SELECT rolcreaterole OR rolsuper AS allowed FROM pg_roles WHERE rolname=current_user')).rows[0];
+        if(permission?.allowed!==true)throw new Error('Role creation requires the local operator');
+        await client.query('SELECT pg_advisory_xact_lock(3304)');
+        if((await client.query('SELECT 1 FROM pg_roles WHERE rolname=$1',['part03_app'])).rowCount)throw new Error('App role already exists');
         // DDL의 PASSWORD 위치는 $1을 받지 않아 서버 format(%L)로 리터럴을 생성합니다.
         const {rows}=await client.query("SELECT format('CREATE ROLE part03_app LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT PASSWORD %L', $1::text) AS sql",[password]);
         await client.query(rows[0].sql);

@@ -43,7 +43,8 @@
     "check:reference:part-03": "node --env-file-if-exists=.env checks/part-03/run.mjs reference all",
     "check:part-03": "node --env-file-if-exists=.env checks/part-03/run.mjs exercise all",
     "dev:part-03:api": "npm run build --workspace labs/part-03/server && node --env-file-if-exists=.env labs/part-03/server/dist/main.js",
-    "dev:part-03": "npm run dev --workspace labs/part-03/client"
+    "dev:part-03": "npm run dev --workspace labs/part-03/client",
+    "experiment:part-03": "npm run build --workspace labs/part-03/server && node --env-file-if-exists=.env labs/part-03/server/dist/experiment.js"
   },
   "devDependencies": {
     "semver": "7.8.5",
