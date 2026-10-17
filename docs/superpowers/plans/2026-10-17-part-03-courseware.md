@@ -44,9 +44,9 @@
 
 **Interfaces:** createApp(pool:Pool):Promise<NestExpressApplication>. HTTP contracts exactly as spec. fetchPage(query,signal):Promise<Page>, setFavorite(id,enabled):Promise<{id:string,favorite:boolean}>. Client uses provided completed useLatestRequest from part02. The UI changes query conditions at offset0; previous/next increments by limit.
 
-- [ ] 작성: actual HTTP 200/400/404, unknown/special keys·중복 query·limit/offset/owner 거부·직접 SQL 주입·DB503 정제·실패 후 불변·새 app 지속성. jsdom: 다음/이전·조건 리셋·서버 저장 반영/실패·늦은 결과 무시·재시도.
-- [ ] 같은 reference의 아직 없는 연결을 정상 기동되는 stub 상태로 실행해 RED를 확인한다. HTTP/Nest/React 선수 코드를 구현해 GREEN으로 만든다. 시작 코드에는 SQL/제약 과제만 남긴다.
-- [ ] 양쪽 typecheck/build와 Task1+2 전체 GREEN 후 커밋한다. 브라우저 성공으로 기록하지 않는다.
+- [x] 작성: actual HTTP 200/400/404, unknown/special keys·중복 query·limit/offset/owner 거부·직접 SQL 주입·DB503 정제·실패 후 불변·새 app 지속성. jsdom: 다음/이전·조건 리셋·서버 저장 반영/실패·늦은 결과 무시·재시도.
+- [x] 같은 reference의 아직 없는 연결을 정상 기동되는 stub 상태로 실행해 RED를 확인한다. HTTP/Nest/React 선수 코드를 구현해 GREEN으로 만든다. 시작 코드에는 SQL/제약 과제만 남긴다.
+- [x] 양쪽 typecheck/build와 Task1+2 전체 GREEN 후 커밋한다. 브라우저 성공으로 기록하지 않는다.
 
 ### Task 3: 실행 계획 실험·3주 교재·독립 설치·최종 리뷰·게시
 

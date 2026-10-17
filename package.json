@@ -7,7 +7,8 @@
     "labs/part-01",
     "labs/part-02/server",
     "labs/part-02/client",
-    "labs/part-03/server"
+    "labs/part-03/server",
+    "labs/part-03/client"
   ],
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -36,10 +37,13 @@
     "check:part-02": "node checks/part-02/run.mjs exercise all",
     "check:part-03:db": "node --env-file-if-exists=.env checks/part-03/run.mjs exercise db",
     "check:reference:part-03:db": "node --env-file-if-exists=.env checks/part-03/run.mjs reference db",
-    "typecheck:part-03": "npm run typecheck --workspace labs/part-03/server",
-    "build:part-03": "npm run build --workspace labs/part-03/server",
+    "typecheck:part-03": "npm run typecheck --workspace labs/part-03/server && npm run typecheck --workspace labs/part-03/client",
+    "build:part-03": "npm run build --workspace labs/part-03/server && npm run build --workspace labs/part-03/client",
     "db:part-03": "npm run build --workspace labs/part-03/server && node --env-file-if-exists=.env labs/part-03/server/dist/db-cli.js",
-    "check:reference:part-03": "node --env-file-if-exists=.env checks/part-03/run.mjs reference all"
+    "check:reference:part-03": "node --env-file-if-exists=.env checks/part-03/run.mjs reference all",
+    "check:part-03": "node --env-file-if-exists=.env checks/part-03/run.mjs exercise all",
+    "dev:part-03:api": "npm run build --workspace labs/part-03/server && node --env-file-if-exists=.env labs/part-03/server/dist/main.js",
+    "dev:part-03": "npm run dev --workspace labs/part-03/client"
   },
   "devDependencies": {
     "semver": "7.8.5",

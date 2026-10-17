@@ -17,4 +17,12 @@
 
 DB GREEN은 시청자 동률 id 정렬, 첫/다음/마지막/빈 페이지, limit+1, 문자 %/_/역슬래시 검색, SQL 주입 문자열, 사용자 분리 조회, 동시 중복 즐겨찾기, 재조회 지속성, CHECK/NOT NULL/FK/복합PK/CASCADE, 보조 인덱스, migration 재실행·동시 실행·checksum·rollback, 제한 역할의 읽기/쓰기 허용과 방송 쓰기/schema DDL 거부를 포함합니다. 테스트 DB는 brodcasting_part03_test이고 고유 schema/role만 정리합니다.
 
-실제 HTTP·UI·실험·독립 설치·최종 리뷰는 후속 제작 중입니다. 브라우저는 사용자 요청으로 미실행이며 로컬 Compose 실행도 확인하지 않았습니다. 실행하지 않은 결과를 채우지 않습니다.
+## HTTP와 화면 연결
+
+빈 Nest Module은 정상 기동한 뒤 [HTTP·화면 RED](https://github.com/jinhwansong/brodcasting/actions/runs/39001385925)에서 HTTP37개 중36실패/1통과, 기존 DB29통과, client18실패를 보였습니다. 이어 DTO 값/변환 전 키·빈 입력 검사, 제한 역할 repository DI, 정제한503과 화면 연결을 구현했습니다. [통합 GREEN](https://github.com/jinhwansong/brodcasting/actions/runs/39001665126)은 DB29+HTTP37+실제 client loader 연결3=69개와 jsdom/API18개, 합계87/87 통과입니다.
+
+HTTP 검사는 직접 query·id·owner/body 입력, 중복 PUT/DELETE, 새 앱 인스턴스의 DB 지속성, 실제 닫힌 TCP 포트로의 DB 연결 실패503, no-store와8kb 제한을 포함합니다. client loader 연결 검사는 응답을 대체하지 않고 상대 URL만 실제 API로 해석했습니다. UI는 다음/이전·세 조건의 offset0 초기화·저장 성공/실패·늦은 성공 무시·재시도이며 실제 브라우저 검사가 아닙니다. client API의 HTTP 오류·Page shape·id/상태 검증도 포함합니다.
+
+시작 코드에는 완료된 HTTP/화면을 선수 기능으로 제공하고 SQL·제약·인덱스만 과제로 남깁니다. 실패한 저장 요청의 화면은 기존 표시를 유지하며, 연결이 끊긴 쓰기의 DB 결과를 단정하지 않고 다시 조회하도록 안내합니다.
+
+실험·독립 설치·최종 리뷰는 후속 제작 중입니다. 브라우저는 사용자 요청으로 미실행이며 로컬 Compose 실행도 확인하지 않았습니다. 실행하지 않은 결과를 채우지 않습니다.

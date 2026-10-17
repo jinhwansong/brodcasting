@@ -30,7 +30,16 @@ jobs:
           node-version: '24.19.0'
           cache: npm
       - run: npm ci
+      - name: Create dedicated local experiment database
+        run: docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part03_lab
       - name: Actual PostgreSQL courseware checks
         env:
           PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
+          PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
         run: npm run check:reference:part-03
+      - name: Standalone install and setup-error log checks
+        if: success() || failure()
+        env:
+          PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
+          PART03_SERVICE_CONTAINER: ${{ job.services.postgres.id }}
+        run: node checks/part-03/standalone-smoke.mjs
