@@ -5,7 +5,7 @@ const result=spawnSync(process.execPath,['checks/part-03/run.mjs','exercise','al
 assert.equal(result.status,1,'SQL starter must still require learner implementation');
 const db=JSON.parse(await readFile('test-results/part-03/exercise-db.json','utf8'));
 const client=JSON.parse(await readFile('test-results/part-03/exercise-client.json','utf8'));
-assert.equal(db.numTotalTests,76);assert.ok(db.numFailedTests>0);assert.equal(db.numPendingTests,0);
+assert.equal(db.numTotalTests,79);assert.ok(db.numFailedTests>0);assert.equal(db.numPendingTests,0);
 assert.equal(client.numTotalTests,18);assert.equal(client.numPassedTests,18);assert.equal(client.numFailedTests,0);
 const failures=db.testResults.flatMap(suite=>suite.assertionResults.filter(test=>test.status==='failed').flatMap(test=>test.failureMessages));
 assert.equal(failures.length>0,true);

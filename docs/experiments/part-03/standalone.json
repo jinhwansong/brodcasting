@@ -1,0 +1,12 @@
+{
+  "node": "v24.19.0",
+  "cleanInstall": true,
+  "typecheck": true,
+  "build": true,
+  "moduleHttp": true,
+  "proxyHttp": true,
+  "limitedRole": true,
+  "processRestartPersistence": true,
+  "expectedRoleRejectionsNoPasswordInErrorLogs": true,
+  "browser": false
+}

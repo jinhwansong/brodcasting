@@ -54,9 +54,9 @@
 
 **Interfaces:** experiment CLI reads operator env, enforces local lab DB before connecting, TEMP-only 1000/10000/100000. JSON report has environment, version, row count, first/deep EXPLAIN before/after, all/page response bytes; no connection strings.
 
-- [ ] 작성: 잘못된 대상 URL·허용 행 수 거부와 실험 report shape 검증을 먼저 RED→GREEN으로 구현한다. 실제 세 크기 실험을 실행하고 결과·한계만 기록한다.
-- [ ] A제약/B조회/C즐겨찾기/D분석, 3주 배분·힌트·설명3개·독립 cursor 변경·제출 양식·미실행 브라우저 목록을 작성한다.
-- [ ] 새 디렉터리에서 reference만 clean npm ci/typecheck/build·실제 DB API를 확인한다. root ci, 전체 DB/HTTP/UI, 기존0/1/2·engine 회귀와 링크/비밀 패턴/기본명령 보존 검사 Expected: 모두 통과.
+- [x] 작성: 잘못된 대상 URL·허용 행 수 거부와 실험 report shape 검증을 먼저 RED→GREEN으로 구현한다. 실제 세 크기 실험을 실행하고 결과·한계만 기록한다.
+- [x] A제약/B조회/C즐겨찾기/D분석, 3주 배분·힌트·설명3개·독립 cursor 변경·제출 양식·미실행 브라우저 목록을 작성한다.
+- [x] 새 디렉터리에서 reference만 clean npm ci/typecheck/build·실제 DB API를 확인한다. root ci, 전체 DB/HTTP/UI, 기존0/1/2·engine 회귀와 링크/비밀 패턴/기본명령 보존 검사 Expected: 모두 통과.
 - [ ] 새 컨텍스트 리뷰1회, Important/Critical을 한 번의 RED→GREEN 수정 및 전체 회귀로 처리한다. 판단/보류를 검증 기록에 남기고 authoring3 완료·learner0 유지 후 커밋한다.
 
 **게시 절차:** 최신 main SHA를 확인하고 expected SHA·force false로 게시한다. 전체 원격 tree가 로컬 검증 tree와 같을 때 제목만 알린다. 이후 본 과정4단계로 이어간다.

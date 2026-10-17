@@ -46,3 +46,16 @@ it('DB 연결 실패는 SQL·접속정보 없는503이다',async()=>{
 });
 it('성공과 검증 오류 응답은 no-store다',async()=>{expect((await get('broadcasts')).headers.get('cache-control')).toBe('no-store');const bad=await get('broadcasts?limit=0');expect(bad.status).toBe(400);expect(bad.headers.get('cache-control')).toBe('no-store');});
 it('큰 JSON은 파서에서413이며 즐겨찾기는 그대로다',async()=>{expect((await write('a','PUT',{owner:'x'.repeat(9000)})).status).toBe(413);expect((await db.pool.query('SELECT * FROM favorites')).rows).toEqual([]);});
+it.each(['PUT','DELETE'])('폼 파싱이 키를 지워도 %s를400으로 거부하고 DB를 보존한다',async method=>{
+  const existing=[{user_id:'demo-user',broadcast_id:'a'}];
+  if(method==='DELETE')await db.pool.query('INSERT INTO favorites(user_id,broadcast_id) VALUES($1,$2)',['demo-user','a']);
+  const res=await fetch(base+'/api/favorites/a',{method,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'__proto__[userId]=other'});
+  const rows=(await db.pool.query('SELECT user_id,broadcast_id FROM favorites')).rows;
+  expect({status:res.status,rows}).toEqual({status:400,rows:method==='DELETE'?existing:[]});
+});
+it('chunked 폼도 변환 전 거부하고 저장하지 않는다',async()=>{
+  const body=new ReadableStream<Uint8Array>({start(controller){controller.enqueue(new TextEncoder().encode('__proto__[userId]=other'));controller.close();}});
+  const options={method:'PUT',headers:{'Content-Type':'application/x-www-form-urlencoded'},body,duplex:'half'} as RequestInit&{duplex:'half'};
+  const res=await fetch(base+'/api/favorites/a',options);
+  expect({status:res.status,rows:(await db.pool.query('SELECT user_id,broadcast_id FROM favorites')).rows}).toEqual({status:400,rows:[]});
+});
