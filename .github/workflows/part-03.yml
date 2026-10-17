@@ -1,0 +1,26 @@
+name: Part 03 PostgreSQL verification
+on:
+  push:
+    branches: [courseware/part-03-ci]
+permissions:
+  contents: read
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-ci-only
+          POSTGRES_DB: brodcasting_part03_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - name: Verify real PostgreSQL service
+        run: docker exec "${{ job.services.postgres.id }}" psql -U postgres -d brodcasting_part03_test -c 'SELECT version()'
