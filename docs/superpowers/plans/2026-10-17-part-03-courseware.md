@@ -33,10 +33,10 @@
 
 **Interfaces:** Broadcast={id,title,hostName,viewerCount,description,favorite}; ListQuery={search:string,sort:'viewers-desc'|'title-asc',limit:number,offset:number,favoritesOnly:boolean}; Page={items:Broadcast[],limit,offset,hasMore}. BroadcastRepository(pool:Pool).list(query):Promise<Page>, get(id):Promise<Broadcast|null>, setFavorite(id,enabled):Promise<void>. DEMO_USER='demo-user'. applyMigrations(pool:Pool,migrations?:readonly Migration[]):Promise<number>, Migration={version:string,sql:string}. seed(pool):Promise<void>. Runtime app receives Pool via Nest DI.
 
-- [ ] 작성: 실제 DB 검증. seed6행, 동률 페이지 ids d/a→e/b→c/f→empty, limit+1 hasMore, LIKE 문자와 주입 문자열, 즐겨찾기 중복·동시 변경·지속성, CHECK/FK/PK/CASCADE, migration 2→0·checksum 수정 거부·실패 rollback, app DDL/방송 쓰기 거부, 잘못된 대상 URL 거부.
-- [ ] 기동 가능한 시작 schema·미구현 repository와 같은 reference stub에 적용해 행동 RED를 확인한다. 구문/모듈/연결 오류는 정상 실패로 세지 않는다.
-- [ ] reference 제약·보조 인덱스·바인딩 SQL·멱등 변경을 구현하고 같은 DB 검증 GREEN을 확인한다. 공개 runner는 대상 없을 때 명시적 실패다.
-- [ ] root/참고 패키지 정확한 의존성·Node 정책·Compose 선택 구성을 고정한다. typecheck/build exit0과 DB GREEN 후 커밋한다.
+- [x] 작성: 실제 DB 검증. seed6행, 동률 페이지 ids d/a→e/b→c/f→empty, limit+1 hasMore, LIKE 문자와 주입 문자열, 즐겨찾기 중복·동시 변경·지속성, CHECK/FK/PK/CASCADE, migration 2→0·checksum 수정 거부·실패 rollback, app DDL/방송 쓰기 거부, 잘못된 대상 URL 거부.
+- [x] 기동 가능한 시작 schema·미구현 repository와 같은 reference stub에 적용해 행동 RED를 확인한다. 구문/모듈/연결 오류는 정상 실패로 세지 않는다.
+- [x] reference 제약·보조 인덱스·바인딩 SQL·멱등 변경을 구현하고 같은 DB 검증 GREEN을 확인한다. 공개 runner는 대상 없을 때 명시적 실패다.
+- [x] root/참고 패키지 정확한 의존성·Node 정책·Compose 선택 구성을 고정한다. typecheck/build exit0과 DB GREEN 후 커밋한다.
 
 ### Task 2: HTTP·페이지/저장 UI 연결
 

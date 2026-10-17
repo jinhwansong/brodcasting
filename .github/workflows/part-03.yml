@@ -33,4 +33,4 @@ jobs:
       - name: Actual PostgreSQL courseware checks
         env:
           PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
-        run: npm run check:reference:part-03:db
+        run: npm run check:reference:part-03
