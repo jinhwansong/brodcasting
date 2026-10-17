@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {readFile,writeFile} from 'node:fs/promises';
+const result=spawnSync(process.execPath,['checks/part-03/run.mjs','exercise','all'],{stdio:'inherit',env:process.env});
+assert.equal(result.status,1,'SQL starter must still require learner implementation');
+const db=JSON.parse(await readFile('test-results/part-03/exercise-db.json','utf8'));
+const client=JSON.parse(await readFile('test-results/part-03/exercise-client.json','utf8'));
+assert.equal(db.numTotalTests,79);assert.ok(db.numFailedTests>0);assert.equal(db.numPendingTests,0);
+assert.equal(client.numTotalTests,18);assert.equal(client.numPassedTests,18);assert.equal(client.numFailedTests,0);
+const failures=db.testResults.flatMap(suite=>suite.assertionResults.filter(test=>test.status==='failed').flatMap(test=>test.failureMessages));
+assert.equal(failures.length>0,true);
+assert.equal(failures.some(message=>/Cannot find module|ERR_MODULE|SyntaxError|ECONNREFUSED|Unhandled|timed out|Failed to load/.test(message)),false,'Infrastructure failures are not normal learner failures');
+const summary={db:{total:db.numTotalTests,passed:db.numPassedTests,failed:db.numFailedTests},client:{total:client.numTotalTests,passed:client.numPassedTests,failed:client.numFailedTests},note:'Intentional SQL/schema/index TODO failures; no module/connection/timeout failure accepted.'};
+await writeFile('test-results/part-03/starter-summary.json',JSON.stringify(summary,null,2)+'\n');console.log('Starting SQL lab remains incomplete:',JSON.stringify(summary));

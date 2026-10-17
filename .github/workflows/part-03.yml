@@ -1,0 +1,71 @@
+name: Part 03 PostgreSQL verification
+on:
+  push:
+    branches: [main, courseware/part-03-ci]
+    paths:
+      - '.github/workflows/part-03.yml'
+      - 'labs/part-03/**'
+      - 'reference-solutions/part-03/**'
+      - 'checks/part-03/**'
+      - 'checks/part-00/engines.test.mjs'
+      - 'package*.json'
+permissions:
+  contents: read
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-ci-only
+          POSTGRES_DB: brodcasting_part03_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - name: Verify real PostgreSQL service
+        run: docker exec "${{ job.services.postgres.id }}" psql -U postgres -d brodcasting_part03_test -c 'SELECT version()'
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24.19.0'
+          cache: npm
+      - run: npm ci
+      - name: Create dedicated local experiment database
+        run: docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part03_lab
+      - name: Actual PostgreSQL courseware checks
+        env:
+          PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
+          PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
+        run: npm run check:reference:part-03
+      - name: Standalone install and setup-error log checks
+        env:
+          PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
+          PART03_SERVICE_CONTAINER: ${{ job.services.postgres.id }}
+        run: node checks/part-03/standalone-smoke.mjs test-results/part-03/standalone.json
+      - name: Verify learner SQL TODO failures
+        env:
+          PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
+          PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
+        run: node checks/part-03/verify-starter.mjs
+      - name: Previous courseware regressions
+        run: npm run check:reference && npm run check:reference:part-01 && npm run check:reference:part-02 && npm run check:toolchain
+      - name: Bounded 1000, 10000, 100000 row experiment
+        env:
+          PART03_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
+        run: node reference-solutions/part-03/server/dist/experiment.js --output test-results/part-03/experiment.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: part-03-verification
+          path: test-results/part-03/
+          if-no-files-found: error
+          retention-days: 14
