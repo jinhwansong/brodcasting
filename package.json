@@ -4,7 +4,9 @@
   "type": "module",
   "workspaces": [
     "labs/part-00",
-    "labs/part-01"
+    "labs/part-01",
+    "labs/part-02/server",
+    "labs/part-02/client"
   ],
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -23,7 +25,14 @@
     "typecheck:part-01": "npm run typecheck --workspace labs/part-01",
     "build:part-01": "npm run build --workspace labs/part-01",
     "check:part-01": "node checks/part-01/run.mjs exercise unit",
-    "check:reference:part-01": "node checks/part-01/run.mjs reference unit"
+    "check:reference:part-01": "node checks/part-01/run.mjs reference unit",
+    "dev:part-02:api": "npm run dev --workspace labs/part-02/server",
+    "check:part-02:api": "node checks/part-02/run.mjs exercise server",
+    "check:reference:part-02": "node checks/part-02/run.mjs reference all",
+    "dev:part-02": "npm run dev --workspace labs/part-02/client",
+    "typecheck:part-02": "npm run typecheck --workspace labs/part-02/server && npm run typecheck --workspace labs/part-02/client",
+    "build:part-02": "npm run build --workspace labs/part-02/server && npm run build --workspace labs/part-02/client",
+    "check:part-02": "node checks/part-02/run.mjs exercise all"
   },
   "devDependencies": {
     "semver": "7.8.5",

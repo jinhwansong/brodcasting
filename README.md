@@ -43,6 +43,18 @@ npm run check:part-01
 | --- | --- | --- |
 | 0단계 | [현재 실력 확인](docs/tasks/part-00/README.md) | [기록](docs/verification/part-00.md) |
 | 1단계 | [시청 화면과 사용자 상호작용](docs/tasks/part-01/README.md) | [기록](docs/verification/part-01.md) |
+| 2단계 | [HTTP API와 느린 응답](docs/tasks/part-02/README.md) | [기록](docs/verification/part-02.md) |
+
+## 2단계 선택 실행
+
+[HTTP API와 느린 응답](docs/tasks/part-02/README.md)은 3주 분량의 NestJS·React 연결 실습입니다. 입력 검증, 응답 순서 역전, 요청 취소, 서버 중단과 오류 복구를 다룹니다. `npm ci` 후 두 터미널에서 `npm run dev:part-02:api`와 `npm run dev:part-02`를 실행합니다.
+
+- `npm run typecheck:part-02`, `npm run build:part-02`: 서버·client 검사와 빌드
+- `npm run check:part-02`: 시작 코드의 실제 HTTP·client 공개 행동 검증. 초기에는 의도적으로 실패
+- 작업 위치: `labs/part-02/server/src/`, `labs/part-02/client/src/`
+- [제출 기록](docs/tasks/part-02/submission.md)과 [브라우저 후속 목록](docs/tasks/part-02/browser-checklist.md)
+
+API는 로컬 메모리 데이터만 사용합니다. 0·1단계, 이후 3~11단계, 추가 보안·알림 과정과 마지막 BunkerWeb 과정으로 이어집니다. 현재 학습 단계와 기본 실행 명령은 계속 0단계입니다.
 
 ## 보안·프론트·인프라 과정
 
@@ -51,7 +63,7 @@ npm run check:part-01
 - [프론트 보안 F1·F2·F3](docs/tasks/security-frontend/README.md): 출력과 링크, 인증 상태·CORS/CSRF, 번들·CSP·의존성
 - [맨 마지막 BunkerWeb 강의](docs/tasks/security-bunkerweb/README.md): 기본 11단계·알림 과정·앞선 보안 과제 뒤에 진행하는 네트워크·프록시·TLS·WAF·오탐·복구 실습
 
-현재 제공 범위는 강의 본문·실습 명세·제출 양식입니다. 별도 보안 실습 코드·공개 검증·BunkerWeb Compose 구현과 실행은 후속 제작입니다. 브라우저·Docker·TLS 검증은 실행하지 않았습니다. [작성·검토 기록](docs/verification/security-courseware.md)에서 구분합니다. 현재 학습 단계는 0·미시작을 유지합니다.
+프론트 보안 전용 강의와 BunkerWeb의 현재 제공 범위는 강의 본문·실습 명세·제출 양식입니다. 해당 전용 실습 코드·Compose 구현은 후속 제작입니다. 2단계에는 서버 DTO·Pipe·본문 제한과 직접 HTTP 거부 검증을 포함했습니다. 브라우저·Docker·TLS 검증은 실행하지 않았습니다. [작성·검토 기록](docs/verification/security-courseware.md)과 [2단계 기록](docs/verification/part-02.md)에서 구분합니다. 현재 학습 단계는 0·미시작을 유지합니다.
 
 ## 제작자만 명시적으로 실행
 
@@ -59,4 +71,6 @@ npm run check:part-01
 
 `npm run check:reference:part-01`은 1단계 참고 완성본의 동일 공개 검증입니다. 별도 설치·실행 안내는 [완성본 README](reference-solutions/part-01/README.md)에 있습니다.
 
-`npm run check:toolchain`은 제작자용으로 루트와 두 참고 패키지의 Node 지원 범위가 잠긴 의존성들과 호환되는지 검사합니다. 참고 완성본의 패키지 메타데이터를 읽으므로 기본 학습 테스트에는 포함하지 않습니다.
+`npm run check:reference:part-02`는 2단계 완성본을 빌드하고 같은 HTTP·client 검증을 실행합니다. 독립 client/server 설치·실행 안내는 [2단계 완성본 README](reference-solutions/part-02/README.md)에 있습니다.
+
+`npm run check:toolchain`은 제작자용으로 루트와 세 참고 패키지의 Node 지원 범위가 잠긴 의존성들과 호환되는지 검사합니다. 참고 완성본의 패키지 메타데이터를 읽으므로 기본 학습 테스트에는 포함하지 않습니다.
