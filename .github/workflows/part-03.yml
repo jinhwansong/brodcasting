@@ -24,3 +24,13 @@ jobs:
     steps:
       - name: Verify real PostgreSQL service
         run: docker exec "${{ job.services.postgres.id }}" psql -U postgres -d brodcasting_part03_test -c 'SELECT version()'
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24.19.0'
+          cache: npm
+      - run: npm ci
+      - name: Actual PostgreSQL courseware checks
+        env:
+          PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
+        run: npm run check:reference:part-03:db
