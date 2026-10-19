@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import {expect,it} from 'vitest';
 import {randomBytes} from 'node:crypto';
 import * as argon2 from 'argon2';
+import {Pool} from 'pg';
 import {load} from './db-fixture';
 const password=()=>randomBytes(24).toString('hex');
 it('Argon2id 설정과 매번 다른 salt를 사용한다',async()=>{
@@ -28,3 +29,12 @@ it.each([
   {value:'postgres://a:b@localhost/brodcasting_part04_test'},{value:'https://127.0.0.1/brodcasting_part04_test'},
 ])('DB 대상 guard는 연결 전에 거부한다: $value',async({value})=>{const {requireLocalDatabase}=await load('db-config');expect(()=>requireLocalDatabase(value,'brodcasting_part04_test')).toThrow();});
 it('명시적인 loopback 전용 DB만 허용한다',async()=>{const {requireLocalDatabase}=await load('db-config');expect(requireLocalDatabase('postgres://a:b@127.0.0.1/brodcasting_part04_test','brodcasting_part04_test').hostname).toBe('127.0.0.1');});
+it.each([
+  {secret:''},{secret:'z'.repeat(64)},{browserOrigin:'https://other.invalid'},
+  {schemaName:'public"; DROP TABLE users;--'},{sessionTtlMs:0},
+  {authRateLimit:{windowMs:60000,limit:0}},{authRateLimit:{windowMs:-1,limit:10}},
+])('잘못된 보안 설정은 DB 연결/기동 전에 거부한다: %#',async invalid=>{
+  const {createApp}=await load('create-app');const pool=new Pool({host:'127.0.0.1',port:1,connectionTimeoutMillis:100});let app:any;
+  try{await expect(async()=>{app=await createApp(pool,{secret:randomBytes(32).toString('hex'),browserOrigin:'http://127.0.0.1:5184',...invalid});}).rejects.toThrow('Invalid local session configuration');}
+  finally{await app?.close();await pool.end();}
+});

@@ -152,7 +152,7 @@ it.each([
  const jar=new CookieJar(base);await jar.session();expect((await jar.request('auth/register',{method:'POST',json:input})).status).toBe(400);
  expect(Number((await db.pool.query('SELECT count(*) FROM users')).rows[0].count)).toBe(2);
 });
-it.each(['owner=other','constructor=x','limit=2&limit=3','limit=0','offset=-1','sort=invalid'])('직접 query 입력을400으로 거부한다: %s',async query=>{
+it.each(['owner=other','constructor=x','limit=2&limit=3','limit=0','offset=-1','sort=invalid','limit=2%0A','offset=0%0A'])('직접 query 입력을400으로 거부한다: %s',async query=>{
  const jar=await loginA();expect((await jar.request('broadcasts?'+query)).status).toBe(400);
 });
 it('외부 소유자/권한 body와 query는400이며 즐겨찾기가 그대로다',async()=>{
