@@ -49,7 +49,8 @@
     "check:reference:part-04:db": "node --env-file-if-exists=.env checks/part-04/run.mjs reference db",
     "check:part-04:db": "node --env-file-if-exists=.env checks/part-04/run.mjs exercise db",
     "typecheck:part-04": "npm run typecheck --workspace labs/part-04/server",
-    "build:part-04": "npm run build --workspace labs/part-04/server"
+    "build:part-04": "npm run build --workspace labs/part-04/server",
+    "db:part-04": "npm run build --workspace labs/part-04/server && node --env-file-if-exists=.env labs/part-04/server/dist/db-cli.js"
   },
   "devDependencies": {
     "semver": "7.8.5",
