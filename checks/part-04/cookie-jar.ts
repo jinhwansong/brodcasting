@@ -1,18 +1,18 @@
 import {expect} from 'vitest';
 export const ORIGIN='http://127.0.0.1:5184';
-type Options={method?:string;json?:unknown;body?:BodyInit;headers?:HeadersInit;origin?:string|null;duplex?:'half'};
+type Options={method?:string;json?:unknown;body?:BodyInit;headers?:HeadersInit;origin?:string|null;duplex?:'half';signal?:AbortSignal};
 export class CookieJar {
  csrf='';
  constructor(readonly base:string,public cookie=''){}
  async request(route:string,options:Options={}):Promise<Response>{
-  const {method='GET',json,body,headers:input,origin=ORIGIN,duplex}=options,headers=new Headers(input);
+  const {method='GET',json,body,headers:input,origin=ORIGIN,duplex,signal}=options,headers=new Headers(input);
   if(this.cookie&&!headers.has('Cookie'))headers.set('Cookie',this.cookie);
   if(!['GET','HEAD','OPTIONS'].includes(method)){
    if(origin!==null&&!headers.has('Origin'))headers.set('Origin',origin);
    if(!headers.has('X-CSRF-Token')&&this.csrf)headers.set('X-CSRF-Token',this.csrf);
   }
   if(json!==undefined)headers.set('Content-Type','application/json');
-  const init={method,headers,body:json===undefined?body:JSON.stringify(json),...(duplex?{duplex}:{})};
+  const init={method,headers,body:json===undefined?body:JSON.stringify(json),signal,...(duplex?{duplex}:{})};
   const res=await fetch(this.base+'/api/'+route,init);
   for(const value of res.headers.getSetCookie()){
    const pair=value.split(';',1)[0];

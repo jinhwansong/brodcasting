@@ -78,6 +78,34 @@ it('CSRF 없는 로그아웃은 인증을 폐기하지 않는다',async()=>{
  const jar=await loginA();expect((await jar.request('auth/logout',{method:'POST',headers:{'X-CSRF-Token':''}})).status).toBe(403);
  expect((await jar.session()).user).toEqual({id:A,username:'learner_a'});
 });
+it('상태 조회가 늦게 끝나도 로그아웃한 세션이 다시 저장되지 않는다',async()=>{
+ const jar=await loginA(),cookie=jar.cookie,key=Number.parseInt(randomBytes(4).toString('hex'),16);
+ // Test-owned schema/trigger/lock only. No response or PostgreSQL operation is mocked.
+ await db.pool.query(`CREATE FUNCTION session_save_barrier() RETURNS trigger LANGUAGE plpgsql AS $probe$
+ BEGIN
+  IF NEW.sess->>'userId' IS NOT NULL THEN PERFORM pg_advisory_xact_lock(${key}); END IF;
+  RETURN NEW;
+ END;$probe$;
+ CREATE TRIGGER session_save_barrier BEFORE INSERT OR UPDATE ON sessions FOR EACH ROW EXECUTE FUNCTION session_save_barrier()`);
+ const blocker=await db.pool.connect();let released=false,finished=false,pending:Promise<{response?:Response;error?:unknown}>|undefined;
+ try{
+  await blocker.query('BEGIN');await blocker.query('SELECT pg_advisory_xact_lock($1)',[key]);
+  pending=new CookieJar(base,cookie).request('auth/session',{signal:AbortSignal.timeout(6000)}).then(response=>{finished=true;return{response};},error=>{finished=true;return{error};});
+  let blocked=false;const deadline=Date.now()+2000;
+  while(!finished&&!blocked&&Date.now()<deadline){
+   blocked=Boolean((await db.admin.query("SELECT 1 FROM pg_stat_activity WHERE wait_event='advisory' AND position($1 in query)>0",['"'+db.schema+'"."sessions"'])).rowCount);
+   if(!finished&&!blocked)await new Promise(resolve=>setTimeout(resolve,20));
+  }
+  expect(finished||blocked).toBe(true);
+  expect((await jar.request('auth/logout',{method:'POST',signal:AbortSignal.timeout(2000)})).status).toBe(204);
+  await blocker.query('COMMIT');released=true;
+  const outcome=await pending;if(outcome.error)throw outcome.error;expect(outcome.response?.status).toBe(200);
+  expect((await new CookieJar(base,cookie).request('users/'+A+'/favorites')).status).toBe(401);
+ }finally{
+  if(!released)await blocker.query('ROLLBACK');blocker.release();await pending;
+  await db.pool.query('DROP TRIGGER session_save_barrier ON sessions; DROP FUNCTION session_save_barrier()');
+ }
+});
 it('DB store 만료는 보호 요청401이다',async()=>{
  const jar=await loginA();await db.pool.query("UPDATE sessions SET expire=now()-interval '1 minute' WHERE sess->>'userId'=$1",[A]);
  expect((await jar.request('users/'+A+'/favorites')).status).toBe(401);
