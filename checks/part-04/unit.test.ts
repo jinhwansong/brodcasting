@@ -7,7 +7,9 @@ const password=()=>randomBytes(24).toString('hex');
 it('Argon2id 설정과 매번 다른 salt를 사용한다',async()=>{
   const {PasswordService}=await load('passwords');const service=new PasswordService();const value=password();
   const first=await service.hash(value),second=await service.hash(value);
-  expect(first.startsWith('$argon2id$v=19$m=19456,t=2,p=1$')).toBe(true);
+  const [,algorithm,version,settings]=first.split('$');
+  expect({algorithm,version}).toEqual({algorithm:'argon2id',version:'v=19'});
+  expect(Object.fromEntries(settings.split(',').map(entry=>entry.split('=')))).toEqual({m:'19456',t:'2',p:'1'});
   expect(first===second).toBe(false);expect(await argon2.verify(first,value)).toBe(true);
 });
 it('정확한 원문만 검증하고 공백을 제거하지 않는다',async()=>{
