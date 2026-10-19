@@ -36,8 +36,11 @@ export class SessionRuntime implements OnModuleDestroy{
   return user;
  }
  async view(req:SessionRequest):Promise<SessionView>{
-  const user=await this.currentUser(req),csrfToken=this.generateToken(req);
-  await action(done=>req.session.save(done));return{user,csrfToken};
+  const user=await this.currentUser(req),hasToken=typeof req.session.csrfToken==='string';
+  const csrfToken=this.generateToken(req);
+  // Existing reads must not upsert a SID that a concurrent logout deleted.
+  if(!hasToken)await action(done=>req.session.save(done));
+  return{user,csrfToken};
  }
  async establish(req:SessionRequest,user:User):Promise<SessionView>{
   await action(done=>req.session.regenerate(done));
