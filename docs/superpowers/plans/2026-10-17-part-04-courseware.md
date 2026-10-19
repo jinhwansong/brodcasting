@@ -40,17 +40,17 @@
 
 ### Task 2: 세션·인증 Guard·HTTP 인가와 CSRF
 
-**Files:** 양쪽 server/src/{auth.dto.ts,auth.service.ts,auth.guard.ts,session.ts,auth-rate-limit.ts,app-config.ts,safe-exception.filter.ts,input.ts,auth.controller.ts,broadcast.dto.ts,broadcast.controller.ts,broadcast.service.ts,raw-input-keys.pipe.ts,create-app.ts,main.ts}; checks/part-04/{http.test.ts,cookie-jar.ts,unit.test.ts}.
+**Files:** 양쪽 server/src/{auth.dto.ts,auth.service.ts,auth.guard.ts,session.ts,auth-rate-limit.ts,app-config.ts,safe-exception.filter.ts,input.ts,auth.controller.ts,broadcast.dto.ts,broadcast.controller.ts,broadcast.service.ts,raw-input-keys.pipe.ts,create-app.ts}; checks/part-04/{http.test.ts,cookie-jar.ts,unit.test.ts}.
 
 **Interfaces:** SessionView={user:User|null,csrfToken:string}. SessionRequest는 Express.Request에 actor?:User, express-session SessionData.userId/authenticatedAt/csrfToken을 사용. SessionRuntime(pool,{secret,schemaName?,sessionTtlMs?})는 middleware/csrfProtection:RequestHandler, currentUser(req):Promise<User|null>, view(req):Promise<SessionView>, establish(req,user):Promise<SessionView>, end(req,res):Promise<void>, onModuleDestroy():Promise<void>를 제공한다. 종료는 외부 pool을 닫지 않는다. AuthService.register(username,password):Promise<User>, login(username,password):Promise<User>. AuthGuard.canActivate(context):Promise<boolean>는 현재 사용자 확인/401/actor 설정. assertRoomAdmin(room:Room):void는 서버에서 계산한 canEdit을 검사하며 시작 코드에서는 항상 거부한다. createApp(pool,options:{secret:string,browserOrigin:string,schemaName?:string,sessionTtlMs?:number,authRateLimit?:{windowMs:number,limit:number}}):Promise<NestExpressApplication>. API 경로/응답은 spec 표 그대로.
 
-- [ ] **RED:** 실제 HTTP cookie jar로 가입/중복/동일401, SID/CSRF 교체·고정 거부·누락/위조/다른 세션 토큰, 로그아웃/DB expire/절대시간/삭제 사용자, owner UUID/방 관리/role 입력, query·폼·큰 JSON, 제한429/위조 XFF 우회 거부, DB/store503과 실패 뒤 실제 행을 검사한다. 컴파일/서버 기동은 성공한 상태에서 행동 실패를 확인한다.
-- [ ] **GREEN:** 공식 세션/store/CSRF/제한 middleware를 먼저 연결하고 Guard·Service·repository 주체를 일치시킨다. 모든 async 세션 전환은 완료를 기다린다. session 오류 handler·Nest 정제503, raw keys/JSON 형식/Origin/no-store를 제공한다. starter에는 라이브러리 wiring을 제공하고 AuthService/Guard/access/password 골격을 유지한다.
-- [ ] **검증/커밋:** 실제 PG의 전체 `npm run check:reference:part-04:db`와 양쪽 타입/빌드 통과. 요청 jar는 opaque Set-Cookie만 재전송하며 인증/서명 알고리즘을 대체하지 않는다.
+- [x] **RED:** 실제 HTTP cookie jar로 가입/중복/동일401, SID/CSRF 교체·고정 거부·누락/위조/다른 세션 토큰, 로그아웃/DB expire/절대시간/삭제 사용자, owner UUID/방 관리/role 입력, query·폼·큰 JSON, 제한429/위조 XFF 우회 거부, DB/store503과 실패 뒤 실제 행을 검사한다. 컴파일/서버 기동은 성공한 상태에서 행동 실패를 확인한다.
+- [x] **GREEN:** 공식 세션/store/CSRF/제한 middleware를 먼저 연결하고 Guard·Service·repository 주체를 일치시킨다. 모든 async 세션 전환은 완료를 기다린다. session 오류 handler·Nest 정제503, raw keys/JSON 형식/Origin/no-store를 제공한다. starter에는 라이브러리 wiring을 제공하고 AuthService/Guard/access/password 골격을 유지한다.
+- [x] **검증/커밋:** 실제 PG의 전체 `npm run check:reference:part-04:db`와 양쪽 타입/빌드 통과. 요청 jar는 opaque Set-Cookie만 재전송하며 인증/서명 알고리즘을 대체하지 않는다.
 
 ### Task 3: 로그인·개인 즐겨찾기·공지 화면
 
-**Files:** 양쪽 client/{package.json,tsconfig.json,vite.config.ts,index.html,src/{App.tsx,api.ts,types.ts,useLatestRequest.ts,main.tsx,styles.css}}, reference package/lock, checks/part-04/{api.test.ts,ui.test.tsx,wire.test.ts,client.config.ts,setup.ts}.
+**Files:** 양쪽 client/{package.json,tsconfig.json,vite.config.ts,index.html,src/{App.tsx,AuthPanel.tsx,NoticePanel.tsx,useSession.ts,api.ts,types.ts,useLatestRequest.ts,main.tsx,styles.css}}, reference package/lock, checks/part-04/{api.test.ts,ui.test.tsx,wire.test.ts,client.config.ts,setup.ts}.
 
 **Interfaces:** client getSession():Promise<SessionView>, register(credentials,csrf):Promise<User>, login(credentials,csrf):Promise<SessionView>, logout(csrf):Promise<void>, fetchPage(query,signal):Promise<Page>, setFavorite(userId,id,enabled,csrf):Promise<{id,favorite}>, getRoom(id,signal):Promise<Room>, updateNotice(id,notice,csrf):Promise<Room>. ApiError.status는401/403/네트워크 분리에 사용. User/Page/Room 이름·필드는 Task1/2 그대로.
 
@@ -60,7 +60,7 @@
 
 ### Task 4: 3주 교재·독립 실행·리뷰·게시
 
-**Files:** docs/tasks/part-04/{README.md,explanation.md,submission.md,browser-checklist.md}, docs/verification/part-04.md, docs/experiments/part-04/실제 요약, reference-solutions/part-04/README.md, checks/part-04/{standalone-smoke.mjs,verify-starter.mjs}, README.md/progress.md/AGENTS.md/SECURITY_CURRICULUM.md.
+**Files:** 양쪽 server/src/main.ts, docs/tasks/part-04/{README.md,explanation.md,submission.md,browser-checklist.md}, docs/verification/part-04.md, docs/experiments/part-04/실제 요약, reference-solutions/part-04/README.md, checks/part-04/{standalone-smoke.mjs,verify-starter.mjs}, README.md/progress.md/AGENTS.md/SECURITY_CURRICULUM.md.
 
 - [ ] A해싱/B세션/C권한의 예측·공식 근거·단계별 힌트·설명3개·독립 모든 기기 로그아웃·blank 제출·브라우저 미실행 양식과 로컬 secret 생성/역할 설정/Compose 절차를 작성한다.
 - [ ] source-only 복사본의 fresh npm ci/typecheck/build, API/Vite proxy, 로그인 뒤 실제 API 프로세스 재기동해 세션/즐겨찾기 유지, 로그아웃 뒤 재기동해 옛 쿠키 거부를 검사한다. 실제 PG 전체/시작 TODO 실패 수집/기존0~3단계/engine 회귀를 실행하고 기록한다. DB/세션/API 오류 출력에 테스트 secret/password marker가 없음을 확인한다.

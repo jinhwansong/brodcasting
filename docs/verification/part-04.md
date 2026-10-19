@@ -11,9 +11,15 @@ main에는3단계까지 게시했습니다.4단계는 제작 브랜치에서 작
 - 양쪽 서버 typecheck/build exit0, Node 정책6/6. 기존 root lock 의존성 버전 변경 없음. 기본 npm test는 학습0 골격의 의도된18실패/6통과를 유지합니다.
 - 시작 코드에 SQL·schema·migration·seed·DB guard/grant 선수 코드를 제공했습니다. 비밀번호/소유자 정책은 fail-closed 과제이며 현재 시작 코드 unit4실패/8통과입니다. 세션·Guard 과제는 후속 구현 중입니다.
 
+## HTTP 세션·권한 검증
+
+[초기 HTTP RED39180512466](https://github.com/jinhwansong/brodcasting/actions/runs/39180512466), CI611a947/local2a335d1은 새 HTTP51개 실패, 기존28개 통과였습니다. 보안 설정7개는 빈 app에서 거부하지 않아 로컬 RED를 확인한 뒤 기동 전 검사로19/19 unit 통과했습니다. [첫 통합39181101264](https://github.com/jinhwansong/brodcasting/actions/runs/39181101264), CId5ca169/local39ecf4c은 실제 PG에서 unit19+DB16+HTTP53=88/88 통과였습니다. 추가한2개 줄바꿈 정수 query는 기존 JavaScript 비멀티라인 정규식에서도 이미 거부됐습니다. 잘못 예상한 부분은 수정하고 기존 변환을 유지했으며, 이2개를 새 수정의 RED→GREEN으로 주장하지 않습니다.
+
+코드 검토 중 상태 조회의 무조건적인 save/upsert가 폐기된 SID를 되살릴 수 있음을 발견했습니다. 소유 테스트 schema에만 생성한 PostgreSQL trigger/advisory lock으로 조회 저장을 지연하고 로그아웃204 뒤 해제했습니다. [재현39181580388](https://github.com/jinhwansong/brodcasting/actions/runs/39181580388), CIc862099/localb648619은 옛 쿠키 재요청 expected401/received200으로 새1개만 실패하고 기존88개는 통과했습니다. 새 토큰 발급 때만 명시적으로 저장하고 기존 세션 조회는 쓰지 않도록 수정했습니다. [전체 GREEN39181743044](https://github.com/jinhwansong/brodcasting/actions/runs/39181743044), CIdef5a6a19d047cdce1ccab9a02b07ec196fa173f/local1fc654d/treee5bd37b06b808a70d41ddb85614140f23c49bb0a은 **89/89** 통과입니다. 쿠키·Origin·CSRF·만료·폐기·직접 타인 요청·방별 공지·429/위조 전달 헤더·DB/store 정제503과 실제 불변을 확인했습니다. 브라우저 Cookie 동작을 실행한 것은 아닙니다.
+
 ## 아직 완료하지 않은 범위
 
-실제 HTTP 로그인·쿠키·CSRF·만료·폐기·Guard·응답 정제·제한429, 화면과 늦은 응답 경계, source-only 독립 설치와 실제 API 프로세스 재기동, 유효 CLI setup/실패 로그 검사, 시작 코드 전체 실패 수집, 기존0~3단계 전체 회귀,3주 본문/설명/독립 과제, 최종 전체 리뷰와 main 게시가 남았습니다. 로컬 Compose·실제 브라우저·운영 배포·소켓 인증 완료를 주장하지 않습니다.
+화면과 늦은 응답 경계, source-only 독립 설치와 실제 API 프로세스 재기동, 유효 CLI setup/실패 로그 검사, 시작 코드 전체 실패 수집, 기존0~3단계 전체 회귀,3주 본문/설명/독립 과제, 최종 전체 리뷰와 main 게시가 남았습니다. 로컬 Compose·실제 브라우저·운영 배포·소켓 인증 완료를 주장하지 않습니다.
 
 ## 현재 판단
 
