@@ -54,7 +54,10 @@
     "db:part-04": "npm run build --workspace labs/part-04/server && node --env-file-if-exists=.env labs/part-04/server/dist/db-cli.js",
     "check:reference:part-04": "node --env-file-if-exists=.env checks/part-04/run.mjs reference all",
     "check:part-04": "node --env-file-if-exists=.env checks/part-04/run.mjs exercise all",
-    "dev:part-04": "npm run dev --workspace labs/part-04/client"
+    "dev:part-04": "npm run dev --workspace labs/part-04/client",
+    "dev:part-04:api": "npm run build --workspace labs/part-04/server && node --env-file-if-exists=.env labs/part-04/server/dist/main.js",
+    "verify:part-04:standalone": "node checks/part-04/standalone-smoke.mjs",
+    "verify:part-04:starter": "node --env-file-if-exists=.env checks/part-04/verify-starter.mjs"
   },
   "devDependencies": {
     "semver": "7.8.5",

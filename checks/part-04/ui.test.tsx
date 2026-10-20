@@ -1,4 +1,4 @@
-import {StrictMode} from 'react';
+import {Profiler,StrictMode} from 'react';
 import {act,fireEvent,render,screen,waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {beforeEach,expect,it,vi} from 'vitest';
@@ -49,7 +49,7 @@ it('자기 방에만 공지 저장을 표시하고 방을 바꾸면 권한을 �
 it('공지 문자열은 글자로 표시하고 HTML 요소를 만들지 않는다',async()=>{
  const user=userEvent.setup(),notice='<strong data-probe="notice">새 안내</strong>';const {container}=render(<App/>);await login(user);await screen.findByLabelText('공지 내용');
  await user.clear(screen.getByLabelText('공지 내용'));await user.type(screen.getByLabelText('공지 내용'),notice);await user.click(screen.getByRole('button',{name:'공지 저장'}));
- await screen.findByText(notice);expect(container.querySelector('strong[data-probe="notice"]')).toBeNull();
+ await screen.findByText(notice,{selector:'p'});expect(container.querySelector('strong[data-probe="notice"]')).toBeNull();
 });
 it('공지403은 초안을 보존하고 권한 변경을 다시 반영한다',async()=>{
  fake.server.onNotice=async()=>{fake.server.denyRoom=true;return json({},403);};const user=userEvent.setup();render(<App/>);await login(user);await screen.findByLabelText('공지 내용');
@@ -64,9 +64,11 @@ it('401 뒤 같은 계정으로 다시 로그인해도 초안을 자동 재전�
  expect(fake.fetch.mock.calls.filter(([url,options])=>url==='/api/rooms/r1/notice'&&options?.method==='PUT')).toHaveLength(1);
 });
 it('다른 계정으로 로그인하면 이전 계정의 초안을 지운다',async()=>{
- fake.server.onNotice=async()=>{fake.server.user=null;return json({},401);};const user=userEvent.setup();render(<App/>);await login(user);await screen.findByLabelText('공지 내용');
+ const exposed:boolean[]=[];
+ fake.server.onNotice=async()=>{fake.server.user=null;return json({},401);};const user=userEvent.setup();
+ render(<Profiler id="account-switch" onRender={()=>{if(screen.queryByText('learner_b'))exposed.push(screen.queryByDisplayValue('이전 계정 초안')!==null);}}><App/></Profiler>);await login(user);await screen.findByLabelText('공지 내용');
  await user.clear(screen.getByLabelText('공지 내용'));await user.type(screen.getByLabelText('공지 내용'),'이전 계정 초안');await user.click(screen.getByRole('button',{name:'공지 저장'}));await screen.findByText(/다시 로그인/);
- await login(user,'learner_b');await screen.findByText('learner_b');expect(screen.queryByDisplayValue('이전 계정 초안')).toBeNull();expect(screen.queryByRole('button',{name:'공지 저장'})).toBeNull();
+ await login(user,'learner_b');await screen.findByText('learner_b');expect(screen.queryByDisplayValue('이전 계정 초안')).toBeNull();expect(screen.queryByRole('button',{name:'공지 저장'})).toBeNull();expect(exposed.length).toBeGreaterThan(0);expect(exposed.every(value=>!value)).toBe(true);
 });
 it('늦은 이전 계정 저장이 새 계정의 진행 중 요청을 완료시키지 않는다',async()=>{
  let older!:(value:Response)=>void,newer!:(value:Response)=>void;fake.server.onFavorite=(url)=>new Promise(resolve=>{if(url.pathname.includes(A.id))older=resolve;else newer=resolve;});

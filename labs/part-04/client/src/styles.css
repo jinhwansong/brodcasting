@@ -53,6 +53,18 @@ h3 { font-size: 1rem; margin: 0; }
 .empty-detail { color: #516879; }
 .experiment { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; border-top: 1px solid #c5d3de; margin-top: 32px; padding-top: 20px; }
 footer { color: #516879; font-size: .85rem; margin-top: 32px; }
+.account-panel, .notice-panel { padding: 24px 0; border-bottom: 1px solid #c5d3de; overflow-wrap: anywhere; }
+.auth-fields { border: 0; padding: 0; margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field input { width: 100%; }
+.field label { font-weight: 700; }
+.form-hint { width: 100%; font-size: .9rem; color: #516879; margin-bottom: 0; }
+.form-actions, .account-current { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.account-current p { margin-bottom: 0; }
+.notice-panel select { margin: 0 0 16px 12px; max-width: 100%; }
+.notice-panel textarea { width: 100%; max-width: 640px; font: inherit; color: inherit; border: 1px solid #859bad; border-radius: 4px; padding: 12px; resize: vertical; }
+.notice-panel button { margin: 12px 12px 0 0; }
+.notice-text { white-space: pre-wrap; }
 .page-nav { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 24px; }
 .page-nav span { font-variant-numeric: tabular-nums; }
 button:disabled { cursor: default; opacity: .55; }

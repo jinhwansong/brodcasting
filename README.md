@@ -2,7 +2,7 @@
 
 실시간 서비스를 소재로 React·TypeScript 기본기와 서버 흐름을 배우는 교재 저장소입니다. [39주 커리큘럼](CURRICULUM.md)이 기준입니다. 실제 방송 서비스나 학습자의 완료된 포트폴리오가 아닙니다.
 
-2026-10-20 사용자 요청으로 **제작을 중지하고 현재 작업을 중간 저장**했습니다. 완성 교재는 0~3단계이며 4단계는 서버·client API와 일부 화면 파일까지 작성한 미완성 상태입니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 검증 결과와 재개 순서를 기록했습니다. 새 제작은 재개 요청을 기다립니다.
+2026-10-20 사용자 요청으로 제작을 재개해 **0~4단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
 
 ## 0단계 시작
 
@@ -47,6 +47,7 @@ npm run check:part-01
 | 1단계 | [시청 화면과 사용자 상호작용](docs/tasks/part-01/README.md) | [기록](docs/verification/part-01.md) |
 | 2단계 | [HTTP API와 느린 응답](docs/tasks/part-02/README.md) | [기록](docs/verification/part-02.md) |
 | 3단계 | [PostgreSQL과 페이지네이션](docs/tasks/part-03/README.md) | [기록](docs/verification/part-03.md) |
+| 4단계 | [로그인과 권한](docs/tasks/part-04/README.md) | [기록](docs/verification/part-04.md) |
 
 ## 2단계 선택 실행
 
@@ -71,6 +72,16 @@ API는 로컬 메모리 데이터만 사용합니다. 0·1단계, 이후 3~11단
 
 PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프록시/API 재시작 검증을 통과했습니다. 실제 브라우저와 본인 로컬 Compose 실행은 후속 확인입니다. 학습 상태와 기본 명령은 계속0단계입니다. 이후4~11단계·알림·추가 보안·맨 마지막 BunkerWeb으로 이어집니다.
 
+## 4단계 선택 실행
+
+[로그인과 권한](docs/tasks/part-04/README.md)은 A 해싱/B 세션/C 권한의 3주 실습입니다. SQL·React 화면·세션 저장소 wiring은 제공하고 비밀번호·AuthService·Guard·접근 정책은 거부하는 골격으로 남깁니다. 교재의 전용 DB·로컬 secret·제한 역할 준비를 먼저 따르세요.
+
+- `npm run dev:part-04:api`, `npm run dev:part-04`: API 3004·화면 5184
+- `npm run typecheck:part-04`, `npm run build:part-04`, `npm run check:part-04`
+- [빈 제출](docs/tasks/part-04/submission.md), [브라우저 후속](docs/tasks/part-04/browser-checklist.md), [완성본 독립 실행](reference-solutions/part-04/README.md)
+
+실제 PostgreSQL·HTTP·wire·client 143개와 소스만 복사한 새 설치·실제 API 두 번 재시작 검증을 통과했습니다. 시작 코드의 인증 실패는 과제이며 학습자의 통과가 아닙니다. 쿠키 Secure=false인 로컬 수업이고 production 기동은 거부합니다. 다음 기본 과정은 WebSocket 채팅입니다.
+
 ## 보안·프론트·인프라 과정
 
 [보안 추가 커리큘럼](SECURITY_CURRICULUM.md)을 기존 단계와 함께 사용합니다. API·DB·로그인·채팅·가용성에 보안 과제를 연결하고 다음 전용 강의를 추가했습니다.
@@ -89,5 +100,7 @@ PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프�
 `npm run check:reference:part-02`는 2단계 완성본을 빌드하고 같은 HTTP·client 검증을 실행합니다. 독립 client/server 설치·실행 안내는 [2단계 완성본 README](reference-solutions/part-02/README.md)에 있습니다.
 
 `npm run check:reference:part-03`은 전용 PostgreSQL DB에서3단계 완성본의 DB/HTTP/실험/client를 검사합니다. [독립 설치 안내](reference-solutions/part-03/README.md)를 따르세요.
+
+`npm run check:reference:part-04`는 전용 test DB에서 4단계 완성본을 검사합니다. `verify:part-04:standalone`은 비어 있는 별도 lab DB/cluster에서만, `verify:part-04:starter`는 의도된 과제 실패 수집에 사용합니다.
 
 `npm run check:toolchain`은 제작자용으로 루트와 네 참고 패키지의 Node 지원 범위가 잠긴 의존성들과 호환되는지 검사합니다. 참고 완성본의 패키지 메타데이터를 읽으므로 기본 학습 테스트에는 포함하지 않습니다.

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {readFile,writeFile} from 'node:fs/promises';
+const result=spawnSync(process.execPath,['checks/part-04/run.mjs','exercise','all'],{stdio:'inherit',env:process.env});
+assert.equal(result.status,1,'Authentication starter must still require learner implementation');
+const db=JSON.parse(await readFile('test-results/part-04/exercise-db.json','utf8'));
+const client=JSON.parse(await readFile('test-results/part-04/exercise-client.json','utf8'));
+assert.ok(db.numFailedTests>0);assert.equal(db.numPendingTests,0);
+assert.ok(db.testResults.every(suite=>suite.assertionResults.length>0),'Every suite must collect tests');
+assert.equal(client.numFailedTests,0);assert.equal(client.numPendingTests,0);
+const failures=db.testResults.flatMap(suite=>suite.assertionResults.filter(test=>test.status==='failed').flatMap(test=>test.failureMessages));
+assert.ok(failures.length>0);
+assert.equal(failures.some(message=>/Cannot find module|ERR_MODULE|SyntaxError|ECONNREFUSED|Unhandled|timed out|Failed to load|A dedicated local PostgreSQL URL is required/.test(message)),false,'Infrastructure failures are not learner TODO failures');
+const summary={db:{total:db.numTotalTests,passed:db.numPassedTests,failed:db.numFailedTests},client:{total:client.numTotalTests,passed:client.numPassedTests,failed:client.numFailedTests},note:'Fail-closed password/auth/guard/access TODO assertions; no module/connection/timeout failure accepted.'};
+await writeFile('test-results/part-04/starter-summary.json',JSON.stringify(summary,null,2)+'\n');console.log('Starting authentication lab remains incomplete:',JSON.stringify(summary));

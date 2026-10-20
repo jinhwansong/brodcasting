@@ -1,6 +1,27 @@
 # 남은 작업과 인수인계
 
-기준일: 2026-10-20 · **사용자 요청으로 제작 중지**
+기준일: 2026-10-20 · **사용자 명시 요청으로 제작 재개**
+
+## 현재 인수인계 — 아래 중지 기록보다 우선
+
+사용자가 docs 계획을 읽고 나머지 제작을 계속하라고 요청해 앞선 중지를 해제했습니다. 4단계 화면·실행 진입점·3주 교재를 이어서 제작했습니다. 학습자는 **0단계·미시작**입니다.
+
+| 대상 | 현재 결과 |
+| --- | --- |
+| Task 1/2 | 기존 SQL·해싱·세션·CSRF·HTTP·권한 구현 보존, 실제 DB에서 재검증 |
+| Task 3 | 가입·로그인·개인 즐겨찾기·방별 공지 연결, epoch/revision·초안 정책 확인 |
+| Task 4 | 양쪽 main.ts, A/B/C 3주 교재·해설·빈 제출·브라우저 후속 양식 제공 |
+| 완성본 | 실제 DB/HTTP/wire/실행 설정 103 + client 40 = 143 통과 |
+| 시작 코드 | 서버 54통과/49의도된 실패, client 40통과. 인증·권한 TODO 유지 |
+| 독립 실행 | 소스 복사·새 npm ci·타입·빌드·operator 정상/거부·프록시·실제 API 2회 재시작·로그 확인 |
+| 회귀 | 0/1/2/3단계 24/22/72/97, Node 정책6 통과. 0단계 시작 코드는18실패/6통과 유지 |
+| 리뷰 | 사용자 순차 실행 규칙에 따른 자체 리뷰. 계정 변경 첫 렌더의 초안 노출 RED→GREEN 수정 |
+
+현재 근거는 [4단계 검증](docs/verification/part-04.md), [실행 요약](docs/experiments/part-04/README.md)입니다. 다음 제작은 아래 **나머지 기본 과정의 5단계 WebSocket 채팅**부터입니다. 이후 6~11단계·알림7주·보안 F1~F3·맨 마지막 BunkerWeb 순서를 유지합니다. 전용 F2 독립 과제는 다른 탭의 계정 변경 신호 후 서버 재확인으로 확장했습니다.
+
+Windows Node24.15.0 + Docker PostgreSQL18.6에서 검증했습니다. 실제 브라우저·공개 배포·운영 보안·소켓·BunkerWeb은 미검증이며 Windows 프로세스 종료를 POSIX graceful signal 검증으로 세지 않습니다. 확장한 Linux CI 결과는 별도 확인합니다. 사용자가 원래 갖고 있던 미추적 docs/PROJECT_PLAN.md·docs/REMAINING_WORK.md는 수정·커밋에서 제외했으며 관리 문서는 루트의 같은 이름 파일입니다.
+
+## 중지 당시 기록 — 역사 보존, 현재 미완료 목록 아님
 
 이번 요청은 지금까지 한 작업의 푸시와 Markdown 정리입니다. 아래 체크리스트는 이후 재개할 때 사용할 기록이며 지금 실행하라는 지시가 아닙니다. [기획서](PROJECT_PLAN.md), [현재 학습 상태](progress.md), [4단계 설계](docs/superpowers/specs/2026-10-17-part-04-design.md), [상세 구현 계획](docs/superpowers/plans/2026-10-17-part-04-courseware.md)을 함께 읽으세요.
 
@@ -88,7 +109,7 @@
 - [ ] 단계별 실시간 보안·속도/보관 상한·최소 권한·로그 정제를 각 강의와 연결한다.
 - [ ] **모든 기본·알림·보안 과정 뒤 마지막**에 BunkerWeb 전용 Compose와 내부 네트워크·프록시·TLS·WebSocket·WAF·오탐 조정·로그·롤백을 제작한다. 착수할 때 공식 버전과 설정을 다시 확인한다. WAF를 애플리케이션 권한 검사로 대체하지 않는다.
 
-## 실제 검증 기록과 제한
+## 중지 당시 실제 검증 기록과 제한
 
 - 서버 마지막 녹색: [run 39181743044](https://github.com/jinhwansong/brodcasting/actions/runs/39181743044), CI `def5a6a19d047cdce1ccab9a02b07ec196fa173f`, 로컬 `1fc654d27327c923ff99b81ec831425b7bc5664b`. unit 19 + DB 16 + HTTP 54 = 89개. 현재 체크포인트 전체의 재검증 기록은 아니다.
 - wire/UI 도입 당시: [run 39183170436](https://github.com/jinhwansong/brodcasting/actions/runs/39183170436), CI `2e7e612423aafda8e87f68d9be040f710f77afb9`. 서버 기존 89개 통과, wire 3개와 client 40개 실패. 이후 API만 구현했다.
