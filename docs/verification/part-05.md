@@ -25,7 +25,7 @@ Windows Node24.15.0·Docker PostgreSQL18.6의 이번 작업 소유 loopback 컨�
 
 [순차 리뷰](part-05-review.md), [실행 요약](../experiments/part-05/README.md), [JSON 요약](../experiments/part-05/verification-summary.json)에 범위와 원시 보고서 SHA256을 기록합니다. 사용자 AGENTS의 순차 실행 지시에 따라 같은 컨텍스트에서 검토했으며 독립 리뷰어·교차 모델·새 컨텍스트 리뷰를 수행했다고 주장하지 않습니다. 필수 수정 보류는 없습니다.
 
-확장한 CI는199개·독립 설치/실제 proxy socket·starter 실패 수집·0~4회귀·양쪽 타입/빌드와 artifact SHA256SUMS를 검사합니다. 원격 성공은 실제 실행을 확인한 뒤 별도로 기록합니다.
+[Linux CI39419360850](https://github.com/jinhwansong/brodcasting/actions/runs/39419360850)가 커밋 `660b1bbcaf9f9c0d187ad3917e7ad456c3ffada1`·트리 `576f0399a4e96a609036a39b6a4d118d6e26b03b`에서 성공했습니다. Node24.19.0에서199개·독립 설치/실제 proxy socket·starter 실패 수집·0~4회귀·양쪽 타입/빌드를 확인했습니다. Linux SIGTERM 종료도 통과했습니다. artifact12262713042 ZIP의 SHA256을 GitHub digest와 비교하고 내부 보고서6개를 SHA256SUMS와 대조했습니다. 상세 해시는 JSON 요약에 기록했습니다.
 
 ## 한계
 

@@ -140,5 +140,53 @@
     "regression-summary.json": "9c54ce67d66854730ab127c7bce4b180469d998a3c9a4dd9fe61f734ef712c5d"
   },
   "browser": false,
-  "independentReviewer": false
+  "independentReviewer": false,
+  "ci": {
+    "runId": 39419360850,
+    "url": "https://github.com/jinhwansong/brodcasting/actions/runs/39419360850",
+    "conclusion": "success",
+    "testedCommit": "660b1bbcaf9f9c0d187ad3917e7ad456c3ffada1",
+    "testedTree": "576f0399a4e96a609036a39b6a4d118d6e26b03b",
+    "artifactId": 12262713042,
+    "artifactZipSha256": "b4cdcfd7d62c9ec5fe03b927caa04616c10c9ac704554ef078010761d6644a77",
+    "downloadedZipDigestVerified": true,
+    "reportChecksumsVerified": 6,
+    "manifest": "de42191abb518fbaf9c9e7570566aa470181d568d9635cfd2d87d0e56086ca20  test-results/part-05/exercise-client.json\n5d09c804e09f8ae66d83b681474623141c21d2f70a531ef6e18914e18478d414  test-results/part-05/exercise-db.json\n00ef0cb8061aa7bfd5c105247f5b9e08ceea8a6d245925bf64181be9014761e6  test-results/part-05/reference-client.json\n309e3aed9a4a80244ae1b23c7e9a0ded52c4d153aed2ae005595909b3c148f66  test-results/part-05/reference-db.json\nf33f58804e10ecb56cc32c472d90c3980461aae2712f7f4aa2b5039dfde2bd0a  test-results/part-05/standalone-summary.json\n56cae7834d7d6de2393fd33c2c89e00c8c62e5464a9e68ea7a4210ce0a59bb80  test-results/part-05/starter-summary.json\n",
+    "standalone": {
+      "node": "v24.19.0",
+      "platform": "linux",
+      "cleanSourceInstall": true,
+      "typecheck": true,
+      "build": true,
+      "operatorCli": true,
+      "limitedRole": true,
+      "proxyHttp": true,
+      "actualProcessRestarts": 2,
+      "sessionAndFavoritePersistence": true,
+      "logoutSurvivesRestart": true,
+      "setupErrorsSanitized": true,
+      "gracefulSignals": true,
+      "browser": false,
+      "sameOriginSocketProxy": true,
+      "actualSocketDelivery": true,
+      "membershipOperator": true,
+      "socketReauthentication": true,
+      "socketClosure": true
+    },
+    "starter": {
+      "db": {
+        "total": 149,
+        "passed": 110,
+        "failed": 39
+      },
+      "client": {
+        "total": 50,
+        "passed": 41,
+        "failed": 9
+      },
+      "note": "Fail-closed chat Service/Gateway and disconnected hook TODO assertions; prerequisite HTTP/auth code is provided. No module/connection/timeout failure accepted."
+    },
+    "previousCoursewareRegressions": true,
+    "starterTypesAndBuilds": true
+  }
 }
