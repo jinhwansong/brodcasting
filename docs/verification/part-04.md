@@ -21,6 +21,8 @@
 
 ## 증거와 한계
 
+[원격 GREEN 39412577725](https://github.com/jinhwansong/brodcasting/actions/runs/39412577725), commit `6166e964920d58578ea2c599520b3e6c35bac607`, tree `89ad0e409d1e501c7e3c0d03ed4fd4e04369a52f`: Linux Node24.19.0·PostgreSQL18.6에서143개, 독립 설치·실제2회 재시작·SIGTERM 종료·의도된 과제 실패·0~3회귀·starter 타입/빌드가 모두 성공했습니다. Artifact12260206842의 ZIP SHA256은 `012e11dcb0d79239036fbecf6ac6478d3b1aabc707b7cf306288305aaf97e8cf`이며 실제 다운로드 바이트와 일치했습니다. 내부 SHA256SUMS의 보고서6개도 모두 일치했습니다. 이후 변경은 이 CI 근거를 추가하는 문서뿐이며 코드/워크플로는 검증 커밋과 같습니다.
+
 정제된 [실행 요약](../experiments/part-04/README.md)과 [JSON 요약](../experiments/part-04/verification-summary.json)에 결과 및 원시 JSON의 SHA256을 저장합니다. 원시 보고서는 test-results/part-04에 있으며 공유 문서에 비밀번호·쿠키·CSRF·해시를 복사하지 않습니다. 확장한 CI는143개·독립 설치·과제 실패·0~3회귀·양쪽 타입/빌드 및 artifact SHA256을 검사합니다. 실제 CI 결과는 별도 실행 후에만 기록합니다.
 
 Windows의 자식 프로세스 종료는 POSIX SIGTERM graceful cleanup 확인으로 세지 않습니다. Linux CI, 실제 브라우저 Cookie/CORS·키보드/좁은 화면, learner/reference Compose 설정 파일 직접 기동, 공개 배포·운영 보안·소켓·BunkerWeb은 이 로컬 결과에 포함하지 않습니다. 이번 DB는 docker run으로 기동했으며 Compose 기동 증거로 바꾸지 않습니다.

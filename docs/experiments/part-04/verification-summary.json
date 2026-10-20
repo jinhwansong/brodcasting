@@ -135,5 +135,48 @@
     "regression-summary.json": "a95c6b192670bf7a03a65ffbcca71ee1d5a4aa12e12fe1d6208e4d302f369d15"
   },
   "browser": false,
-  "independentReviewer": false
+  "independentReviewer": false,
+  "ci": {
+    "runId": 39412577725,
+    "url": "https://github.com/jinhwansong/brodcasting/actions/runs/39412577725",
+    "conclusion": "success",
+    "testedCommit": "6166e964920d58578ea2c599520b3e6c35bac607",
+    "testedTree": "89ad0e409d1e501c7e3c0d03ed4fd4e04369a52f",
+    "artifactId": 12260206842,
+    "artifactZipSha256": "012e11dcb0d79239036fbecf6ac6478d3b1aabc707b7cf306288305aaf97e8cf",
+    "downloadedZipDigestVerified": true,
+    "reportChecksumsVerified": 6,
+    "manifest": "8e769d9cca021f6d87a806ba249dfb3098255fd33a9f79129fc0a3f0152167ef  test-results/part-04/exercise-client.json\n5d32111acee5167bca8fdd34750219ac094604cb6d31d43049780e5124174a7a  test-results/part-04/exercise-db.json\nfed7da2a7eb13e02eef81b126195ef1eb018834e2940f2a86c234868e3f19406  test-results/part-04/reference-client.json\n56f0e356cd999652f541ff6150a1118db85a157f3c770610486811654ed89c7d  test-results/part-04/reference-db.json\n2a0f3f783dfe12e179877310116f0a0bd7175fb732cea45410c4944a460faca9  test-results/part-04/standalone-summary.json\nfbc5d02ad8570484e8a7d3476f70a626e71926eb70152a1483e96f34fe66d917  test-results/part-04/starter-summary.json\n",
+    "standalone": {
+      "node": "v24.19.0",
+      "platform": "linux",
+      "cleanSourceInstall": true,
+      "typecheck": true,
+      "build": true,
+      "operatorCli": true,
+      "limitedRole": true,
+      "proxyHttp": true,
+      "actualProcessRestarts": 2,
+      "sessionAndFavoritePersistence": true,
+      "logoutSurvivesRestart": true,
+      "setupErrorsSanitized": true,
+      "gracefulSignals": true,
+      "browser": false
+    },
+    "starter": {
+      "db": {
+        "total": 103,
+        "passed": 54,
+        "failed": 49
+      },
+      "client": {
+        "total": 40,
+        "passed": 40,
+        "failed": 0
+      },
+      "note": "Fail-closed password/auth/guard/access TODO assertions; no module/connection/timeout failure accepted."
+    },
+    "previousCoursewareRegressions": true,
+    "starterTypesAndBuilds": true
+  }
 }

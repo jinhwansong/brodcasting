@@ -1,6 +1,6 @@
 # 4단계 로그인과 권한 Implementation Plan
 
-> 2026-10-20 최신 지시: 제작 중지. 현재 상태를 중간 저장하고 기획·잔여 작업을 문서화한다. 아래 연속 제작 위임은 중지 지시보다 우선하지 않는다. Task1/2 완료, Task3 API만 검증·UI 미완료, Task4 미완료. [인수인계](../../../REMAINING_WORK.md) 이후 작업은 재개 요청을 기다린다.
+> 2026-10-20 후속 지시: 사용자가 docs 계획을 읽고 나머지 작업을 계속하도록 명시적으로 제작을 재개했다. 중지 체크포인트에서 Task3/4를 이어서 완료했으며 현재 상태는 [인수인계](../../../REMAINING_WORK.md)·[검증 기록](../../verification/part-04.md)을 따른다. 아래 체크박스는 최초 계획의 원문이며 실행 결과는 검증 문서와 Git에 기록한다. 4단계143개·독립 설치/실제 재시작·기존 과정 회귀는 원격 CI39412577725에서도 성공했다.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans. Steps use checkboxes. 사용자의 기존 native 연속 제작·커밋·푸시 위임을 유지한다.
 

@@ -19,7 +19,7 @@
 
 현재 근거는 [4단계 검증](docs/verification/part-04.md), [실행 요약](docs/experiments/part-04/README.md)입니다. 다음 제작은 아래 **나머지 기본 과정의 5단계 WebSocket 채팅**부터입니다. 이후 6~11단계·알림7주·보안 F1~F3·맨 마지막 BunkerWeb 순서를 유지합니다. 전용 F2 독립 과제는 다른 탭의 계정 변경 신호 후 서버 재확인으로 확장했습니다.
 
-Windows Node24.15.0 + Docker PostgreSQL18.6에서 검증했습니다. 실제 브라우저·공개 배포·운영 보안·소켓·BunkerWeb은 미검증이며 Windows 프로세스 종료를 POSIX graceful signal 검증으로 세지 않습니다. 확장한 Linux CI 결과는 별도 확인합니다. 사용자가 원래 갖고 있던 미추적 docs/PROJECT_PLAN.md·docs/REMAINING_WORK.md는 수정·커밋에서 제외했으며 관리 문서는 루트의 같은 이름 파일입니다.
+Windows Node24.15.0 + Docker PostgreSQL18.6 검증과 별도 [Linux CI39412577725](https://github.com/jinhwansong/brodcasting/actions/runs/39412577725)를 모두 확인했습니다. Linux SIGTERM 종료·artifact ZIP과 보고서6개 SHA256도 확인했습니다. 실제 브라우저·공개 배포·운영 보안·소켓·BunkerWeb은 미검증입니다. 사용자가 원래 갖고 있던 미추적 docs/PROJECT_PLAN.md·docs/REMAINING_WORK.md는 수정·커밋에서 제외했으며 관리 문서는 루트의 같은 이름 파일입니다.
 
 ## 중지 당시 기록 — 역사 보존, 현재 미완료 목록 아님
 

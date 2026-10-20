@@ -53,7 +53,7 @@ React·TypeScript로 화면을 만들고 간단한 Node.js·NestJS API를 작성
 
 현재 4단계는 기존 PostgreSQL에 express-session과 connect-pg-simple로 서버 세션을 저장합니다. 비밀번호는 argon2, CSRF는 csrf-sync, 가입·로그인 제한은 express-rate-limit을 사용합니다. 정확한 버전과 계약은 위 4단계 설계·lock 파일에 있습니다. 인증 프로토콜이나 해시 함수를 직접 만들지 않습니다.
 
-로컬 실습의 API는 127.0.0.1:3004, client는 127.0.0.1:5184, Compose DB는 127.0.0.1:5544입니다. 양쪽 main.ts는 설정을 연결 전에 검사하고 production 기동을 거부하며 loopback에서 실행합니다. Windows에서 실제 API 프로세스 두 번 재시작을 확인했습니다. POSIX 신호에 따른 graceful 종료는 Linux CI에서 별도로 확인할 범위입니다. 로컬 HTTP의 Secure=false 쿠키 설정을 배포용으로 간주하지 않습니다.
+로컬 실습의 API는 127.0.0.1:3004, client는 127.0.0.1:5184, Compose DB는 127.0.0.1:5544입니다. 양쪽 main.ts는 설정을 연결 전에 검사하고 production 기동을 거부하며 loopback에서 실행합니다. Windows와 별도 Linux CI에서 실제 API 프로세스 두 번 재시작을 확인했고 Linux에서는 SIGTERM 종료도 확인했습니다. 로컬 HTTP의 Secure=false 쿠키 설정을 배포용으로 간주하지 않습니다.
 
 ## 보안과 안정성 목표
 
