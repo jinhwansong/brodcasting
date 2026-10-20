@@ -12,7 +12,9 @@
     "labs/part-04/server",
     "labs/part-04/client",
     "labs/part-05/server",
-    "labs/part-05/client"
+    "labs/part-05/client",
+    "labs/part-06/server",
+    "labs/part-06/client"
   ],
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -70,7 +72,18 @@
     "dev:part-05": "npm run dev --workspace labs/part-05/client",
     "dev:part-05:api": "npm run build --workspace labs/part-05/server && node --env-file-if-exists=.env labs/part-05/server/dist/main.js",
     "verify:part-05:standalone": "node checks/part-05/standalone-smoke.mjs",
-    "verify:part-05:starter": "node --env-file-if-exists=.env checks/part-05/verify-starter.mjs"
+    "verify:part-05:starter": "node --env-file-if-exists=.env checks/part-05/verify-starter.mjs",
+    "check:reference:part-06:db": "node --env-file-if-exists=.env checks/part-06/run.mjs reference db",
+    "check:part-06:db": "node --env-file-if-exists=.env checks/part-06/run.mjs exercise db",
+    "typecheck:part-06": "npm run typecheck --workspace labs/part-06/server && npm run typecheck --workspace labs/part-06/client",
+    "build:part-06": "npm run build --workspace labs/part-06/server && npm run build --workspace labs/part-06/client",
+    "db:part-06": "npm run build --workspace labs/part-06/server && node --env-file-if-exists=.env labs/part-06/server/dist/db-cli.js",
+    "check:reference:part-06": "node --env-file-if-exists=.env checks/part-06/run.mjs reference all",
+    "check:part-06": "node --env-file-if-exists=.env checks/part-06/run.mjs exercise all",
+    "dev:part-06": "npm run dev --workspace labs/part-06/client",
+    "dev:part-06:api": "npm run build --workspace labs/part-06/server && node --env-file-if-exists=.env labs/part-06/server/dist/main.js",
+    "verify:part-06:standalone": "node checks/part-06/standalone-smoke.mjs",
+    "verify:part-06:starter": "node --env-file-if-exists=.env checks/part-06/verify-starter.mjs"
   },
   "devDependencies": {
     "semver": "7.8.5",

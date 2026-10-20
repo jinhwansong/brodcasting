@@ -2,7 +2,7 @@
 
 실시간 서비스를 소재로 React·TypeScript 기본기와 서버 흐름을 배우는 교재 저장소입니다. [39주 커리큘럼](CURRICULUM.md)이 기준입니다. 실제 방송 서비스나 학습자의 완료된 포트폴리오가 아닙니다.
 
-2026-10-20 사용자 요청으로 제작을 재개해 **0~5단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
+2026-10-20 사용자 요청으로 제작을 재개해 **0~6단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
 
 ## 0단계 시작
 
@@ -49,6 +49,7 @@ npm run check:part-01
 | 3단계 | [PostgreSQL과 페이지네이션](docs/tasks/part-03/README.md) | [기록](docs/verification/part-03.md) |
 | 4단계 | [로그인과 권한](docs/tasks/part-04/README.md) | [기록](docs/verification/part-04.md) |
 | 5단계 | [WebSocket 채팅](docs/tasks/part-05/README.md) | [기록](docs/verification/part-05.md) |
+| 6단계 | [저장·재연결·복구](docs/tasks/part-06/README.md) | [기록](docs/verification/part-06.md) |
 
 ## 2단계 선택 실행
 
@@ -93,6 +94,16 @@ PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프�
 
 실제 PG/HTTP/socket149개와 client50개, 총199개 및 source-only 새 설치·실제 소켓 프록시·재시작 검증을 통과했습니다. 메시지는 휘발성이며 저장·재연결 복구는6단계입니다. 실제 두 브라우저 확인은 보류합니다.
 
+## 6단계 선택 실행
+
+[저장·재연결·복구](docs/tasks/part-06/README.md)는 A 저장 트랜잭션/중복 방지·B 이력·C 복구/재시도의3주 실습입니다.5단계 인증·회원권·입장/전달은 제공합니다. 새로운 핵심 로직은 거부/미연결 과제로 남깁니다.
+
+- `npm run dev:part-06:api`, `npm run dev:part-06`: API3006·화면5186, 전용 DB/역할은 교재 순서대로 준비
+- `npm run typecheck:part-06`, `npm run build:part-06`, `npm run check:part-06`
+- [빈 제출](docs/tasks/part-06/submission.md), [브라우저 후속](docs/tasks/part-06/browser-checklist.md), [완성본 독립 실행](reference-solutions/part-06/README.md)
+
+실제 PG/HTTP/socket194개와 client68개, 총262개 및 새 설치·소켓 프록시·API 재시작 뒤 이력/중복 방지를 확인했습니다. 방별 commit 순서와 복구 cursor를 구분하며, ack 유실은 같은 발송 ID로 제한 재시도합니다. 실제 브라우저·영구 outbox·운영 exactly-once는 확인하지 않았습니다.
+
 ## 보안·프론트·인프라 과정
 
 [보안 추가 커리큘럼](SECURITY_CURRICULUM.md)을 기존 단계와 함께 사용합니다. API·DB·로그인·채팅·가용성에 보안 과제를 연결하고 다음 전용 강의를 추가했습니다.
@@ -116,4 +127,6 @@ PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프�
 
 `npm run check:reference:part-05`는 전용 test DB에서 5단계의 실제 소켓·client까지 검사합니다. `verify:part-05:standalone`은 빈 소유 lab DB/cluster에서만, `verify:part-05:starter`는 A/B/C 실패와 선수 기능 통과 수집에 사용합니다.
 
-`npm run check:toolchain`은 제작자용으로 루트와 네 참고 패키지의 Node 지원 범위가 잠긴 의존성들과 호환되는지 검사합니다. 참고 완성본의 패키지 메타데이터를 읽으므로 기본 학습 테스트에는 포함하지 않습니다.
+`npm run check:reference:part-06`은 전용 DB에서 저장/이력/재시도까지 검사합니다. `verify:part-06:standalone`은 빈 소유 lab DB/cluster, `verify:part-06:starter`는 의도된 실패 검증에 사용합니다.
+
+`npm run check:toolchain`은 제작자용으로 루트와 각 참고 패키지의 Node 지원 범위가 잠긴 의존성들과 호환되는지 검사합니다. 참고 완성본의 패키지 메타데이터를 읽으므로 기본 학습 테스트에는 포함하지 않습니다.

@@ -1,0 +1,78 @@
+name: Part 06 recovery verification
+on:
+  push:
+    branches: [main, courseware/part-06-ci, codex/part-06-courseware]
+    paths:
+      - '.github/workflows/part-06.yml'
+      - 'labs/part-06/**'
+      - 'reference-solutions/part-06/**'
+      - 'checks/part-06/**'
+      - 'checks/part-00/engines.test.mjs'
+      - 'package*.json'
+permissions:
+  contents: read
+jobs:
+  postgres:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:18.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-ci-only
+          POSTGRES_DB: brodcasting_part06_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5
+        with:
+          node-version: '24.19.0'
+          cache: npm
+      - run: npm ci
+      - name: Actual PostgreSQL and password checks
+        env:
+          PART06_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part06_test
+        run: npm run check:reference:part-06
+      - name: Prepare owned standalone and regression databases
+        run: |
+          docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part06_lab
+          docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part03_test
+          docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part03_lab
+          docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part04_test
+          docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part05_test
+      - name: Source-only install, operator CLI and actual process restarts
+        env:
+          PART06_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part06_lab
+          PART06_SERVICE_CONTAINER: ${{ job.services.postgres.id }}
+        run: npm run verify:part-06:standalone
+      - name: Verify fail-closed learner exercises
+        env:
+          PART06_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part06_test
+        run: npm run verify:part-06:starter
+      - name: Previous courseware and engine regressions
+        env:
+          PART05_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part05_test
+          PART04_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part04_test
+          PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
+          PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
+        run: npm run check:reference && npm run check:reference:part-01 && npm run check:reference:part-02 && npm run check:reference:part-03 && npm run check:reference:part-04 && npm run check:reference:part-05 && npm run check:toolchain
+      - name: Starter types and builds
+        run: npm run typecheck:part-06 && npm run build:part-06
+      - name: Record verification artifact checksums
+        if: always()
+        run: find test-results/part-06 -type f ! -name SHA256SUMS -print0 | sort -z | xargs -0 sha256sum > test-results/part-06/SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: part-06-verification
+          path: test-results/part-06/
+          if-no-files-found: error
+          retention-days: 14

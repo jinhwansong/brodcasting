@@ -1,0 +1,153 @@
+{
+  "date": "2026-10-20",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "postgres": "18.6",
+  "imageDigest": "sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336",
+  "reference": {
+    "server": {
+      "total": 194,
+      "passed": 194,
+      "failed": 0,
+      "pending": 0
+    },
+    "client": {
+      "total": 68,
+      "passed": 68,
+      "failed": 0,
+      "pending": 0
+    }
+  },
+  "starter": {
+    "db": {
+      "total": 194,
+      "passed": 172,
+      "failed": 22
+    },
+    "client": {
+      "total": 68,
+      "passed": 53,
+      "failed": 15
+    },
+    "note": "Fail-closed storage/history and disconnected recovery hook TODO assertions; prerequisite HTTP/auth code is provided. No module/connection/timeout failure accepted."
+  },
+  "standalone": {
+    "node": "v24.15.0",
+    "platform": "win32",
+    "cleanSourceInstall": true,
+    "typecheck": true,
+    "build": true,
+    "operatorCli": true,
+    "limitedRole": true,
+    "proxyHttp": true,
+    "actualProcessRestarts": 2,
+    "sessionAndFavoritePersistence": true,
+    "logoutSurvivesRestart": true,
+    "setupErrorsSanitized": true,
+    "gracefulSignals": false,
+    "browser": false,
+    "sameOriginSocketProxy": true,
+    "actualSocketDelivery": true,
+    "membershipOperator": true,
+    "socketReauthentication": true,
+    "socketClosure": true,
+    "messagePersistence": true,
+    "historyRecovery": true,
+    "retryDeduplication": true
+  },
+  "regressions": [
+    {
+      "name": "part00",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part01",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part02",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part03",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part04",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part05",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "policy",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "root-starter",
+      "exit": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "labs/part-06-server",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "labs/part-06-client-types",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "labs/part-06-client-build",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "reference-solutions/part-06-server",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "reference-solutions/part-06-client-types",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "reference-solutions/part-06-client-build",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    }
+  ],
+  "rawReportsSha256": {
+    "reference-db.json": "d0e70a14d8b8eba5118816bcc84b1cde04d376574fb3976558c173bb3b52041c",
+    "reference-client.json": "57b6a5e58d49f6490478cc94658e7dfe319add1b8b3c4fbd875495dd91f82ea3",
+    "starter-summary.json": "6b91f954245e1d66a8dfdb04f11c28cf3948d2e711748aa8bc3a1c9db9c9a398",
+    "standalone-summary.json": "488a5fc5683fc6d47ca174c4c61b6a2e4e6e93b9c94466717699da3db2c0b21b",
+    "regression-summary.json": "8473c474f671dd4ffd24eaf1994252b3f4120de6fe29bfee072d1a3e322fa6c0"
+  },
+  "browser": false,
+  "independentReviewer": false
+}

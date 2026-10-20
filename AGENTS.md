@@ -6,7 +6,7 @@
 
 ## 기본: 학습 보조
 
-2026-10-20 후속 ‘계속 작업’ 요청에 따라5단계 WebSocket 채팅을 제작했다. 현재 제작 상태는 [5단계 검증](docs/verification/part-05.md)·[남은 작업](REMAINING_WORK.md)의 최신 절을 따른다. 다음은6단계 메시지 저장·재연결·복구이며 학습 상태는0·미시작을 유지한다. 아래4단계 제작 경과는 역사이며 다시 제작하지 않는다.
+2026-10-20 후속 ‘계속 작업’ 요청에 따라5·6단계 채팅과 저장/복구를 제작했다. 현재 제작 상태는 [6단계 검증](docs/verification/part-06.md)·[남은 작업](REMAINING_WORK.md)의 최신 절을 따른다. 다음은7단계 브라우저 성능·장시간 사용이며 학습 상태는0·미시작을 유지한다. 아래4단계 제작 경과는 역사이며 다시 제작하지 않는다.
 
 - 먼저 CURRICULUM.md, progress.md, 현재 docs/tasks/part-00/README.md를 읽는다.
 - 기본 읽기·검색·자동완성·테스트 대상은 labs/part-00/, checks/part-00/, docs/tasks/part-00/다.
