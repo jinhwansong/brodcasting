@@ -49,11 +49,6 @@ jobs:
           docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part04_test
           docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part05_test
           docker exec "${{ job.services.postgres.id }}" createdb -U postgres brodcasting_part05_lab
-      - name: Prerequisite source-only package isolation regression
-        env:
-          PART05_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part05_lab
-          PART05_SERVICE_CONTAINER: ${{ job.services.postgres.id }}
-        run: npm run verify:part-05:standalone -- test-results/part-06/prerequisite-standalone-summary.json
       - name: Source-only install, operator CLI and actual process restarts
         env:
           PART06_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part06_lab
@@ -70,6 +65,11 @@ jobs:
           PART03_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_test
           PART03_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part03_lab
         run: npm run check:reference && npm run check:reference:part-01 && npm run check:reference:part-02 && npm run check:reference:part-03 && npm run check:reference:part-04 && npm run check:reference:part-05 && npm run check:toolchain
+      - name: Prerequisite source-only package isolation regression
+        env:
+          PART05_TEST_LAB_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part05_lab
+          PART05_SERVICE_CONTAINER: ${{ job.services.postgres.id }}
+        run: npm run verify:part-05:standalone -- test-results/part-06/prerequisite-standalone-summary.json
       - name: Starter types and builds
         run: npm run typecheck:part-06 && npm run build:part-06
       - name: Record verification artifact checksums
