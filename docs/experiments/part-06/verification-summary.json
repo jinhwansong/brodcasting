@@ -179,5 +179,78 @@
     "socketReauthentication": true,
     "socketClosure": true
   },
-  "outwardDependencyPolicyTests": 9
+  "outwardDependencyPolicyTests": 9,
+  "ci": {
+    "runId": 39425787959,
+    "url": "https://github.com/jinhwansong/brodcasting/actions/runs/39425787959",
+    "conclusion": "success",
+    "testedCommit": "b2c0847364f2f8d441811e118bc48039616fc3c7",
+    "testedTree": "39fcf0a132d409a1799ca8bb636c320114b558e3",
+    "artifactId": 12266945041,
+    "artifactZipSha256": "e9672edae090da4a694814f9e5172227b56c42bf4d2a8a68404ca503dddb6cc9",
+    "downloadedZipDigestVerified": true,
+    "reportChecksumsVerified": 7,
+    "manifest": "ea65fa460edeca6a2a838d6f8f478ea70bebca6566936ec91d461241e43f8492  test-results/part-06/exercise-client.json\n7a3e3c1fd5f1d29b1cbe7aa04a3b3b1411e77edf60f0690d833efb3af641af8f  test-results/part-06/exercise-db.json\nf33f58804e10ecb56cc32c472d90c3980461aae2712f7f4aa2b5039dfde2bd0a  test-results/part-06/prerequisite-standalone-summary.json\n0e232a32b0cbfb18504e888111bd844219d27e9822872554c14e04989486e8f2  test-results/part-06/reference-client.json\n1d74c77dc5093613d12ec30d74d181ee08eb5cadd2bb75a89c9806653ba11298  test-results/part-06/reference-db.json\n85eea2dd068d132f90940508a46f023443ab1aec6c77c9391be8129094aec7f7  test-results/part-06/standalone-summary.json\n6b91f954245e1d66a8dfdb04f11c28cf3948d2e711748aa8bc3a1c9db9c9a398  test-results/part-06/starter-summary.json\n",
+    "standalone": {
+      "node": "v24.19.0",
+      "platform": "linux",
+      "cleanSourceInstall": true,
+      "typecheck": true,
+      "build": true,
+      "operatorCli": true,
+      "limitedRole": true,
+      "proxyHttp": true,
+      "actualProcessRestarts": 2,
+      "sessionAndFavoritePersistence": true,
+      "logoutSurvivesRestart": true,
+      "setupErrorsSanitized": true,
+      "gracefulSignals": true,
+      "browser": false,
+      "sameOriginSocketProxy": true,
+      "actualSocketDelivery": true,
+      "membershipOperator": true,
+      "socketReauthentication": true,
+      "socketClosure": true,
+      "messagePersistence": true,
+      "historyRecovery": true,
+      "retryDeduplication": true
+    },
+    "prerequisiteStandalone": {
+      "node": "v24.19.0",
+      "platform": "linux",
+      "cleanSourceInstall": true,
+      "typecheck": true,
+      "build": true,
+      "operatorCli": true,
+      "limitedRole": true,
+      "proxyHttp": true,
+      "actualProcessRestarts": 2,
+      "sessionAndFavoritePersistence": true,
+      "logoutSurvivesRestart": true,
+      "setupErrorsSanitized": true,
+      "gracefulSignals": true,
+      "browser": false,
+      "sameOriginSocketProxy": true,
+      "actualSocketDelivery": true,
+      "membershipOperator": true,
+      "socketReauthentication": true,
+      "socketClosure": true
+    },
+    "starter": {
+      "db": {
+        "total": 194,
+        "passed": 172,
+        "failed": 22
+      },
+      "client": {
+        "total": 68,
+        "passed": 53,
+        "failed": 15
+      },
+      "note": "Fail-closed storage/history and disconnected recovery hook TODO assertions; prerequisite HTTP/auth code is provided. No module/connection/timeout failure accepted."
+    },
+    "previousCoursewareRegressions": true,
+    "toolchainPolicyTests": 9,
+    "starterTypesAndBuilds": true
+  }
 }

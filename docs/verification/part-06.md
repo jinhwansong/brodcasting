@@ -14,13 +14,15 @@ Windows Node24.15.0·소유 Docker PostgreSQL18.6 loopback5546에서 전용 test
 - fake timer를 한 act에3500ms 전진시키면 React의 새 연결 effect가 끝에서만 실행되어 재연결1회만 관측됐습니다.500/1000/2000ms 각각의 act에서 effect를 완료해 실제 단계별3회 상한을 검증합니다. 제품의 간격/상한을 바꾸어 통과시키지 않았습니다.
 - source-only 새 npm ci·타입·빌드·operator 정상/거부·실제 Vite HTTP/WebSocket 프록시·두 API 프로세스 재시작을 통과했습니다. 재시작 뒤 메시지 이력·동일 ID1행·기존 세션/즐겨찾기·logout 폐기를 확인했습니다. 테스트 secret 표식은 CLI/API/DB 로그에 없습니다. Windows 종료는 POSIX graceful signal로 세지 않습니다.
 - starter는 server172통과/22의도된 실패, client53통과/15의도된 실패입니다. 모든 suite가 수집되며 module/connection/timeout 실패를 정상 TODO로 인정하지 않습니다. 양쪽 타입·빌드 통과, 기존0~5단계24/22/72/97/143/199와 정책9개 통과, 학습0의18실패/6통과를 유지했습니다.
-- 게시 전 추가 점검에서5·6단계 참고 package/lock의 불필요한 상위 저장소 `file:../..` 링크를 발견했습니다. 실제 독립 앱 실행은 해당 패키지를 쓰지 않았지만 복사본 밖을 가리키는 선언을 남기지 않도록 제거했습니다. 새 정책의 RED→GREEN을 확인하고 두 단계의 새 설치·실제 프록시·재시작을 다시 검증합니다.6단계 CI에서도5단계 source-only 회귀를 수행합니다.
+- 게시 전 추가 점검에서5·6단계 참고 package/lock의 불필요한 상위 저장소 `file:../..` 링크를 발견했습니다. 실제 독립 앱 실행은 해당 패키지를 쓰지 않았지만 복사본 밖을 가리키는 선언을 남기지 않도록 제거했습니다. 새 정책의 RED→GREEN을 확인하고 두 단계의 새 설치·실제 프록시·재시작을 다시 검증했습니다.6단계 CI에서도5단계 source-only 회귀를 통과했습니다.
 
 ## 리뷰와 기록
 
 [순차 리뷰](part-06-review.md)와 [실행 요약](../experiments/part-06/README.md)에 범위·검증·한계를 기록합니다. 자체 검토에서 설계의 미확인1개 범위를 계정·방별1개(허용2방 총2개)로 명확히 했습니다. 같은 방의 미확인 건을 취소/확인하기 전에는 새 ID로 제출하지 않습니다. 독립 과제의 ‘이력으로 미확인 발송 자동 확인’은 구현하지 않았습니다.
 
-CI39425307415에서 추가5단계 source-only 회귀가 선행 컴파일 전에 실행돼 ERR_MODULE_NOT_FOUND로 실패했습니다.5단계를 컴파일하는 기존 회귀 검사 뒤로 순서를 옮겼습니다. 이 환경/순서 실패를 의도된 학습 실패나 성공으로 처리하지 않았습니다. 원격 CI와 artifact 무결성은 수정 후 실제 성공 뒤 기록합니다.
+CI39425307415에서 추가5단계 source-only 회귀가 선행 컴파일 전에 실행돼 ERR_MODULE_NOT_FOUND로 실패했습니다.5단계를 컴파일하는 기존 회귀 검사 뒤로 순서를 옮겼습니다. 이 환경/순서 실패를 의도된 학습 실패나 성공으로 처리하지 않았습니다.
+
+수정한 [Linux CI39425787959](https://github.com/jinhwansong/brodcasting/actions/runs/39425787959)는 commit `b2c0847364f2f8d441811e118bc48039616fc3c7`·tree `39fcf0a132d409a1799ca8bb636c320114b558e3`에서 성공했습니다. Node24.19.0·262개·starter·0~5회귀·정책9개·양쪽 타입/빌드와5·6단계 source-only/실제 proxy socket/프로세스 재시작·SIGTERM을 확인했습니다. artifact12266945041 ZIP의 SHA256을 GitHub digest와 비교하고 내부 보고서7개의 해시를 SHA256SUMS와 대조했습니다. 상세값은 JSON 요약에 있습니다.
 
 ## 한계
 
