@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:18.6
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${PART05_ADMIN_PASSWORD:?Set PART05_ADMIN_PASSWORD in .env}
+      POSTGRES_DB: brodcasting_part05_lab
+    ports:
+      - "127.0.0.1:5545:5432"
+    volumes:
+      - part05-db:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d brodcasting_part05_lab"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  part05-db:

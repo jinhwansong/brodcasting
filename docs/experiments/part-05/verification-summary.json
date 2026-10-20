@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-20",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "postgres": "18.6",
+  "imageDigest": "sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336",
+  "reference": {
+    "server": {
+      "total": 149,
+      "passed": 149,
+      "failed": 0,
+      "pending": 0
+    },
+    "client": {
+      "total": 50,
+      "passed": 50,
+      "failed": 0,
+      "pending": 0
+    }
+  },
+  "starter": {
+    "db": {
+      "total": 149,
+      "passed": 110,
+      "failed": 39
+    },
+    "client": {
+      "total": 50,
+      "passed": 41,
+      "failed": 9
+    },
+    "note": "Fail-closed chat Service/Gateway and disconnected hook TODO assertions; prerequisite HTTP/auth code is provided. No module/connection/timeout failure accepted."
+  },
+  "standalone": {
+    "node": "v24.15.0",
+    "platform": "win32",
+    "cleanSourceInstall": true,
+    "typecheck": true,
+    "build": true,
+    "operatorCli": true,
+    "limitedRole": true,
+    "proxyHttp": true,
+    "actualProcessRestarts": 2,
+    "sessionAndFavoritePersistence": true,
+    "logoutSurvivesRestart": true,
+    "setupErrorsSanitized": true,
+    "gracefulSignals": false,
+    "browser": false,
+    "sameOriginSocketProxy": true,
+    "actualSocketDelivery": true,
+    "membershipOperator": true,
+    "socketReauthentication": true,
+    "socketClosure": true
+  },
+  "regressions": [
+    {
+      "name": "part00",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part01",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part02",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part03",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "part04",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "policy",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "root-starter",
+      "exit": 1,
+      "expected": 1,
+      "passed": true
+    },
+    {
+      "name": "labs/part-05-server",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "labs/part-05-client-types",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "labs/part-05-client-build",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "reference-solutions/part-05-server",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "reference-solutions/part-05-client-types",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    },
+    {
+      "name": "reference-solutions/part-05-client-build",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
+    }
+  ],
+  "rawReportsSha256": {
+    "reference-db.json": "78420372cfd2a105752c0c9ae1d667d21fa547bcbc0b0430056bdf820dd2288c",
+    "reference-client.json": "5db1301eecc5d2ef10cb0921e306253d2c66a691670716f7ddd99e20fe99cd90",
+    "starter-summary.json": "56cae7834d7d6de2393fd33c2c89e00c8c62e5464a9e68ea7a4210ce0a59bb80",
+    "standalone-summary.json": "ef526be924594c6ac54c5d17aeb7e534e940b51881ef27d9b7d73c45f3819e2d",
+    "regression-summary.json": "9c54ce67d66854730ab127c7bce4b180469d998a3c9a4dd9fe61f734ef712c5d"
+  },
+  "browser": false,
+  "independentReviewer": false
+}

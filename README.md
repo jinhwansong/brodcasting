@@ -2,7 +2,7 @@
 
 실시간 서비스를 소재로 React·TypeScript 기본기와 서버 흐름을 배우는 교재 저장소입니다. [39주 커리큘럼](CURRICULUM.md)이 기준입니다. 실제 방송 서비스나 학습자의 완료된 포트폴리오가 아닙니다.
 
-2026-10-20 사용자 요청으로 제작을 재개해 **0~4단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
+2026-10-20 사용자 요청으로 제작을 재개해 **0~5단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
 
 ## 0단계 시작
 
@@ -48,6 +48,7 @@ npm run check:part-01
 | 2단계 | [HTTP API와 느린 응답](docs/tasks/part-02/README.md) | [기록](docs/verification/part-02.md) |
 | 3단계 | [PostgreSQL과 페이지네이션](docs/tasks/part-03/README.md) | [기록](docs/verification/part-03.md) |
 | 4단계 | [로그인과 권한](docs/tasks/part-04/README.md) | [기록](docs/verification/part-04.md) |
+| 5단계 | [WebSocket 채팅](docs/tasks/part-05/README.md) | [기록](docs/verification/part-05.md) |
 
 ## 2단계 선택 실행
 
@@ -82,6 +83,16 @@ PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프�
 
 실제 PostgreSQL·HTTP·wire·client 143개와 소스만 복사한 새 설치·실제 API 두 번 재시작 검증을 통과했습니다. 시작 코드의 인증 실패는 과제이며 학습자의 통과가 아닙니다. 쿠키 Secure=false인 로컬 수업이고 production 기동은 거부합니다. 다음 기본 과정은 WebSocket 채팅입니다.
 
+## 5단계 선택 실행
+
+[WebSocket 채팅](docs/tasks/part-05/README.md)은 A 입력/회원권·B 입장/발송·C 연결/구독 수명의 3주 실습입니다. 4단계 인증·화면은 제공하며 새 핵심 과제는 거부/미연결 골격으로 남깁니다. 교재의 별도 DB·제한 역할·방 회원권 설정을 먼저 따르세요.
+
+- `npm run dev:part-05:api`, `npm run dev:part-05`: API3005·화면5185, HTTP/소켓 프록시
+- `npm run typecheck:part-05`, `npm run build:part-05`, `npm run check:part-05`
+- [빈 제출](docs/tasks/part-05/submission.md), [브라우저 후속](docs/tasks/part-05/browser-checklist.md), [완성본 독립 실행](reference-solutions/part-05/README.md)
+
+실제 PG/HTTP/socket149개와 client50개, 총199개 및 source-only 새 설치·실제 소켓 프록시·재시작 검증을 통과했습니다. 메시지는 휘발성이며 저장·재연결 복구는6단계입니다. 실제 두 브라우저 확인은 보류합니다.
+
 ## 보안·프론트·인프라 과정
 
 [보안 추가 커리큘럼](SECURITY_CURRICULUM.md)을 기존 단계와 함께 사용합니다. API·DB·로그인·채팅·가용성에 보안 과제를 연결하고 다음 전용 강의를 추가했습니다.
@@ -102,5 +113,7 @@ PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프�
 `npm run check:reference:part-03`은 전용 PostgreSQL DB에서3단계 완성본의 DB/HTTP/실험/client를 검사합니다. [독립 설치 안내](reference-solutions/part-03/README.md)를 따르세요.
 
 `npm run check:reference:part-04`는 전용 test DB에서 4단계 완성본을 검사합니다. `verify:part-04:standalone`은 비어 있는 별도 lab DB/cluster에서만, `verify:part-04:starter`는 의도된 과제 실패 수집에 사용합니다.
+
+`npm run check:reference:part-05`는 전용 test DB에서 5단계의 실제 소켓·client까지 검사합니다. `verify:part-05:standalone`은 빈 소유 lab DB/cluster에서만, `verify:part-05:starter`는 A/B/C 실패와 선수 기능 통과 수집에 사용합니다.
 
 `npm run check:toolchain`은 제작자용으로 루트와 네 참고 패키지의 Node 지원 범위가 잠긴 의존성들과 호환되는지 검사합니다. 참고 완성본의 패키지 메타데이터를 읽으므로 기본 학습 테스트에는 포함하지 않습니다.
