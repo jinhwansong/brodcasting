@@ -8,6 +8,7 @@ Code review: skipped (ce-code-review unavailable) — 현재 ce-code-review의 �
 
 - 보강 완료: commit 순서 검사가 단순50ms 대기만으로 DB lock 진입을 추정했습니다. pg_stat_activity에서 실제 counter query의 Lock 대기를 관측하고 앞 commit 전 이력 watermark0, 뒤 commit 후 seq2와 두 행을 확인했습니다. 최종194개 통과입니다.
 - 명확화 완료: 미확인 발송1개의 범위가 설계에서 모호했습니다. 계획·실제 UI의 계정/방별 메모리와 맞춰 방마다1개,2방 총2개를 명시했습니다. 방/계정 전환 지연 검사와 일치합니다.
+- 수정 완료:5·6단계 참고 패키지에 사용하지 않는 `brodcasting-courseware: file:../..` 의존성과 lock link가 남아 있었습니다. 독립 실행에 불필요하므로 제거했습니다. 상위 경로를 가리키는 선언/lock link를 거부하는 정책 검사가 RED→GREEN, 총9개 통과했습니다.5·6단계 모두 빈 DB에서 소스만 복사한 설치·빌드·실제 socket/재시작을 다시 검증하며 CI에도5단계 독립 설치 회귀를 추가했습니다.
 - 필수 수정 보류 없음. DB 복원·브라우저/실제 측정·영구 outbox·분산 전달은 이후 범위입니다.
 
 ## Coverage

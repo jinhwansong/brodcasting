@@ -4,7 +4,7 @@
 
 ## 최신 인수인계 — 6단계 제작
 
-5단계 게시 뒤 이어서6단계 저장·재연결·복구를 제작했습니다. [설계](docs/superpowers/specs/2026-10-20-part-06-design.md)·[계획](docs/superpowers/plans/2026-10-20-part-06-courseware.md)·[검증](docs/verification/part-06.md)을 따릅니다. server194 + client68 =262개와 source-only 새 설치·실제 Vite 소켓 프록시·프로세스 재시작 뒤 저장 이력·동일 발송 ID1행을 확인했습니다. starter는 server172통과/22의도된 실패, client53통과/15의도된 실패입니다.0~5회귀·Node 정책8개·기본 학습0의18실패/6통과를 유지했습니다.
+5단계 게시 뒤 이어서6단계 저장·재연결·복구를 제작했습니다. [설계](docs/superpowers/specs/2026-10-20-part-06-design.md)·[계획](docs/superpowers/plans/2026-10-20-part-06-courseware.md)·[검증](docs/verification/part-06.md)을 따릅니다. server194 + client68 =262개와 source-only 새 설치·실제 Vite 소켓 프록시·프로세스 재시작 뒤 저장 이력·동일 발송 ID1행을 확인했습니다. starter는 server172통과/22의도된 실패, client53통과/15의도된 실패입니다.0~5회귀·Node/독립 패키지 정책9개·기본 학습0의18실패/6통과를 유지했습니다.
 
 A 트랜잭션/중복 방지·B 이력·C 복구/제한 재시도3주 교재와 설명3개·독립 이력 확인·빈 제출·브라우저 후속을 제공했습니다. 다음은 **7단계 브라우저 성능·장시간 사용**입니다. 실제 기기/브라우저 측정은 보류 상태이므로 수치를 만들어 완료 처리하지 않습니다. 학습0·미시작, 사용자 미추적 docs의 두 문서 보존, 실제 브라우저·Compose 직접 기동·공개 배포·독립 리뷰 보류를 유지합니다.
 

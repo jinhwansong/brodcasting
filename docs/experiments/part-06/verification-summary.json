@@ -96,7 +96,8 @@
       "name": "policy",
       "exit": 0,
       "expected": 0,
-      "passed": true
+      "passed": true,
+      "testCount": 9
     },
     {
       "name": "root-starter",
@@ -139,6 +140,12 @@
       "exit": 0,
       "expected": 0,
       "passed": true
+    },
+    {
+      "name": "part05-source-only-after-link-removal",
+      "exit": 0,
+      "expected": 0,
+      "passed": true
     }
   ],
   "rawReportsSha256": {
@@ -146,8 +153,31 @@
     "reference-client.json": "57b6a5e58d49f6490478cc94658e7dfe319add1b8b3c4fbd875495dd91f82ea3",
     "starter-summary.json": "6b91f954245e1d66a8dfdb04f11c28cf3948d2e711748aa8bc3a1c9db9c9a398",
     "standalone-summary.json": "488a5fc5683fc6d47ca174c4c61b6a2e4e6e93b9c94466717699da3db2c0b21b",
-    "regression-summary.json": "8473c474f671dd4ffd24eaf1994252b3f4120de6fe29bfee072d1a3e322fa6c0"
+    "regression-summary.json": "e367c9c9574e5be374a430363badf583c75b0202b6a5dbf751bd071308d3fa8f",
+    "prerequisite-standalone-summary.json": "ef526be924594c6ac54c5d17aeb7e534e940b51881ef27d9b7d73c45f3819e2d"
   },
   "browser": false,
-  "independentReviewer": false
+  "independentReviewer": false,
+  "prerequisiteStandalone": {
+    "node": "v24.15.0",
+    "platform": "win32",
+    "cleanSourceInstall": true,
+    "typecheck": true,
+    "build": true,
+    "operatorCli": true,
+    "limitedRole": true,
+    "proxyHttp": true,
+    "actualProcessRestarts": 2,
+    "sessionAndFavoritePersistence": true,
+    "logoutSurvivesRestart": true,
+    "setupErrorsSanitized": true,
+    "gracefulSignals": false,
+    "browser": false,
+    "sameOriginSocketProxy": true,
+    "actualSocketDelivery": true,
+    "membershipOperator": true,
+    "socketReauthentication": true,
+    "socketClosure": true
+  },
+  "outwardDependencyPolicyTests": 9
 }

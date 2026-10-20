@@ -4,7 +4,7 @@
 
 ## 실제 실행
 
-Windows Node24.15.0·소유 Docker PostgreSQL18.6 loopback5546에서 전용 test/lab DB만 사용했습니다. 기존 exact 의존성을 재사용했으며 root lock의 기존 package 버전 변경0개와 기존 모든 script 값 보존을 비교했습니다. Node 정책은8개입니다.
+Windows Node24.15.0·소유 Docker PostgreSQL18.6 loopback5546에서 전용 test/lab DB만 사용했습니다. 기존 exact 의존성을 재사용했으며 root lock의 기존 package 버전 변경0개와 기존 모든 script 값 보존을 비교했습니다. Node/독립 패키지 정책은9개입니다.
 
 - 입력45개·저장12개 중 새 거부 골격의48실패/9통과 RED를 확인한 뒤57/57 GREEN을 확인했습니다. 첫 지연 검사에서 미처리 rejection을 발견해 즉시 catch를 연결하고 정상 assertion RED를 다시 확인했습니다.
 - 실제 소켓의 새 이력/응답 유실 검사8개와 기존23개에서10실패/21통과 RED를 확인한 뒤31/31 GREEN을 확인했습니다. 선행 저장이 실패하면 ack 유실 대기를 시작하지 않게 검사해 test timeout을 과제 실패로 세지 않습니다.
@@ -13,7 +13,8 @@ Windows Node24.15.0·소유 Docker PostgreSQL18.6 loopback5546에서 전용 test
 - client는 기존 API26/UI14 + history12 + recovery UI16 = **68/68**, 총 **262/262**입니다. 초기 새 client 검사에서는66개 중14실패/52통과 RED를 확인했습니다. 이후 늦은 이전 연결 이력과 단절 뒤 미확인 수동 재시도를 추가했습니다. history/live 중첩·낮은 seq 지연·고정 until·상한 뒤 수동 진전·동일 ID 제한 재시도·계정/방/epoch·StrictMode·timer cleanup을 확인했습니다.
 - fake timer를 한 act에3500ms 전진시키면 React의 새 연결 effect가 끝에서만 실행되어 재연결1회만 관측됐습니다.500/1000/2000ms 각각의 act에서 effect를 완료해 실제 단계별3회 상한을 검증합니다. 제품의 간격/상한을 바꾸어 통과시키지 않았습니다.
 - source-only 새 npm ci·타입·빌드·operator 정상/거부·실제 Vite HTTP/WebSocket 프록시·두 API 프로세스 재시작을 통과했습니다. 재시작 뒤 메시지 이력·동일 ID1행·기존 세션/즐겨찾기·logout 폐기를 확인했습니다. 테스트 secret 표식은 CLI/API/DB 로그에 없습니다. Windows 종료는 POSIX graceful signal로 세지 않습니다.
-- starter는 server172통과/22의도된 실패, client53통과/15의도된 실패입니다. 모든 suite가 수집되며 module/connection/timeout 실패를 정상 TODO로 인정하지 않습니다. 양쪽 타입·빌드 통과, 기존0~5단계24/22/72/97/143/199와 정책8개 통과, 학습0의18실패/6통과를 유지했습니다.
+- starter는 server172통과/22의도된 실패, client53통과/15의도된 실패입니다. 모든 suite가 수집되며 module/connection/timeout 실패를 정상 TODO로 인정하지 않습니다. 양쪽 타입·빌드 통과, 기존0~5단계24/22/72/97/143/199와 정책9개 통과, 학습0의18실패/6통과를 유지했습니다.
+- 게시 전 추가 점검에서5·6단계 참고 package/lock의 불필요한 상위 저장소 `file:../..` 링크를 발견했습니다. 실제 독립 앱 실행은 해당 패키지를 쓰지 않았지만 복사본 밖을 가리키는 선언을 남기지 않도록 제거했습니다. 새 정책의 RED→GREEN을 확인하고 두 단계의 새 설치·실제 프록시·재시작을 다시 검증합니다.6단계 CI에서도5단계 source-only 회귀를 수행합니다.
 
 ## 리뷰와 기록
 

@@ -10,7 +10,8 @@
 | 실제 소켓 | 저장 뒤 disconnect/ack 유실·동일 ID1행·503 결과 불명·이력 |
 | source-only | 새 npm ci·타입·빌드·operator·실제 HTTP/WebSocket 프록시 |
 | API 두 번 재시작 | 메시지 이력·중복 방지·세션/즐겨찾기·logout 폐기 |
-| 이전 과정 | 0~5단계24/22/72/97/143/199 + Node 정책8 통과 |
+| 이전 과정 | 0~5단계24/22/72/97/143/199 + Node/독립 package 정책9 통과 |
+| 상위 저장소 link 제거 | 5·6단계의 새 source-only 설치/실제 socket/재시작 재검증 |
 | 루트 학습 | 0단계·미시작,18의도된 실패/6통과 유지 |
 
 원시 보고서는 ignored test-results/part-06/에 있고 해시는 그 실행의 파일 바이트를 연결합니다. 재실행 시 시간 필드가 달라질 수 있습니다. CI는 별도 tested commit/tree·ZIP digest·내부 manifest를 확인한 뒤 기록합니다.
