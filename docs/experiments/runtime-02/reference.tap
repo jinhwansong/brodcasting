@@ -1,0 +1,14 @@
+✔ API uses a real HTTP app and stable injected service across requests (588.5883ms)
+✔ Worker has a separate PID, application context and no HTTP adapter (563.5756ms)
+✔ Worker crash leaves API responsive and restart gets a fresh context (910.1076ms)
+✔ API shutdown leaves Worker able to receive another command (598.4444ms)
+✔ graceful Worker shutdown closes its context and exits zero (381.4704ms)
+✔ invalid API port fails before any readiness or listener (343.7696ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3445.9792

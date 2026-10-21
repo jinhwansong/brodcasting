@@ -1,0 +1,24 @@
+{
+  "node": "v24.15.0",
+  "platform": "win32",
+  "standalone": {
+    "sourceOnly": true,
+    "outsideRepository": true,
+    "npmCi": true,
+    "typecheck": true,
+    "publicTests": 6
+  },
+  "learner": {
+    "part": 0,
+    "status": "unstarted"
+  },
+  "independentReview": false,
+  "reference": {
+    "pass": 6,
+    "fail": 0
+  },
+  "exercise": {
+    "pass": 1,
+    "fail": 5
+  }
+}

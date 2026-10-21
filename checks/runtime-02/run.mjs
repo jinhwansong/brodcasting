@@ -1,0 +1,10 @@
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const [target,...extra]=process.argv.slice(2);
+if(!['exercise','reference'].includes(target)||extra.length)throw new Error('Use exercise|reference');
+const root=new URL(`../../${target==='reference'?'reference-solutions':'labs'}/runtime-02/`,import.meta.url);
+const tsc=fileURLToPath(new URL('../../node_modules/typescript/bin/tsc',import.meta.url));
+const build=spawnSync(process.execPath,[tsc,'-p',fileURLToPath(new URL('tsconfig.json',root))],{stdio:'inherit',timeout:30000});
+if(build.status!==0)process.exit(build.status??1);
+const result=spawnSync(process.execPath,['--test',fileURLToPath(new URL('./runtime.test.mjs',import.meta.url))],{stdio:'inherit',timeout:120000,env:{...process.env,RUNTIME02_SOURCE:root.href}});
+process.exitCode=result.status??1;

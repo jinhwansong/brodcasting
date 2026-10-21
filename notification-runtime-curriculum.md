@@ -5,7 +5,7 @@
 | 주 | 코드 이름 | 만들고 설명할 것 | 제작 상태 |
 | --- | --- | --- | --- |
 | 1 | runtime-01 | 이벤트 루프·실행권 양보·스레드·프로세스·객체 전달·종료 | [시작 코드와 쉬운 설명](docs/tasks/runtime-01/README.md), [검증](docs/verification/runtime-01.md) |
-| 2 | runtime-02 | 같은 Nest 모듈을 HTTP API와 독립 application context로 시작·종료 | 제작 대기 |
+| 2 | runtime-02 | 같은 Nest 모듈을 HTTP API와 독립 application context로 시작·종료 | [시작 코드와 쉬운 설명](docs/tasks/runtime-02/README.md), [검증](docs/verification/runtime-02.md) |
 | 3 | runtime-03 | Redis·BullMQ Queue/Worker·작업 상태·재시도·중복 경계 | 제작 대기 |
 | 4 | runtime-04 | 가짜 발송기·일시/영구 실패·멱등 처리·종료 중 작업 | 제작 대기 |
 | 5 | runtime-05 | PostgreSQL 알림함·사용자별 목록·읽음·재접속 복구 | 제작 대기 |
