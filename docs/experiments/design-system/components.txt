@@ -1,0 +1,8 @@
+
+ RUN  v5.0.5 E:/code/brodcasting
+
+
+ Test Files  1 passed (1)
+      Tests  8 passed (8)
+   Start at  23:08:54
+   Duration  1.06s (environment 62%, tests 24%, import 12%, transform 1%)

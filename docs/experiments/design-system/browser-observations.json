@@ -1,0 +1,115 @@
+{
+  "observedAt": "2026-10-21T14:06:33.828Z",
+  "environment": {
+    "browser": "ChatGPT in-app browser",
+    "base": "http://127.0.0.1:5190",
+    "localDisposableDatabase": true
+  },
+  "guide": {
+    "dialogOpened": true,
+    "dialogAfterEscape": {
+      "focused": "예제 대화상자 열기",
+      "follow": "true",
+      "open": false
+    },
+    "keyboardFocus": {
+      "name": "샘플 방송 목록",
+      "outline": "solid",
+      "outlineColor": "rgb(120, 225, 205)",
+      "outlineWidth": "2px"
+    },
+    "states": "loading/disabled/error examples use the actual shared components; simulated examples are labelled"
+  },
+  "homeMobile": {
+    "cards": 6,
+    "scrollWidth": 345,
+    "width": 345
+  },
+  "watchMobile": {
+    "chatDisabled": true,
+    "chatTop": 639.8125,
+    "scrollWidth": 345,
+    "videoTop": 188,
+    "videoWidth": 313,
+    "width": 345
+  },
+  "accountMobile": {
+    "dialog": {
+      "bottom": 665.875,
+      "height": 531.765625,
+      "left": 17,
+      "right": 328,
+      "top": 134.109375,
+      "width": 311,
+      "x": 17,
+      "y": 134.109375
+    },
+    "inputHeights": [
+      44,
+      44
+    ],
+    "scrollWidth": 345,
+    "width": 345
+  },
+  "accountFlow": {
+    "registeredDisposableAccount": true,
+    "signedIn": true,
+    "signedOut": true,
+    "passwordsRecorded": false
+  },
+  "chatAndNotice": {
+    "messages": [
+      "browser_learner오후 10:59:58디자인 시스템 확인: <strong>태그도 글자 그대로</strong>디자인 시스템 확인: <strong>태그도 글자 그대로</strong>"
+    ],
+    "notice": "채널 공지첫 번째 방공통 입력창과 저장 버튼을 실제 DB로 확인했어요.ㄱ공지 내용공통 입력창과 저장 버튼을 실제 DB로 확인했어요.ㄱ일반 텍스트 500자까지 저장할 수 있습니다.공지 저장공지 다시 조회",
+    "scrollWidth": 345,
+    "width": 345
+  },
+  "reload": {
+    "chat": "browser_learner오후 10:59:58디자인 시스템 확인: <strong>태그도 글자 그대로</strong>디자인 시스템 확인: <strong>태그도 글자 그대로</strong>",
+    "notice": "공통 입력창과 저장 버튼을 실제 DB로 확인했어요.ㄱ",
+    "scrollWidth": 1265,
+    "selectedBackground": "rgb(33, 59, 55)",
+    "selectedColor": "rgb(120, 225, 205)",
+    "width": 1265
+  },
+  "emptyStateRecovered": true,
+  "rtc": {
+    "first": {
+      "readyState": 4,
+      "scrollWidth": 1265,
+      "stats": "연결 상대1명처리한 영상 프레임274장영상 데이터360,110 bytes",
+      "status": "WebRTC 영상이 연결됐어요.",
+      "videoHeight": 360,
+      "videoWidth": 640,
+      "width": 1265
+    },
+    "second": {
+      "readyState": 4,
+      "stats": "연결 상대1명처리한 영상 프레임1,274장영상 데이터1,617,059 bytes",
+      "status": "WebRTC 영상이 연결됐어요.",
+      "videoHeight": 360,
+      "videoWidth": 640
+    },
+    "mobile": {
+      "scrollWidth": 345,
+      "stopHeight": 44,
+      "videoWidth": 311,
+      "width": 345
+    },
+    "stopped": {
+      "stats": "연결 상대0명처리한 영상 프레임0장영상 데이터0 bytes",
+      "status": "송출·시청을 종료했어요.",
+      "videoWidth": 0
+    },
+    "camera": false,
+    "microphone": false,
+    "screenCapture": false,
+    "physicalTwoPc": false
+  },
+  "limits": [
+    "Single desktop browser engine; not a full accessibility audit.",
+    "Korean IME automation inserted duplicate payload text and a trailing character; literal text and DB persistence were observed, exact input spelling is not asserted.",
+    "No camera, microphone, screen sharing or physical two-PC LAN verification in this design change."
+  ]
+}

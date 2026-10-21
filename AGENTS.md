@@ -1,5 +1,9 @@
 # AI 작업 규칙
 
+## 최신 UI 지시 — 디자인 시스템 기준
+
+2026-10-21 사용자는 UI를 중요하게 보며 디자인 시스템을 먼저 만들라고 요청했다. [설계](docs/superpowers/specs/2026-10-21-onair-design-system.md)·[사용법](apps/broadcast/DESIGN_SYSTEM.md)을 따른다. 공통 원본은 `apps/broadcast/client/src/ui`이며 색·글자·간격·조작 상태는 이 기준을 재사용한다. `#/design-system`에서 실제 부품을 확인한다. 독립 WebRTC 교재의 제공 UI 복사본도 맞추되 학습 TODO는 보존한다. 이후 알림함 화면도 같은 기준을 사용한다. [검증](docs/verification/design-system.md)과 현재 남은 작업을 구분하며 학습0·미시작을 유지한다.
+
 ## 추가 사용자 지시 — 실제 WebRTC 실습
 
 2026-10-21 사용자는 다크 방송 UI 제작 후 **‘WebRTC 송출·시청 실습 추가’**를 명시적으로 선택했다. [추가 계획](docs/superpowers/plans/2026-10-21-webrtc-practice.md)에 따라 소규모 실제 peer 송수신·수동 카메라/화면 공유·합성 테스트 화면과 실제 브라우저 검증을 추가한다. 기존 샘플 영상 한정/직접 송출 제외는 이 실습 범위에 대해 해제한다. 자동 개인 화면 캡처·공개 배포·유료 자원·외부 부하는 포함하지 않는다. 알림5~7주·F1~F3·기존 브라우저 검증도 계속 수행한다. UI는 사용자 요청에 따라 어두운 SOOP/치지직 탐색 구조로 변경했다.

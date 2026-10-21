@@ -2,6 +2,7 @@ import {useCallback,useEffect,useRef,useState} from 'react';
 import {ApiError,getRoom,updateNotice} from './api';
 import {useLatestRequest} from './useLatestRequest';
 import type {SessionHandle} from './useSession';
+import {Button,TextAreaField,InlineNotice} from './ui/components';
 
 export function NoticePanel({auth,roomId}:{auth:SessionHandle;roomId:string}){
  const [refresh,setRefresh]=useState(0);
@@ -42,10 +43,10 @@ export function NoticePanel({auth,roomId}:{auth:SessionHandle;roomId:string}){
   <h2 id="notice-heading">채널 공지</h2>
   {!room&&state.status!=='error'&&<p role="status">공지를 불러오는 중입니다.</p>}
   {room&&<><h3>{room.title}</h3><p className="notice-text">{room.notice||'등록된 공지가 없습니다.'}</p></>}
-  {(canEdit||hasDraft)&&<div className="field"><label htmlFor="notice">공지 내용</label><textarea id="notice" rows={4} maxLength={1000} value={draft} disabled={!canEdit||saving} onChange={event=>setDrafts(previous=>({...previous,[roomId]:event.target.value}))}/><p className="form-hint">일반 텍스트 500자까지 저장할 수 있습니다.</p></div>}
-  {canEdit?<button type="button" disabled={saving||Array.from(draft).length>500} onClick={()=>void save()}>공지 저장</button>:<p>이 방의 관리자만 공지를 수정할 수 있습니다.</p>}
+  {(canEdit||hasDraft)&&<TextAreaField label="공지 내용" id="notice" rows={4} maxLength={1000} value={draft} disabled={!canEdit||saving} onChange={event=>setDrafts(previous=>({...previous,[roomId]:event.target.value}))} hint="일반 텍스트 500자까지 저장할 수 있습니다."/>}
+  {canEdit?<Button variant="primary" size="small" busy={saving} disabled={Array.from(draft).length>500} onClick={()=>void save()}>공지 저장</Button>:<p>이 방의 관리자만 공지를 수정할 수 있습니다.</p>}
   {saving&&<p role="status">공지를 저장하는 중입니다.</p>}
-  {(error||state.status==='error')&&<p role="alert">{error??'공지를 불러오지 못했어요. 다시 조회해 주세요.'}</p>}
-  <button type="button" onClick={()=>setRefresh(value=>value+1)}>공지 다시 조회</button>
+  {(error||state.status==='error')&&<InlineNotice tone="error">{error??'공지를 불러오지 못했어요. 다시 조회해 주세요.'}</InlineNotice>}
+  <Button size="small" onClick={()=>setRefresh(value=>value+1)}>공지 다시 조회</Button>
  </section>;
 }

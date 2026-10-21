@@ -1,0 +1,74 @@
+@layer tokens {
+  :root {
+    color-scheme: dark;
+    --font-ui: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --color-canvas: #0e1015;
+    --color-navigation: #151821;
+    --color-header: #101219;
+    --color-surface: #1e222d;
+    --color-surface-hover: #292f3c;
+    --color-input: #171b24;
+    --color-text: #f3f5f8;
+    --color-text-secondary: #a4adbe;
+    --color-border: #343c4b;
+    --color-border-strong: #586579;
+    --color-accent: #78e1cd;
+    --color-accent-hover: #9aeddc;
+    --color-on-accent: #102620;
+    --color-accent-surface: #213b37;
+    --color-danger: #ffb0bf;
+    --color-danger-surface: #3a252e;
+    --color-danger-border: #80505e;
+    --color-warning: #edcf8f;
+    --color-warning-surface: #342d20;
+    --color-live: #ff758e;
+    --color-media: #05070c;
+    --color-overlay: #090d16d9;
+    --color-overlay-border: #ffffff5c;
+    --color-backdrop: #060911b5;
+    --shadow-dialog: 0 24px 90px #0009;
+    --shadow-media-text: 0 2px 12px #07091188;
+    --media-gradient: linear-gradient(transparent, rgba(6, 8, 14, .75));
+    --color-avatar-a: #514464;
+    --color-avatar-b: #214762;
+    --color-avatar-c: #755147;
+    --color-avatar-d: #255c51;
+    --color-avatar-e: #493e6b;
+    --color-avatar-f: #794a64;
+    --text-caption: 12px;
+    --text-small: 13px;
+    --text-body: 14px;
+    --text-title: 16px;
+    --text-section: 20px;
+    --text-subpage: 24px;
+    --text-page: 30px;
+    --line-body: 1.6;
+    --line-heading: 1.35;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --radius-small: 4px;
+    --radius-control: 8px;
+    --radius-panel: 12px;
+    --radius-round: 999px;
+    --control-height: 40px;
+    --control-small-height: 36px;
+    --header-height: 72px;
+    --sidebar-width: 208px;
+    --motion-fast: 140ms;
+    --motion-normal: 220ms;
+    --muted: var(--color-text-secondary);
+    --mint: var(--color-accent);
+    --panel: var(--color-surface);
+    --line: var(--color-border);
+  }
+  @media (max-width: 720px) {
+    :root { --control-height: 44px; --control-small-height: 44px; --header-height: 64px; --sidebar-width: 0px; }
+  }
+}

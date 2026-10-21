@@ -158,6 +158,7 @@
     "typecheck:broadcast": "npm run typecheck --workspace apps/broadcast/server && npm run typecheck --workspace apps/broadcast/client",
     "build:broadcast": "npm run build --workspace apps/broadcast/server && npm run build --workspace apps/broadcast/client",
     "check:broadcast": "node node_modules/vitest/vitest.mjs run --config checks/broadcast/client.config.ts",
+    "check:broadcast:design": "node node_modules/vitest/vitest.mjs run --config checks/broadcast/design-system.config.ts && node --test checks/broadcast/design-tokens.test.mjs",
     "verify:broadcast:standalone": "node checks/broadcast/standalone.mjs",
     "check:broadcast:rtc": "node node_modules/vitest/vitest.mjs run --config checks/broadcast/server.config.ts && node node_modules/vitest/vitest.mjs run --config checks/broadcast/rtc-client.config.ts && node checks/broadcast/rtc-smoke.mjs",
     "check:webrtc-01": "node checks/webrtc-01/run.mjs exercise",

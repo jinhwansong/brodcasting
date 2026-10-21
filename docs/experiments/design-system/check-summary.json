@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-21T14:08:58.389Z",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "recordedRuns": [
+    {
+      "name": "components",
+      "exitCode": 0
+    },
+    {
+      "name": "tokens",
+      "exitCode": 0
+    },
+    {
+      "name": "existing-ui",
+      "exitCode": 0
+    }
+  ],
+  "otherRunsObservedInSession": {
+    "typecheck": true,
+    "build": true,
+    "rtcUnitTests": 19,
+    "realDbHttpSocketChecks": 9,
+    "sourceOnlySiteInstallAndBuild": true,
+    "sourceOnlyRtcInstallBuildAnd19Unit9Integration": true,
+    "packagePolicyTests": 21,
+    "runtime05WipClientTests": 9
+  },
+  "codeReview": "Code review: skipped (ce-code-review unavailable)"
+}

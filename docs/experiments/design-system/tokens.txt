@@ -1,0 +1,12 @@
+✔ all stylesheet entry points establish the same cascade order before adding a layer (3.3302ms)
+✔ independent WebRTC lessons keep the provided design system in sync (18.8986ms)
+✔ screen CSS uses defined color tokens and readable caption sizes (1.5092ms)
+✔ normal foreground and surface token pairs meet 4.5 contrast (0.2798ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.1874

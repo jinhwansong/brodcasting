@@ -7,6 +7,8 @@
 사용자가 알림7주·프론트보안3강 제작과 기존에 보류했던 실제 브라우저 검증을 명시적으로 요청했습니다. 이어 숲처럼 목록·시청·채팅·알림이 연결된 하나의 사이트도 함께 만들기로 선택했습니다. [전체 실행 계획](docs/superpowers/plans/2026-10-21-notification-security-integrated.md)을 따릅니다. **아래 ‘11까지 자동 착수하지 않음’은 이전 범위 기록이며 이 최신 지시로 해제했습니다.** BunkerWeb은 이번 범위에서 제외합니다.
 
 - 기본0~11: 기존 교재·코드 게시 완료. 전체 사이트 통합 완료를 뜻하지 않습니다.
+- 디자인 시스템: 의미 색·글자·간격·공통 조작·`#/design-system` 가이드를 만들고 목록/회원/팔로우/채팅/공지/WebRTC와 독립 WebRTC 제공 UI에 적용했습니다. 디자인12·기존 화면13·RTC단위19/실제 신호9·독립 설치, 실제 데스크톱/휴대폰/두 탭 영상을 확인했습니다. [쉬운 사용법](apps/broadcast/DESIGN_SYSTEM.md)·[검증](docs/verification/design-system.md). 이후 UI도 이 기준을 사용합니다.
+- 알림5주 진행 중: 인증된 자기 알림함·DB 중복 방지/순번 페이지·별도 Worker 복구를 작성했고 실제 서버17·client9를 확인했습니다. 공통 UI를 적용했으며 교재/시작 코드·독립 설치·최종 브라우저 검증이 남아 미게시 상태입니다.
 - 알림4주: runtime-04의 실제 PostgreSQL·Redis·HTTP15검사, 가짜 효과/영수증의 트랜잭션과 재처리·종료, 독립 설치·쉬운 교재를 제작했습니다. [검증](docs/verification/runtime-04.md).
 - 알림3주: runtime-03의 실제 Redis·Nest HTTP·별도 Worker11검사와 독립 설치·쉬운 교재를 제작했습니다. [검증](docs/verification/runtime-03.md).
 - 알림2주: runtime-02의 실제 Nest 두 프로세스·HTTP/종료6검사, 독립 새 설치·쉬운 교재를 제작했습니다. [검증](docs/verification/runtime-02.md).
