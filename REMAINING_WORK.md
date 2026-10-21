@@ -2,6 +2,16 @@
 
 기준일: 2026-10-21 · **사용자 명시 요청으로 제작 재개**
 
+## 현재 진행 — 알림·프론트 보안·통합 사이트와 실제 브라우저
+
+사용자가 알림7주·프론트보안3강 제작과 기존에 보류했던 실제 브라우저 검증을 명시적으로 요청했습니다. 이어 숲처럼 목록·시청·채팅·알림이 연결된 하나의 사이트도 함께 만들기로 선택했습니다. [전체 실행 계획](docs/superpowers/plans/2026-10-21-notification-security-integrated.md)을 따릅니다. **아래 ‘11까지 자동 착수하지 않음’은 이전 범위 기록이며 이 최신 지시로 해제했습니다.** BunkerWeb은 이번 범위에서 제외합니다.
+
+- 기본0~11: 기존 교재·코드 게시 완료. 전체 사이트 통합 완료를 뜻하지 않습니다.
+- 알림1주: [runtime-01 교재](docs/tasks/runtime-01/README.md)·15검사·실제5모드3회·독립 소스 복사본 검증을 제작했습니다. [검증](docs/verification/runtime-01.md).
+- 남은 제작: 알림2~7주, 프론트 F1/F2/F3, 마지막 통합 사이트. [추가 과정 진입점](notification-runtime-curriculum.md).
+- 실제 브라우저: 0/1 검색·즐겨찾기·오류복구·상세·메뉴,7의1,000보관/가상화,8의실제재생·오류·복구를 관찰하는 중입니다. 부분 관찰을 전체 브라우저 검사 완료로 세지 않습니다.
+- 학습자는0·미시작 유지. 원래 미추적 docs/PROJECT_PLAN.md·docs/REMAINING_WORK.md는 수정·게시하지 않습니다.
+
 ## 최신 인수인계 — 요청한11단계까지 제작
 
 사용자가11까지 제작하고 중학생도 읽을 수 있는 설명을 남기라고 요청했습니다. 기본0~11의 시작 코드·공개 검사·분리된 완성본·쉬운 설명·실습 순서·설명3개·독립 변경·빈 제출을 갖췄습니다. [시작 안내](docs/LEARNING_GUIDE.md), [7](docs/verification/part-07.md)·[8](docs/verification/part-08.md)·[9](docs/verification/part-09.md)·[10](docs/verification/part-10.md)·[11](docs/verification/part-11.md), [순차 자체 검토](docs/verification/parts-07-11-review.md)를 따릅니다.

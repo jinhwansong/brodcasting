@@ -1,0 +1,264 @@
+{
+  "schema": 1,
+  "node": "v24.15.0",
+  "platform": "win32",
+  "parentPid": 3044,
+  "count": 1000000,
+  "runs": [
+    {
+      "repetition": 1,
+      "rows": [
+        {
+          "mode": "main",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.6671999999999976,
+          "order": [
+            "result",
+            "probe"
+          ],
+          "probeDelayMs": 1.7073
+        },
+        {
+          "mode": "promise",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.1121000000000016,
+          "order": [
+            "result",
+            "probe"
+          ],
+          "probeDelayMs": 1.1221999999999994
+        },
+        {
+          "mode": "cooperative",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 4.112300000000001,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 0.36799999999999855
+        },
+        {
+          "mode": "thread",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 1,
+          "exitCode": 0,
+          "elapsedMs": 41.712199999999996,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 5.4522999999999975
+        },
+        {
+          "mode": "process",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 22312,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 62.426,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 7.195799999999991
+        }
+      ]
+    },
+    {
+      "repetition": 2,
+      "rows": [
+        {
+          "mode": "main",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.3748999999999967,
+          "order": [
+            "result",
+            "probe"
+          ],
+          "probeDelayMs": 1.397199999999998
+        },
+        {
+          "mode": "promise",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.3160000000000025,
+          "order": [
+            "result",
+            "probe"
+          ],
+          "probeDelayMs": 1.3703999999999894
+        },
+        {
+          "mode": "cooperative",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.3596000000000004,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 0.03149999999999409
+        },
+        {
+          "mode": "thread",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 2,
+          "exitCode": 0,
+          "elapsedMs": 28.142500000000013,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 0.5909000000000049
+        },
+        {
+          "mode": "process",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 21792,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 57.84200000000001,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 2.638500000000022
+        }
+      ]
+    },
+    {
+      "repetition": 3,
+      "rows": [
+        {
+          "mode": "main",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.1304999999999836,
+          "order": [
+            "result",
+            "probe"
+          ],
+          "probeDelayMs": 1.1557999999999993
+        },
+        {
+          "mode": "promise",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 1.092800000000011,
+          "order": [
+            "result",
+            "probe"
+          ],
+          "probeDelayMs": 1.1422000000000025
+        },
+        {
+          "mode": "cooperative",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 4.299199999999985,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 0.02019999999998845
+        },
+        {
+          "mode": "thread",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 3044,
+          "threadId": 3,
+          "exitCode": 0,
+          "elapsedMs": 27.19969999999998,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 0.8597999999999786
+        },
+        {
+          "mode": "process",
+          "count": 1000000,
+          "result": 47999055,
+          "pid": 2464,
+          "threadId": 0,
+          "exitCode": 0,
+          "elapsedMs": 61.138900000000035,
+          "order": [
+            "probe",
+            "result"
+          ],
+          "probeDelayMs": 2.841000000000008
+        }
+      ]
+    }
+  ],
+  "memory": {
+    "parentObject": {
+      "count": 0
+    },
+    "thread": {
+      "pid": 3044,
+      "threadId": 4,
+      "object": {
+        "count": 1
+      }
+    },
+    "process": {
+      "pid": 912,
+      "threadId": 0,
+      "object": {
+        "count": 1
+      }
+    },
+    "sharedCount": 1
+  },
+  "exits": {
+    "thread": 7,
+    "process": 7
+  },
+  "limitations": [
+    "same machine, fixed order, cold start included",
+    "probe is setImmediate, not an HTTP or browser latency",
+    "thread exit does not prove native crash or memory isolation",
+    "no GPU comparison or production capacity claim"
+  ]
+}

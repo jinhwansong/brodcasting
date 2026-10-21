@@ -1,0 +1,34 @@
+{
+  "node": "v24.15.0",
+  "platform": "win32",
+  "publicTests": {
+    "red": {
+      "pass": 3,
+      "fail": 12
+    },
+    "reference": {
+      "pass": 15,
+      "fail": 0
+    },
+    "exercise": {
+      "pass": 8,
+      "fail": 7,
+      "intentional": true
+    }
+  },
+  "standalone": {
+    "sourceOnly": true,
+    "outsideRepository": true,
+    "npmCi": true,
+    "tests": 15,
+    "repetitions": 3,
+    "modes": 5,
+    "invalidCliChecks": 3
+  },
+  "learner": {
+    "part": 0,
+    "status": "unstarted"
+  },
+  "gpuMeasurement": false,
+  "independentReview": false
+}

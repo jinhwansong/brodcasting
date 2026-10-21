@@ -1,5 +1,7 @@
 # 방송 실험실
 
+현재는 기본0~11단계 교재에 이어 **알림7주·프론트보안3강·통합 방송 사이트·실제 브라우저 검증**을 제작 중입니다. [최신 상태](REMAINING_WORK.md), [알림 과정](notification-runtime-curriculum.md), [전체 계획](docs/superpowers/plans/2026-10-21-notification-security-integrated.md)을 확인하세요. 기본 단계의 완성은 하나로 연결된 사이트 완성을 뜻하지 않습니다. 알림1주의 [프로세스·스레드 실습](docs/tasks/runtime-01/README.md)을 추가했습니다.
+
 실시간 서비스를 소재로 React·TypeScript 기본기와 서버 흐름을 배우는 교재 저장소입니다. [39주 커리큘럼](CURRICULUM.md)이 기준입니다. 실제 방송 서비스나 학습자의 완료된 포트폴리오가 아닙니다.
 
 2026-10-21 요청 범위인 **0~11단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.

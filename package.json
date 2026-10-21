@@ -127,7 +127,12 @@
     "verify:reference:part-07": "node checks/part-07/standalone-smoke.mjs 07",
     "verify:reference:part-08": "node checks/part-07/standalone-smoke.mjs 08",
     "verify:reference:part-11": "node checks/part-07/standalone-smoke.mjs 11",
-    "verify:parts-07-11:starter": "node checks/verify-new-starters.mjs"
+    "verify:parts-07-11:starter": "node checks/verify-new-starters.mjs",
+    "check:runtime-01": "node checks/runtime-01/run.mjs exercise",
+    "check:reference:runtime-01": "node checks/runtime-01/run.mjs reference",
+    "experiment:runtime-01": "node labs/runtime-01/src/experiment.mjs",
+    "experiment:reference:runtime-01": "node reference-solutions/runtime-01/src/experiment.mjs",
+    "verify:runtime-01:standalone": "node checks/runtime-01/standalone.mjs"
   },
   "devDependencies": {
     "semver": "7.8.5",

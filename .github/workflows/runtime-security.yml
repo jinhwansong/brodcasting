@@ -1,0 +1,30 @@
+name: Runtime and frontend security courseware
+on:
+  push:
+    branches: [main, codex/part-07-11-courseware]
+    paths:
+      - '.github/workflows/runtime-security.yml'
+      - 'labs/runtime-*/**'
+      - 'reference-solutions/runtime-*/**'
+      - 'checks/runtime-*/**'
+      - 'package*.json'
+  pull_request:
+    paths:
+      - '.github/workflows/runtime-security.yml'
+      - 'labs/runtime-*/**'
+      - 'reference-solutions/runtime-*/**'
+      - 'checks/runtime-*/**'
+permissions:
+  contents: read
+jobs:
+  runtime-01:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with: {node-version: '24.19.0'}
+      - run: node checks/runtime-01/run.mjs reference
+      - run: npm run verify:runtime-01:standalone
+      - run: node reference-solutions/runtime-01/src/experiment.mjs 1000000
