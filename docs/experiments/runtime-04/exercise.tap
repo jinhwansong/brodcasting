@@ -1,0 +1,183 @@
+Owned services: Redis 8.6.7; PostgreSQL 18.6; restricted runtime04_app
+✖ real API and separate Worker retry after commit without a second effect (1662.8997ms)
+✖ actual Worker process drains an active delivery before clean exit (1522.8641ms)
+✔ HTTP validates the new exact delivery contract (708.1601ms)
+✔ accepts only the exact fake delivery modes (1.9082ms)
+✔ rejects unknown keys, wrong IDs and unrecognized modes (0.547ms)
+✔ database boundary rejects public hosts and unrelated databases (0.3133ms)
+✖ a second delivery returns the durable receipt and creates one effect (0.3988ms)
+✖ concurrent delivery of one identifier has exactly one fake effect (0.351ms)
+✖ a different payload cannot reuse a durable identifier (0.2244ms)
+✖ a failed effect rolls the receipt back too (1.5575ms)
+✖ temporary failures retry twice before the third attempt succeeds (363.7649ms)
+✖ a permanent failure consumes only one attempt and stores no effect (294.9132ms)
+✖ commit-before-ack failure retries without duplicating the fake effect (293.7594ms)
+✖ deleting a completed Redis job does not erase the durable receipt (248.0245ms)
+✖ Worker close waits for the active slow delivery to commit (10.8287ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 4
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3965.0452
+
+✖ failing tests:
+
+test at checks\runtime-04\bootstrap.test.mjs:19:1
+✖ real API and separate Worker retry after commit without a second effect (1662.8997ms)
+  Error: HTTP job unexpectedly failed
+      at state (file:///E:/code/brodcasting/checks/runtime-04/bootstrap.test.mjs:17:288)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///E:/code/brodcasting/checks/runtime-04/bootstrap.test.mjs:19:287
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/bootstrap.test.mjs:15:6)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
+
+test at checks\runtime-04\bootstrap.test.mjs:20:1
+✖ actual Worker process drains an active delivery before clean exit (1522.8641ms)
+  Error: HTTP job unexpectedly failed
+      at state (file:///E:/code/brodcasting/checks/runtime-04/bootstrap.test.mjs:17:288)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///E:/code/brodcasting/checks/runtime-04/bootstrap.test.mjs:20:388
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/bootstrap.test.mjs:15:6)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:20:1
+✖ a second delivery returns the durable receipt and creates one effect (0.3988ms)
+  Error: Durable delivery not implemented
+      at deliver (file:///E:/code/brodcasting/labs/runtime-04/dist/sender.js:20:11)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:20:145)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:21:1
+✖ concurrent delivery of one identifier has exactly one fake effect (0.351ms)
+  Error: Durable delivery not implemented
+      at deliver (file:///E:/code/brodcasting/labs/runtime-04/dist/sender.js:20:11)
+      at file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:21:177
+      at Array.from (<anonymous>)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:21:157)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:22:1
+✖ a different payload cannot reuse a durable identifier (0.2244ms)
+  Error: Durable delivery not implemented
+      at deliver (file:///E:/code/brodcasting/labs/runtime-04/dist/sender.js:20:11)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:22:113)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:23:1
+✖ a failed effect rolls the receipt back too (1.5575ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + Comparison {}
+  - Comparison {
+  -   code: '23514'
+  - }
+
+      at async TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:23:92)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Durable delivery not implemented
+        at deliver (file:///E:/code/brodcasting/labs/runtime-04/dist/sender.js:20:11)
+        at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:23:113)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1201:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+        at Test.postRun (node:internal/test_runner/test:1330:19)
+        at Test.run (node:internal/test_runner/test:1258:12)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:831:7),
+    expected: { code: '23514' },
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at checks\runtime-04\delivery.test.mjs:24:1
+✖ temporary failures retry twice before the third attempt succeeds (363.7649ms)
+  Error: Job unexpectedly failed
+      at state (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:14:230)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:24:221
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:15:411)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:25:1
+✖ a permanent failure consumes only one attempt and stores no effect (294.9132ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  3 !== 1
+
+      at file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:25:256
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:15:411)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at checks\runtime-04\delivery.test.mjs:26:1
+✖ commit-before-ack failure retries without duplicating the fake effect (293.7594ms)
+  Error: Job unexpectedly failed
+      at state (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:14:230)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:26:229
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:15:411)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:27:1
+✖ deleting a completed Redis job does not erase the durable receipt (248.0245ms)
+  Error: Job unexpectedly failed
+      at state (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:14:230)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:27:208
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:15:411)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7)
+
+test at checks\runtime-04\delivery.test.mjs:28:1
+✖ Worker close waits for the active slow delivery to commit (10.8287ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'delayed'
+  - 'completed'
+
+      at file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:28:317
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-04/delivery.test.mjs:15:411)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'delayed',
+    expected: 'completed',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

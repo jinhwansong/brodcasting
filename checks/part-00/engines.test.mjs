@@ -8,6 +8,7 @@ const directories = ['', 'reference-solutions/part-00/', 'reference-solutions/pa
 directories.push('reference-solutions/runtime-01/');
 directories.push('reference-solutions/runtime-02/');
 directories.push('reference-solutions/runtime-03/');
+directories.push('reference-solutions/runtime-04/');
 test('reference source packages keep all local dependency links inside their copy', () => {
   for (const dir of directories.slice(1)) {
     const base = new URL('../../' + dir, import.meta.url);

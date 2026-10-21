@@ -1,0 +1,24 @@
+Owned services: Redis 8.6.7; PostgreSQL 18.6; restricted runtime04_app
+✔ real API and separate Worker retry after commit without a second effect (1800.7579ms)
+✔ actual Worker process drains an active delivery before clean exit (2063.0132ms)
+✔ HTTP validates the new exact delivery contract (963.1623ms)
+✔ accepts only the exact fake delivery modes (1.6797ms)
+✔ rejects unknown keys, wrong IDs and unrecognized modes (0.7767ms)
+✔ database boundary rejects public hosts and unrelated databases (0.38ms)
+✔ a second delivery returns the durable receipt and creates one effect (30.5065ms)
+✔ concurrent delivery of one identifier has exactly one fake effect (11.2319ms)
+✔ a different payload cannot reuse a durable identifier (5.9904ms)
+✔ a failed effect rolls the receipt back too (3.7972ms)
+✔ temporary failures retry twice before the third attempt succeeds (352.9049ms)
+✔ a permanent failure consumes only one attempt and stores no effect (43.4439ms)
+✔ commit-before-ack failure retries without duplicating the fake effect (169.4379ms)
+✔ deleting a completed Redis job does not erase the durable receipt (77.3253ms)
+✔ Worker close waits for the active slow delivery to commit (529.3934ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4890.9819
