@@ -8,7 +8,7 @@ function Media({src,retry}:{src:string;retry:()=>void}){
  const video=useRef<HTMLVideoElement>(null),alive=useRef(false),heading=useId();
  const [state,setState]=useState<keyof typeof labels>('loading'),[error,setError]=useState(''),[events,setEvents]=useState<string[]>([]);
  useEffect(()=>{
-  const node=video.current!;alive.current=true;
+  const node=video.current!;alive.current=true;if(node.getAttribute('src')!==src)node.setAttribute('src',src);
   const states:Record<string,keyof typeof labels>={loadstart:'loading',loadedmetadata:'ready',playing:'playing',waiting:'waiting',pause:'paused',ended:'ended',error:'error'};
   const handlers=Object.entries(states).map(([name,next])=>{
    const handler=()=>{if(!alive.current)return;setState(next);setEvents(old=>[...old,name].slice(-8));if(next==='error')setError('영상을 재생하지 못했습니다. 파일이나 연결을 확인한 뒤 다시 불러오세요.');};

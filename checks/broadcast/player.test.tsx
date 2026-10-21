@@ -1,0 +1,10 @@
+import {afterEach,expect,it,vi} from 'vitest';
+import {StrictMode} from 'react';
+import {cleanup,render,screen} from '@testing-library/react';
+import {VideoPlayer} from '../../apps/broadcast/client/src/VideoPlayer';
+import {Player as Part08Player} from '../../reference-solutions/part-08/src/Player';
+import {Player as Part10Player} from '../../reference-solutions/part-10/client/src/Player';
+import {Player as Provided10Player} from '../../labs/part-10/client/src/Player';
+afterEach(cleanup);
+it('StrictMode의 정리·재시작 뒤에도 영상 주소를 유지한다',()=>{vi.spyOn(HTMLMediaElement.prototype,'pause').mockImplementation(()=>{});vi.spyOn(HTMLMediaElement.prototype,'load').mockImplementation(()=>{});render(<StrictMode><VideoPlayer src="/media/pattern.webm" poster="/thumbnails/d.svg"/></StrictMode>);expect(screen.getByLabelText('샘플 영상 플레이어').getAttribute('src')).toBe('/media/pattern.webm');});
+it.each([['8단계 완성본',Part08Player],['10단계 완성본',Part10Player],['10단계 제공 코드',Provided10Player]])('%s도 개발 모드에서 재생 주소를 보존한다',(_name,Player)=>{vi.spyOn(HTMLMediaElement.prototype,'pause').mockImplementation(()=>{});vi.spyOn(HTMLMediaElement.prototype,'load').mockImplementation(()=>{});const view=render(<StrictMode><Player src="/media/pattern.webm"/></StrictMode>);expect(view.container.querySelector('video')?.getAttribute('src')).toBe('/media/pattern.webm');});

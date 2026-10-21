@@ -11,7 +11,8 @@
 - 알림3주: runtime-03의 실제 Redis·Nest HTTP·별도 Worker11검사와 독립 설치·쉬운 교재를 제작했습니다. [검증](docs/verification/runtime-03.md).
 - 알림2주: runtime-02의 실제 Nest 두 프로세스·HTTP/종료6검사, 독립 새 설치·쉬운 교재를 제작했습니다. [검증](docs/verification/runtime-02.md).
 - 알림1주: [runtime-01 교재](docs/tasks/runtime-01/README.md)·15검사·실제5모드3회·독립 소스 복사본 검증을 제작했습니다. [검증](docs/verification/runtime-01.md).
-- 남은 제작: 알림5~7주, 프론트 F1/F2/F3, 통합 사이트의 알림함·최종 복구 검증. 사용자 추가 요청으로 통합 화면의 방송 서비스 스타일을 먼저 구현 중입니다. [화면 방향](docs/superpowers/specs/2026-10-21-broadcast-visual-refresh.md), [추가 과정 진입점](notification-runtime-curriculum.md).
+- 통합 화면: [온에어 라운지](apps/broadcast/README.md)의 어두운 탐색·썸네일·시청·회원·팔로우·공지·DB 채팅을 구현했습니다. 실제 브라우저와 데스크톱/모바일 배치·13검사를 확인했습니다. [검증](docs/verification/broadcast-visual.md). 알림함과 최종 복구 연결 전이므로 전체 사이트 완성은 아닙니다.
+- 남은 제작: 알림5~7주, 프론트 F1/F2/F3, 통합 사이트의 알림함·최종 복구 검증. [추가 과정 진입점](notification-runtime-curriculum.md).
 - 실제 브라우저: 0/1 검색·즐겨찾기·오류복구·상세·메뉴,7의1,000보관/가상화,8의실제재생·오류·복구를 관찰하는 중입니다. 부분 관찰을 전체 브라우저 검사 완료로 세지 않습니다.
 - 학습자는0·미시작 유지. 원래 미추적 docs/PROJECT_PLAN.md·docs/REMAINING_WORK.md는 수정·게시하지 않습니다.
 

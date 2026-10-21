@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-21",
+  "browser": "Codex in-app browser",
+  "localUI": "http://127.0.0.1:5190",
+  "realDisposablePostgres": true,
+  "realSessionAndCsrf": true,
+  "registration": true,
+  "login": true,
+  "favoriteSaved": true,
+  "chatSaved": true,
+  "twoTabsSameSession": true,
+  "secondTabHistory": true,
+  "peerMessageReceived": true,
+  "video": {
+    "strictModeBugObserved": true,
+    "restoredSource": true,
+    "readyState": 4,
+    "endedAtSeconds": 4
+  },
+  "desktopClientWidths": [
+    1265,
+    964
+  ],
+  "mobile": {
+    "chatTop": 563.34375,
+    "noticeTop": 1128.34375,
+    "scrollWidth": 345,
+    "videoTop": 122,
+    "width": 345
+  },
+  "mobileSearchEmptyAndRecovery": true,
+  "accountEscapeAndFocusReturn": true,
+  "screenReaderSoftwareRun": false,
+  "domReadingOrderChecked": true,
+  "heapAndLatencyMeasurements": false,
+  "notificationInbox": false,
+  "publicDeployment": false
+}

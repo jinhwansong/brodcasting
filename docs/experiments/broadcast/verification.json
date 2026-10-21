@@ -1,0 +1,16 @@
+{
+  "node": "v24.15.0",
+  "platform": "win32",
+  "tests": 13,
+  "typecheck": true,
+  "serverBuild": true,
+  "clientBuild": true,
+  "oldPlayerChecks": 5,
+  "oldOperationsChecks": 6,
+  "toolchainChecks": 19,
+  "learner": {
+    "part": 0,
+    "status": "unstarted"
+  },
+  "independentReview": false
+}

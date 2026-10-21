@@ -1,0 +1,21 @@
+
+ RUN  v5.0.5 E:/code/brodcasting
+
+
+ Test Files  2 passed (2)
+      Tests  13 passed (13)
+   Start at  18:31:43
+   Duration  2.44s (tests 51%, environment 39%, setup 7%, import 2%, transform 1%)
+
+Not implemented: HTMLMediaElement's pause() method
+Not implemented: HTMLMediaElement's load() method
+Not implemented: HTMLMediaElement's pause() method
+Not implemented: HTMLMediaElement's load() method
+Not implemented: HTMLMediaElement's pause() method
+Not implemented: HTMLMediaElement's load() method
+Not implemented: HTMLMediaElement's pause() method
+Not implemented: HTMLMediaElement's load() method
+Not implemented: HTMLMediaElement's pause() method
+Not implemented: HTMLMediaElement's load() method
+Not implemented: HTMLMediaElement's pause() method
+Not implemented: HTMLMediaElement's load() method

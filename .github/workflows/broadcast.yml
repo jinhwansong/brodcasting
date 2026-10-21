@@ -1,0 +1,33 @@
+name: Broadcast site verification
+on:
+  push:
+    branches: [main, codex/part-07-11-courseware]
+    paths:
+      - '.github/workflows/broadcast.yml'
+      - 'apps/broadcast/**'
+      - 'checks/broadcast/**'
+      - 'reference-solutions/part-08/src/Player.tsx'
+      - 'reference-solutions/part-10/client/src/Player.tsx'
+      - 'labs/part-10/client/src/Player.tsx'
+      - 'package*.json'
+  pull_request:
+    paths: ['apps/broadcast/**', 'checks/broadcast/**', 'package*.json']
+permissions:
+  contents: read
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with: {node-version: '24.19.0'}
+      - run: npm ci
+      - run: npm run check:toolchain
+      - run: npm run typecheck:broadcast
+      - run: npm run build:broadcast
+      - run: npm run check:broadcast
+      - run: npm run check:reference:part-08
+      - run: npm run check:reference:part-10
+      - run: npm run verify:broadcast:standalone

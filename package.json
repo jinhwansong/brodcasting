@@ -25,7 +25,9 @@
     "labs/part-11",
     "labs/runtime-02",
     "labs/runtime-03",
-    "labs/runtime-04"
+    "labs/runtime-04",
+    "apps/broadcast/server",
+    "apps/broadcast/client"
   ],
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -150,7 +152,13 @@
     "check:reference:runtime-04": "node checks/runtime-04/run.mjs reference",
     "typecheck:runtime-04": "npm run typecheck --workspace labs/runtime-04",
     "build:runtime-04": "npm run build --workspace labs/runtime-04",
-    "verify:runtime-04:standalone": "node checks/runtime-04/standalone.mjs"
+    "verify:runtime-04:standalone": "node checks/runtime-04/standalone.mjs",
+    "dev:broadcast": "npm run dev --workspace apps/broadcast/client",
+    "dev:broadcast:api": "npm run build --workspace apps/broadcast/server && node --env-file-if-exists=apps/broadcast/.env apps/broadcast/server/dist/main.js",
+    "typecheck:broadcast": "npm run typecheck --workspace apps/broadcast/server && npm run typecheck --workspace apps/broadcast/client",
+    "build:broadcast": "npm run build --workspace apps/broadcast/server && npm run build --workspace apps/broadcast/client",
+    "check:broadcast": "node node_modules/vitest/vitest.mjs run --config checks/broadcast/client.config.ts",
+    "verify:broadcast:standalone": "node checks/broadcast/standalone.mjs"
   },
   "devDependencies": {
     "semver": "7.8.5",
