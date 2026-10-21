@@ -1,0 +1,111 @@
+{
+  "id": 39539737766,
+  "head": "88492e1949bef3135a9f257416c16ff6660fbbb8",
+  "tree": "5050be328859775633df23ae583a6bf3c23a7883",
+  "conclusion": "success",
+  "url": "https://github.com/jinhwansong/brodcasting/actions/runs/39539737766",
+  "completedAt": "2026-10-21T03:41:12Z",
+  "node": "v24.19.0",
+  "platform": "linux",
+  "publicTests": 64,
+  "recoveryChecks": 24,
+  "sourceOnlyOutsideRepository": [
+    "07",
+    "08",
+    "09",
+    "11"
+  ],
+  "load": {
+    "runs": 6,
+    "sent": 288,
+    "received": 960,
+    "errors": 0,
+    "duplicates": 0,
+    "connectionsAfter": 0
+  },
+  "checksumsVerified": 14,
+  "artifacts": [
+    {
+      "id": 12319775415,
+      "name": "part-09-actual-load",
+      "zipSha256": "sha256:93b1b692853aa9444263d1b97625241b26ad6d729c0ff64aaedb9e25db78915b",
+      "zipDigestVerified": true,
+      "files": [
+        {
+          "path": "test-results/part-09/reference-socket.json",
+          "sha256": "99e2c04fd06f9f9a94127f09c94fb9fc5122338d9e1703ccc078b7f7c44a4187"
+        },
+        {
+          "path": "docs/experiments/part-09/reference-load.json",
+          "sha256": "86f8e6a75502fbaf052bb1eba5797ce35201ea5e834869a3d22bf9fa1dada40b"
+        }
+      ]
+    },
+    {
+      "id": 12319770773,
+      "name": "part-10-actual-recovery",
+      "zipSha256": "sha256:cd2f2e62acedf80794d28bfc1ed207b3473a78e4c22a7bcd4864d87a6c6b47d6",
+      "zipDigestVerified": true,
+      "files": [
+        {
+          "path": "docs/experiments/part-10/reference-compose.json",
+          "sha256": "0859ad4b9d082d2fb9175b049adfbfd4a5d965c3d7ebf8f6d89fd31b9ff1072f"
+        }
+      ]
+    },
+    {
+      "id": 12319076263,
+      "name": "parts-07-11-ui",
+      "zipSha256": "sha256:3b475fd0b47b22fb53ddc557588c4e9ce67cd439915ad11d107d1880f44ca108",
+      "zipDigestVerified": true,
+      "files": [
+        {
+          "path": "test-results/part-07/reference.json",
+          "sha256": "00289c6ed8cc3e3c5e21b7bf6617af06584de97070383ced8bc2f0ff05306c70"
+        },
+        {
+          "path": "test-results/part-08/reference.json",
+          "sha256": "f19090121eb309cc2e794ce4cff47e35831a02fc2b7ab99a4cdefd1f502ac8fe"
+        },
+        {
+          "path": "test-results/part-09/reference-analysis.tap",
+          "sha256": "83f65234b00385b2609dea64e7267aa2dde5b5fa130ce097706362a127f46f10"
+        },
+        {
+          "path": "test-results/part-09/reference-delivery.json",
+          "sha256": "c729eed274cb4637f7bbdc1dbdfc4b6566165c5d188e8888450a25e6729c87f5"
+        },
+        {
+          "path": "test-results/part-10/reference.json",
+          "sha256": "b886c1c18e464488ad0dc159ef1290381061336c818947144348db6269f6f27a"
+        },
+        {
+          "path": "test-results/part-11/reference.json",
+          "sha256": "4b4675c00797307a646d1217203dba9e3a9686399e9d61b4268b30655a02317d"
+        },
+        {
+          "path": "test-results/parts-07-11/starter.json",
+          "sha256": "6fdbff0fe56e67f7d66d0d7768f4edcae62dbe5d9367e44ed5df0b7fbd6b02ae"
+        },
+        {
+          "path": "docs/experiments/part-07/standalone.json",
+          "sha256": "c1a6fda26ac07d4209cd859cc301b6c256c8fbffddcf2ef6476dccb75e55db56"
+        },
+        {
+          "path": "docs/experiments/part-08/standalone.json",
+          "sha256": "4045def1eda9ae5f659d9c406c612a0c8a00b57ffa513524d8b6faecc0902db4"
+        },
+        {
+          "path": "docs/experiments/part-09/standalone.json",
+          "sha256": "a790799e8c91924bf065bb7dd8c6a11b40589ecb73e47616226b026f56c21536"
+        },
+        {
+          "path": "docs/experiments/part-11/standalone.json",
+          "sha256": "8eba2e048e856293bdc9ec1f35ffca12876e4cc5399318ba7592c39e8de8ffb8"
+        }
+      ]
+    }
+  ],
+  "independentReview": false,
+  "browserRun": false
+}

@@ -17,3 +17,7 @@
 ## 미확인 범위
 
 브라우저의 실제 재생·자막·버퍼링·자동재생 제한은 미확인. 모의 미디어 사건을 실제 브라우저 증거로 부르지 않는다. P2P/그리드·CDN·ABR·재생 지연은 쉬운 개념 설명이며 실제 전달망 구현은 아니다.
+
+## Linux CI 게시 근거
+
+[실행 39539737766](https://github.com/jinhwansong/brodcasting/actions/runs/39539737766)의 ui/load/recovery 세 작업이 모두 성공했다. 검증한 코드 커밋은 88492e1949bef3135a9f257416c16ff6660fbbb8, tree는 5050be328859775633df23ae583a6bf3c23a7883다. Node24.19.0에서 공개 검사64개·실제 복구24항목·저장소 밖 독립 설치4개·시작 코드 분류를 확인했다. 결과 ZIP3개의 GitHub SHA256과 내부 보고서14개 SHA256을 내려받아 확인했다. [CI 증거](../experiments/parts-07-11/ci-verification.json)에 해시·검증 범위가 있다. 브라우저·독립 리뷰는 여전히 미실행이다.

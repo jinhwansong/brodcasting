@@ -17,3 +17,7 @@
 ## 미확인 범위
 
 공개 배포·유료 자원·실제 브라우저·영상 인코딩·DB 형식 변경의 자동 롤백은 포함하지 않는다. BunkerWeb 전용 과정은 여전히 전체 과정 마지막에 별도로 남아 있다.
+
+## Linux CI 게시 근거
+
+[실행 39539737766](https://github.com/jinhwansong/brodcasting/actions/runs/39539737766)의 ui/load/recovery 세 작업이 모두 성공했다. 검증한 코드 커밋은 88492e1949bef3135a9f257416c16ff6660fbbb8, tree는 5050be328859775633df23ae583a6bf3c23a7883다. Node24.19.0에서 공개 검사64개·실제 복구24항목·저장소 밖 독립 설치4개·시작 코드 분류를 확인했다. 결과 ZIP3개의 GitHub SHA256과 내부 보고서14개 SHA256을 내려받아 확인했다. [CI 증거](../experiments/parts-07-11/ci-verification.json)에 해시·검증 범위가 있다. 브라우저·독립 리뷰는 여전히 미실행이다.
