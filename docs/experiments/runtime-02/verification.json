@@ -20,5 +20,6 @@
   "exercise": {
     "pass": 1,
     "fail": 5
-  }
+  },
+  "tapWhitespaceNormalized": true
 }

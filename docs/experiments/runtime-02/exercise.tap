@@ -18,7 +18,7 @@
 test at checks\runtime-02\runtime.test.mjs:21:1
 ✖ API uses a real HTTP app and stable injected service across requests (241.0758ms)
   Error: child exited Local API startup failed
-  
+
       at Object.wait (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:14:168)
       at async TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:22:48)
       at async Test.run (node:internal/test_runner/test:1208:7)
@@ -27,7 +27,7 @@ test at checks\runtime-02\runtime.test.mjs:21:1
 test at checks\runtime-02\runtime.test.mjs:25:1
 ✖ Worker has a separate PID, application context and no HTTP adapter (226.116ms)
   Error: child exited Local API startup failed
-  
+
       at Object.wait (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:14:168)
       at async TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:26:73)
       at async Test.run (node:internal/test_runner/test:1208:7)
@@ -36,7 +36,7 @@ test at checks\runtime-02\runtime.test.mjs:25:1
 test at checks\runtime-02\runtime.test.mjs:29:1
 ✖ Worker crash leaves API responsive and restart gets a fresh context (226.8786ms)
   Error: child exited Local API startup failed
-  
+
       at Object.wait (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:14:168)
       at async TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:30:87)
       at async Test.run (node:internal/test_runner/test:1208:7)
@@ -45,7 +45,7 @@ test at checks\runtime-02\runtime.test.mjs:29:1
 test at checks\runtime-02\runtime.test.mjs:33:1
 ✖ API shutdown leaves Worker able to receive another command (237.4891ms)
   Error: child exited Local API startup failed
-  
+
       at Object.wait (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:14:168)
       at async TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:34:65)
       at async Test.run (node:internal/test_runner/test:1208:7)
@@ -54,7 +54,7 @@ test at checks\runtime-02\runtime.test.mjs:33:1
 test at checks\runtime-02\runtime.test.mjs:37:1
 ✖ graceful Worker shutdown closes its context and exits zero (235.7638ms)
   Error: child exited Local worker startup failed
-  
+
       at Object.wait (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:14:168)
       at async TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-02/runtime.test.mjs:38:42)
       at async Test.run (node:internal/test_runner/test:1208:7)
