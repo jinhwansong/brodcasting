@@ -1,0 +1,5 @@
+import {expect,test} from 'vitest';
+import {deliver} from '@server/delivery';
+test('serial baseline permits exactly one active recipient check',async()=>{let active=0,peak=0;const seen:number[]=[];await deliver([1,2,3,4,5],1,async(value:number)=>{active++;peak=Math.max(peak,active);await new Promise(r=>setTimeout(r,1));seen.push(value);active--;});expect(peak).toBe(1);expect(seen).toEqual([1,2,3,4,5]);});
+test('bounded mode completes every recipient with at most four concurrent checks',async()=>{let active=0,peak=0;const seen:number[]=[];await deliver([1,2,3,4,5,6,7,8,9],4,async(value:number)=>{active++;peak=Math.max(peak,active);await new Promise(r=>setTimeout(r,1));seen.push(value);active--;});expect(peak).toBe(4);expect(seen.sort((a,b)=>a-b)).toEqual([1,2,3,4,5,6,7,8,9]);expect(active).toBe(0);});
+test('failure waits for the active batch to finish and never starts another batch',async()=>{const seen:number[]=[];await expect(deliver([1,2,3,4,5],4,async(value:number)=>{await new Promise(r=>setTimeout(r,1));seen.push(value);if(value===1)throw Error('private failure');})).rejects.toThrow();expect(seen.sort()).toEqual([1,2,3,4]);});

@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-21T00:54:53.772Z",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "sourceOnly": true,
+  "outsideRepository": true,
+  "commands": [
+    {
+      "command": "npm ci",
+      "status": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "status": 0
+    },
+    {
+      "command": "npm run build",
+      "status": 0
+    }
+  ],
+  "checks": [
+    "real Vite preview HTML",
+    "real built JavaScript response",
+    "real WebM HTTP response pattern.webm",
+    "real WebM HTTP response alternate.webm",
+    "real caption HTTP response"
+  ],
+  "browserRun": false
+}

@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-21T00:56:19.795Z",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "tests": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "names": [
+      "lowering a stopped room limit applies immediately and raising it cannot resurrect rows",
+      "room choices are separate and changing a limit does not restart the deadline",
+      "new limit preserves input and reader control",
+      "only exact UI choices are accepted",
+      "lowering cap keeps newest rows without changing IDs or input",
+      "raising cap does not recreate discarded history"
+    ]
+  },
+  "starter": {
+    "part": "11",
+    "passed": 0,
+    "failed": 6,
+    "collected": 6
+  },
+  "browserRun": false
+}

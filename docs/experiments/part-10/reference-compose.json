@@ -1,0 +1,47 @@
+{
+  "startedAt": "2026-10-21T00:53:37.270Z",
+  "target": "reference",
+  "project": "part10-check-e554cc272f3d",
+  "checks": [
+    "fresh source Docker build",
+    "HTTPS certificate validation and DB readiness",
+    "built client is served",
+    "only loopback TLS port is published",
+    "Secure HttpOnly session cookie deploy_a",
+    "Secure HttpOnly session cookie deploy_b",
+    "authenticated WSS stores and delivers message",
+    "session survives real API process restart",
+    "DB history survives API restart",
+    "CSRF remains enforced",
+    "direct API cannot forge trusted HTTPS proxy",
+    "DB outage is readiness 503",
+    "liveness remains separate from readiness",
+    "DB outage returns a safe API error",
+    "DB recovery restores requests",
+    "restored DB contains the session",
+    "restored DB serves the saved history",
+    "restored app role still cannot delete messages",
+    "bad release fails deployment",
+    "rollback restores healthy release",
+    "rollback preserves restored session",
+    "rollback runs the exact previous image",
+    "structured errors include a request identifier",
+    "logs omit credentials cookies query values and request bodies"
+  ],
+  "scope": "owned local Compose; HTTPS certificate verified; no public deployment or real browser",
+  "backup": {
+    "bytes": 18965,
+    "sha256": "ebd829400d201045401bba9beec1b71babf7fec0b7a1b60b9b8a8c696342e01b",
+    "persisted": false
+  },
+  "rollback": {
+    "goodImage": "sha256:9f92c6921de421f4178fa150ae48352198c345d68bafe0bcfc654eeb6f05e91a",
+    "badImage": "sha256:ccd17de2ec2b0ab7617e8d9d04deae4ecbe069c22399498d1c0f5e601def8eb2",
+    "actualImage": "sha256:9f92c6921de421f4178fa150ae48352198c345d68bafe0bcfc654eeb6f05e91a"
+  },
+  "images": {
+    "api": "[{\"ID\":\"sha256:9f92c6921de421f4178fa150ae48352198c345d68bafe0bcfc654eeb6f05e91a\",\"ContainerName\":\"part10-check-e554cc272f3d-api-1\",\"Repository\":\"part10-check-e554cc272f3d-api\",\"Tag\":\"latest\",\"Platform\":\"linux/amd64\",\"Size\":125603623,\"Created\":\"2026-10-21T00:29:02.003822116Z\",\"LastTagTime\":\"2026-10-21T00:53:42.353070685Z\"},{\"ID\":\"sha256:fa448d0cf056c7de5d554cd8b5713768e53a783f7c2cbee5578e852175283c21\",\"ContainerName\":\"part10-check-e554cc272f3d-web-1\",\"Repository\":\"part10-check-e554cc272f3d-web\",\"Tag\":\"latest\",\"Platform\":\"linux/amd64\",\"Size\":28678977,\"Created\":\"2026-10-21T00:35:43.381382621Z\",\"LastTagTime\":\"2026-10-21T00:53:42.347292775Z\"},{\"ID\":\"sha256:74935e72241653ca55e0414067e6d8763aceb8a810eb51b452253ec3dcfc4336\",\"ContainerName\":\"part10-check-e554cc272f3d-db-1\",\"Repository\":\"postgres\",\"Tag\":\"18.6\",\"Platform\":\"linux/amd64\",\"Size\":162510054,\"Created\":\"2026-10-06T01:33:04.259528511Z\",\"LastTagTime\":\"2026-10-20T10:47:18.286676692Z\"}]"
+  },
+  "success": true,
+  "finishedAt": "2026-10-21T00:54:27.255Z"
+}

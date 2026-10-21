@@ -1,0 +1,62 @@
+services:
+  db:
+    image: postgres:18.6
+    environment:
+      POSTGRES_DB: brodcasting_part10_lab
+      POSTGRES_PASSWORD: ${PART10_DB_PASSWORD:?provide a temporary local password}
+    volumes:
+      - data:/var/lib/postgresql
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U postgres -d brodcasting_part10_lab]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    networks:
+      course: {ipv4_address: 172.30.10.2}
+  setup:
+    profiles: [operator]
+    image: ${PART10_IMAGE_PREFIX:?provide a local image prefix}-api
+    build: {context: ., target: api}
+    command: [node, setup.mjs]
+    environment:
+      PART10_ADMIN_URL: postgres://postgres:${PART10_DB_PASSWORD}@db:5432/brodcasting_part10_lab
+      PART10_APP_PASSWORD: ${PART10_APP_PASSWORD:?provide a temporary app password}
+    depends_on:
+      db: {condition: service_healthy}
+    networks: [course]
+  api:
+    image: ${PART10_API_IMAGE:-${PART10_IMAGE_PREFIX}-api}
+    build: {context: ., target: api}
+    environment:
+      NODE_ENV: production
+      PART10_MODE: local-container
+      PART10_DATABASE_URL: postgres://part10_app:${PART10_APP_PASSWORD}@db:5432/${PART10_ACTIVE_DATABASE:-brodcasting_part10_lab}
+      SESSION_SECRET: ${SESSION_SECRET:?provide a temporary session secret}
+      RELEASE_LABEL: ${PART10_RELEASE:-v1}
+    read_only: true
+    tmpfs: [/tmp]
+    stop_grace_period: 10s
+    depends_on:
+      db: {condition: service_healthy}
+    networks:
+      course: {ipv4_address: 172.30.10.4}
+  web:
+    image: ${PART10_IMAGE_PREFIX}-web
+    build: {context: ., target: web}
+    ports: [127.0.0.1:8443:443]
+    volumes:
+      - ${PART10_TLS_DIR:?provide the local certificate directory}:/etc/nginx/tls:ro
+    read_only: true
+    tmpfs: [/var/cache/nginx, /var/run, /tmp]
+    depends_on: [api]
+    networks:
+      course: {ipv4_address: 172.30.10.3}
+      edge: {}
+volumes:
+  data:
+networks:
+  edge: {}
+  course:
+    internal: true
+    ipam:
+      config: [{subnet: 172.30.10.0/24}]

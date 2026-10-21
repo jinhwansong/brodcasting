@@ -1,0 +1,1 @@
+import {spawnSync} from 'node:child_process';const target=process.argv[2]??'exercise';if(!['exercise','reference'].includes(target))throw new Error('Invalid target');const r=spawnSync(process.execPath,['node_modules/vitest/vitest.mjs','run','--config','checks/part-07/config.ts'],{stdio:'inherit',env:{...process.env,LAB_TARGET:target}});process.exit(r.status??1);

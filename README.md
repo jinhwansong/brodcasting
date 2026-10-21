@@ -2,7 +2,9 @@
 
 실시간 서비스를 소재로 React·TypeScript 기본기와 서버 흐름을 배우는 교재 저장소입니다. [39주 커리큘럼](CURRICULUM.md)이 기준입니다. 실제 방송 서비스나 학습자의 완료된 포트폴리오가 아닙니다.
 
-2026-10-20 사용자 요청으로 제작을 재개해 **0~6단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
+2026-10-21 요청 범위인 **0~11단계 교재·코드·로컬 검증**을 갖췄습니다. [기획서](PROJECT_PLAN.md)와 [남은 작업·인수인계](REMAINING_WORK.md)에 현재 범위와 다음 제작을 기록합니다. 학습자는 0단계·미시작이며 실제 브라우저 검증은 계속 보류합니다.
+
+실습이 처음이면 [쉬운 시작 안내](docs/LEARNING_GUIDE.md)를 먼저 읽으세요. 새 7~11단계는 코드 전에 읽는 쉬운 설명과 직접 할 순서를 함께 제공합니다.
 
 ## 0단계 시작
 
@@ -50,6 +52,11 @@ npm run check:part-01
 | 4단계 | [로그인과 권한](docs/tasks/part-04/README.md) | [기록](docs/verification/part-04.md) |
 | 5단계 | [WebSocket 채팅](docs/tasks/part-05/README.md) | [기록](docs/verification/part-05.md) |
 | 6단계 | [저장·재연결·복구](docs/tasks/part-06/README.md) | [기록](docs/verification/part-06.md) |
+| 7단계 | [브라우저 성능·장시간 사용](docs/tasks/part-07/README.md) | [기록](docs/verification/part-07.md) |
+| 8단계 | [영상·실패 처리](docs/tasks/part-08/README.md) | [기록](docs/verification/part-08.md) |
+| 9단계 | [로컬 부하·병목](docs/tasks/part-09/README.md) | [기록](docs/verification/part-09.md) |
+| 10단계 | [로컬 TLS·백업·복원·롤백](docs/tasks/part-10/README.md) | [기록](docs/verification/part-10.md) |
+| 11단계 | [변경 요구·설명·지원 자료](docs/tasks/part-11/README.md) | [기록](docs/verification/part-11.md) |
 
 ## 2단계 선택 실행
 
@@ -103,6 +110,20 @@ PostgreSQL18.6의 실제 DB·HTTP·client 공개 검증97개, 독립 설치/프�
 - [빈 제출](docs/tasks/part-06/submission.md), [브라우저 후속](docs/tasks/part-06/browser-checklist.md), [완성본 독립 실행](reference-solutions/part-06/README.md)
 
 실제 PG/HTTP/socket194개와 client68개, 총262개 및 새 설치·소켓 프록시·API 재시작 뒤 이력/중복 방지를 확인했습니다. 방별 commit 순서와 복구 cursor를 구분하며, ack 유실은 같은 발송 ID로 제한 재시도합니다. 실제 브라우저·영구 outbox·운영 exactly-once는 확인하지 않았습니다.
+
+## 7~11단계 선택 실행
+
+현재 학습 단계는 여전히0입니다. 해당 단계에 도달한 뒤 실습 README부터 읽습니다. 7/8/11은 서버 없이 켜는 독립 화면,9는 실제 소유 로컬 DB/채팅 부하,10은 로컬 HTTPS/WSS·복구 실습입니다.
+
+| 단계 | 화면 또는 실험 명령 | 쉬운 설명 |
+| --- | --- | --- |
+| 7 | `npm run dev:part-07` (5187) | [글 보관과 화면 그리기](docs/tasks/part-07/lesson.md) |
+| 8 | `npm run dev:part-08` (5188) | [버퍼·P2P·CDN·시청 지연](docs/tasks/part-08/lesson.md) |
+| 9 | `npm run experiment:part-09` (전용 DB 필요) | [식당 주문으로 보는 부하](docs/tasks/part-09/lesson.md) |
+| 10 | `npm run verify:part-10` (전용 Docker·8443) | [입구·작업실·보관실](docs/tasks/part-10/lesson.md) |
+| 11 | `npm run dev:part-11` (5191) | [새 부탁의 영향 범위](docs/tasks/part-11/lesson.md) |
+
+각 단계는 `typecheck:part-XX`·`build:part-XX`·`check:part-XX`를 제공합니다. 시작 코드는 새 핵심을 직접 채워야 하므로 행동 검사가 처음에는 실패합니다. 설명3개·독립 변경·사례 작성 전에는 학습 통과가 아닙니다. 실제 브라우저는 보류했고, 서버의 실제 HTTP/DB/WSS·백업/새 DB 복원·서로 다른 실패/정상 이미지 롤백은 검증했습니다. 공개 배포·영상 송출/인코딩·P2P 전달망 구축은 포함하지 않습니다.
 
 ## 보안·프론트·인프라 과정
 

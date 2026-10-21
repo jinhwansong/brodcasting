@@ -1,0 +1,56 @@
+{
+  "tool": "ffmpeg version 7.0.2-static https://johnvansickle.com/ffmpeg/  Copyright (c) 2000-2024 the FFmpeg developers",
+  "files": [
+    {
+      "name": "pattern.webm",
+      "filter": "testsrc2=size=320x180:rate=12:duration=4",
+      "bytes": 47114,
+      "sha256": "1eca65dc551db6c0aa8de0025c7ae74b6fad4ee6b747ce505308022335fecbd2",
+      "decoded": true,
+      "command": [
+        "/tmp/tools/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+        "-y",
+        "-f",
+        "lavfi",
+        "-i",
+        "testsrc2=size=320x180:rate=12:duration=4",
+        "-an",
+        "-c:v",
+        "libvpx-vp9",
+        "-crf",
+        "40",
+        "-b:v",
+        "0",
+        "-threads",
+        "1",
+        "/out/pattern.webm"
+      ]
+    },
+    {
+      "name": "alternate.webm",
+      "filter": "smptebars=size=320x180:rate=12:duration=4",
+      "bytes": 2125,
+      "sha256": "3ce47699bcaa92d810a2fee03fdf939b9b87bc4f3fe1954c9d0d35122aa33c09",
+      "decoded": true,
+      "command": [
+        "/tmp/tools/imageio_ffmpeg/binaries/ffmpeg-linux-x86_64-v7.0.2",
+        "-y",
+        "-f",
+        "lavfi",
+        "-i",
+        "smptebars=size=320x180:rate=12:duration=4",
+        "-an",
+        "-c:v",
+        "libvpx-vp9",
+        "-crf",
+        "40",
+        "-b:v",
+        "0",
+        "-threads",
+        "1",
+        "/out/alternate.webm"
+      ]
+    }
+  ],
+  "decodeLogNormalization": "Trailing spaces removed; decoded frame counts and diagnostic content preserved"
+}

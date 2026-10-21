@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-21T00:56:19.795Z",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "tests": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "names": [
+      "local TLS deployment accepts only the private DB role and fixed proxy",
+      "bad mode, external DB, superuser, weak secret and broken release fail before listening",
+      "separate restored database is allowed, unrelated databases are rejected",
+      "ready reflects a real DB query and a DB outage",
+      "structured logs whitelist fields and never serialize request secrets",
+      "newline suffixes are not valid secrets or release labels"
+    ]
+  },
+  "starter": {
+    "part": "10",
+    "passed": 2,
+    "failed": 4,
+    "collected": 6
+  },
+  "browserRun": false,
+  "actualRecoveryChecks": 24,
+  "rollback": {
+    "goodImage": "sha256:9f92c6921de421f4178fa150ae48352198c345d68bafe0bcfc654eeb6f05e91a",
+    "badImage": "sha256:ccd17de2ec2b0ab7617e8d9d04deae4ecbe069c22399498d1c0f5e601def8eb2",
+    "actualImage": "sha256:9f92c6921de421f4178fa150ae48352198c345d68bafe0bcfc654eeb6f05e91a"
+  }
+}

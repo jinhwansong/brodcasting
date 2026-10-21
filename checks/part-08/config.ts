@@ -1,0 +1,3 @@
+import {defineConfig} from 'vitest/config';import react from '@vitejs/plugin-react';import path from 'node:path';
+const target=process.env.LAB_TARGET??'exercise';if(!['exercise','reference'].includes(target))throw new Error('Invalid LAB_TARGET');
+export default defineConfig({plugins:[react()],resolve:{alias:{'@submission':path.resolve(target==='reference'?'reference-solutions/part-08/src':'labs/part-08/src')},dedupe:['react','react-dom']},test:{environment:'jsdom',include:['checks/part-08/*.test.*'],restoreMocks:true,reporters:['default','json'],outputFile:{json:'test-results/part-08/'+target+'.json'}}});

@@ -1,0 +1,2 @@
+import {useState} from 'react';import {Player} from './Player';import Replay from './Replay';
+export default function App(){const [source,setSource]=useState('/media/pattern.webm');return <main><header><p>8단계 · 영상과 채팅</p><h1>재생 상태를 보고, 실패하면 다시 시도해요</h1></header><label>연습 영상 선택<select value={source} onChange={e=>setSource(e.target.value)}><option value="/media/pattern.webm">움직이는 색상</option><option value="/media/alternate.webm">다른 색상</option><option value="/media/missing.webm">없는 파일로 오류 연습</option></select></label><Player src={source}/><Replay/></main>;}

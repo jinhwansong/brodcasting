@@ -1,0 +1,4 @@
+import {expect,test} from 'vitest';import {keep,parseLimit} from '@submission/retention';
+test('only exact UI choices are accepted',()=>{expect(['100','500','1000'].map(parseLimit)).toEqual([100,500,1000]);for(const bad of ['','0','0100',' 100','100\n','999','Infinity','<script>'])expect(parseLimit(bad)).toBeNull();});
+test('lowering cap keeps newest rows without changing IDs or input',()=>{const rows=Array.from({length:600},(_,i)=>({id:i+1,text:'글 '+i}));const reduced=keep(rows,100);expect(reduced).toHaveLength(100);expect(reduced[0].id).toBe(501);expect(reduced.at(-1)?.id).toBe(600);expect(rows).toHaveLength(600);});
+test('raising cap does not recreate discarded history',()=>{const rows=[{id:501,text:'남은 글'}];expect(keep(rows,1000)).toEqual(rows);expect(keep(rows,1000)).not.toBe(rows);});

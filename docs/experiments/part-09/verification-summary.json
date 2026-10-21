@@ -1,0 +1,125 @@
+{
+  "at": "2026-10-21T00:56:19.797Z",
+  "tests": {
+    "analysis": 5,
+    "delivery": 3,
+    "sockets": 31,
+    "total": 39
+  },
+  "starter": [
+    {
+      "part": "09-analysis",
+      "passed": 2,
+      "failed": 3,
+      "collected": 5
+    },
+    {
+      "part": "09-delivery",
+      "passed": 0,
+      "failed": 3,
+      "collected": 3
+    }
+  ],
+  "stats": [
+    {
+      "repetition": 1,
+      "width": 1,
+      "holdP95": 23.810300000001007,
+      "attempted": 48,
+      "received": 160,
+      "errors": 0,
+      "duplicates": 0,
+      "connectionsAfter": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "repetition": 1,
+      "width": 4,
+      "holdP95": 22.68079999999827,
+      "attempted": 48,
+      "received": 160,
+      "errors": 0,
+      "duplicates": 0,
+      "connectionsAfter": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "repetition": 2,
+      "width": 4,
+      "holdP95": 22.51350000000093,
+      "attempted": 48,
+      "received": 160,
+      "errors": 0,
+      "duplicates": 0,
+      "connectionsAfter": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "repetition": 2,
+      "width": 1,
+      "holdP95": 21.652700000006007,
+      "attempted": 48,
+      "received": 160,
+      "errors": 0,
+      "duplicates": 0,
+      "connectionsAfter": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "repetition": 3,
+      "width": 1,
+      "holdP95": 27.043599999989965,
+      "attempted": 48,
+      "received": 160,
+      "errors": 0,
+      "duplicates": 0,
+      "connectionsAfter": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "repetition": 3,
+      "width": 4,
+      "holdP95": 21.254799999995157,
+      "attempted": 48,
+      "received": 160,
+      "errors": 0,
+      "duplicates": 0,
+      "connectionsAfter": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "holdP95Median": {
+    "serial": 23.810300000001007,
+    "bounded": 22.51350000000093
+  },
+  "limitations": [
+    "Small local sample; no production capacity claim",
+    "Generator and API are on the same host",
+    "DB probe is SELECT 1 RTT, not individual save SQL timing",
+    "Actual browser not run"
+  ]
+}

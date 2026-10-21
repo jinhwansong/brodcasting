@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-21T00:54:58.037Z",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "sourceOnly": true,
+  "outsideRepository": true,
+  "commands": [
+    {
+      "command": "npm ci",
+      "status": 0
+    },
+    {
+      "command": "npm run typecheck",
+      "status": 0
+    },
+    {
+      "command": "npm run build",
+      "status": 0
+    }
+  ],
+  "checks": [
+    "Nest runtime imports with no ancestor repository dependencies"
+  ],
+  "browserRun": false
+}

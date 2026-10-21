@@ -1,0 +1,142 @@
+{
+  "at": "2026-10-21T00:43:42.571Z",
+  "node": "v24.15.0",
+  "platform": "win32",
+  "checks": [
+    {
+      "name": "reference-07",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-08",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-10",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-11",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-09",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "starter-07",
+      "status": 1,
+      "expected": 1
+    },
+    {
+      "name": "starter-08",
+      "status": 1,
+      "expected": 1
+    },
+    {
+      "name": "starter-10",
+      "status": 1,
+      "expected": 1
+    },
+    {
+      "name": "starter-11",
+      "status": 1,
+      "expected": 1
+    },
+    {
+      "name": "starter-09-analysis",
+      "status": 1,
+      "expected": 1
+    },
+    {
+      "name": "starter-09-delivery",
+      "status": 1,
+      "expected": 1
+    },
+    {
+      "name": "labs-07-app-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "labs-08-app-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "labs-09-server-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "labs-10-server-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "labs-10-client-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "labs-11-app-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-07-app-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-08-app-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-09-server-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-10-server-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-10-client-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-11-app-type",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "toolchain",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-00",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "reference-01",
+      "status": 0,
+      "expected": 0
+    },
+    {
+      "name": "learner-00-still-incomplete",
+      "status": 1,
+      "expected": 1
+    }
+  ]
+}

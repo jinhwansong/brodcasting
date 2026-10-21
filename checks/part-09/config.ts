@@ -1,0 +1,3 @@
+import {defineConfig} from 'vitest/config';import path from 'node:path';
+const target=process.env.LAB_TARGET??'exercise';if(!['exercise','reference'].includes(target))throw Error('Invalid target');
+export default defineConfig({resolve:{alias:{'@server':path.resolve((target==='reference'?'reference-solutions':'labs')+'/part-09/server/src')}},test:{include:process.env.PART09_DB==='1'?['checks/part-09/socket.test.ts','checks/part-09/recovery.test.ts']:['checks/part-09/delivery.test.ts'],testTimeout:15000,hookTimeout:30000,fileParallelism:false,reporters:['default','json'],outputFile:{json:'test-results/part-09/'+target+(process.env.PART09_DB==='1'?'-socket.json':'-delivery.json')}}});

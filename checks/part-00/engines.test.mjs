@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import semver from 'semver';
 const read = relative => JSON.parse(readFileSync(new URL('../../' + relative, import.meta.url), 'utf8'));
-const directories = ['', 'reference-solutions/part-00/', 'reference-solutions/part-01/', 'reference-solutions/part-02/', 'reference-solutions/part-03/', 'reference-solutions/part-04/', 'reference-solutions/part-05/', 'reference-solutions/part-06/'];
+const directories = ['', 'reference-solutions/part-00/', 'reference-solutions/part-01/', 'reference-solutions/part-02/', 'reference-solutions/part-03/', 'reference-solutions/part-04/', 'reference-solutions/part-05/', 'reference-solutions/part-06/', 'reference-solutions/part-07/', 'reference-solutions/part-08/', 'reference-solutions/part-09/', 'reference-solutions/part-10/', 'reference-solutions/part-11/'];
 test('reference source packages keep all local dependency links inside their copy', () => {
   for (const dir of directories.slice(1)) {
     const base = new URL('../../' + dir, import.meta.url);

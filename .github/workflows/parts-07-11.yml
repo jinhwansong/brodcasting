@@ -1,0 +1,136 @@
+name: Parts 07-11 courseware verification
+on:
+  push:
+    branches: [main, codex/part-07-11-courseware]
+    paths:
+      - '.github/workflows/parts-07-11.yml'
+      - 'labs/part-0[789]/**'
+      - 'labs/part-1[01]/**'
+      - 'reference-solutions/part-0[789]/**'
+      - 'reference-solutions/part-1[01]/**'
+      - 'checks/part-0[789]/**'
+      - 'checks/part-1[01]/**'
+      - 'checks/verify-new-starters.mjs'
+      - 'checks/part-00/engines.test.mjs'
+      - 'package*.json'
+permissions:
+  contents: read
+jobs:
+  ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with: {node-version: '24.19.0', cache: npm}
+      - run: npm ci
+      - name: Public contracts and unfinished starter classification
+        run: |
+          npm run check:toolchain
+          npm run check:reference
+          npm run check:reference:part-01
+          npm run check:reference:part-07
+          npm run check:reference:part-08
+          npm run check:reference:part-09
+          npm run check:reference:part-10
+          npm run check:reference:part-11
+          node checks/verify-new-starters.mjs
+      - name: Learner packages typecheck and build
+        run: |
+          npm run typecheck:part-07 && npm run build:part-07
+          npm run typecheck:part-08 && npm run build:part-08
+          npm run typecheck:part-09 && npm run build:part-09
+          npm run typecheck:part-10 && npm run build:part-10
+          npm run typecheck:part-11 && npm run build:part-11
+      - name: Source-only client installation and actual HTTP
+        run: |
+          node checks/part-07/standalone-smoke.mjs 07
+          node checks/part-07/standalone-smoke.mjs 08
+          node checks/part-07/standalone-smoke.mjs 09
+          node checks/part-07/standalone-smoke.mjs 11
+      - name: Report checksums
+        run: >-
+          sha256sum test-results/part-07/reference.json test-results/part-08/reference.json
+          test-results/part-09/reference-analysis.tap test-results/part-09/reference-delivery.json
+          test-results/part-10/reference.json test-results/part-11/reference.json
+          test-results/parts-07-11/starter.json docs/experiments/part-07/standalone.json
+          docs/experiments/part-08/standalone.json docs/experiments/part-09/standalone.json
+          docs/experiments/part-11/standalone.json > test-results/ui-SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: parts-07-11-ui
+          if-no-files-found: error
+          path: |
+            test-results/part-07/reference.json
+            test-results/part-08/reference.json
+            test-results/part-09/reference-analysis.tap
+            test-results/part-09/reference-delivery.json
+            test-results/part-10/reference.json
+            test-results/part-11/reference.json
+            test-results/parts-07-11/starter.json
+            docs/experiments/part-07/standalone.json
+            docs/experiments/part-08/standalone.json
+            docs/experiments/part-09/standalone.json
+            docs/experiments/part-11/standalone.json
+            test-results/ui-SHA256SUMS
+  load:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:18.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-ci-only
+          POSTGRES_DB: brodcasting_part09_test
+        ports: [5432:5432]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with: {node-version: '24.19.0', cache: npm}
+      - run: npm ci
+      - run: npm ci && npm run typecheck && npm run build
+        working-directory: reference-solutions/part-09
+      - name: Authentication membership storage and actual socket regression
+        env:
+          PART09_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part09_test
+        run: npm run check:reference:part-09:db
+      - name: Same-input local load comparison repeated three times
+        env:
+          PART09_TEST_ADMIN_URL: postgres://postgres:local-ci-only@127.0.0.1:5432/brodcasting_part09_test
+        run: npm run experiment:reference:part-09
+      - run: sha256sum test-results/part-09/reference-socket.json docs/experiments/part-09/reference-load.json > test-results/load-SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: part-09-actual-load
+          if-no-files-found: error
+          path: |
+            test-results/part-09/reference-socket.json
+            docs/experiments/part-09/reference-load.json
+            test-results/load-SHA256SUMS
+  recovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with: {node-version: '24.19.0', cache: npm}
+      - run: npm ci
+      - name: Fresh Docker HTTPS WSS backup restore and exact-image rollback
+        run: npm run verify:reference:part-10
+      - run: sha256sum docs/experiments/part-10/reference-compose.json > test-results/recovery-SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: part-10-actual-recovery
+          if-no-files-found: error
+          path: |
+            docs/experiments/part-10/reference-compose.json
+            test-results/recovery-SHA256SUMS

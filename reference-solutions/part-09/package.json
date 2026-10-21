@@ -1,0 +1,23 @@
+{
+  "name": "@brodcasting/reference-part-09",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "server"
+  ],
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  },
+  "scripts": {
+    "typecheck": "npm run typecheck --workspace server",
+    "build": "npm run build --workspace server",
+    "db": "npm run build --workspace server && node --env-file-if-exists=.env server/dist/db-cli.js"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "socket.io-client": "4.8.4"
+  }
+}
