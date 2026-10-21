@@ -22,7 +22,9 @@
     "labs/part-10",
     "labs/part-10/server",
     "labs/part-10/client",
-    "labs/part-11"
+    "labs/part-11",
+    "labs/runtime-02",
+    "labs/runtime-03"
   ],
   "engines": {
     "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
@@ -137,7 +139,12 @@
     "check:reference:runtime-02": "node checks/runtime-02/run.mjs reference",
     "typecheck:runtime-02": "node node_modules/typescript/bin/tsc -p labs/runtime-02/tsconfig.json --noEmit",
     "build:runtime-02": "node node_modules/typescript/bin/tsc -p labs/runtime-02/tsconfig.json",
-    "verify:runtime-02:standalone": "node checks/runtime-02/standalone.mjs"
+    "verify:runtime-02:standalone": "node checks/runtime-02/standalone.mjs",
+    "check:runtime-03": "node checks/runtime-03/run.mjs exercise",
+    "check:reference:runtime-03": "node checks/runtime-03/run.mjs reference",
+    "typecheck:runtime-03": "npm run typecheck --workspace labs/runtime-03",
+    "build:runtime-03": "npm run build --workspace labs/runtime-03",
+    "verify:runtime-03:standalone": "node checks/runtime-03/standalone.mjs"
   },
   "devDependencies": {
     "semver": "7.8.5",

@@ -1,0 +1,5 @@
+
+> verify:runtime-03:standalone
+> node checks/runtime-03/standalone.mjs
+
+{"node":"v24.15.0","platform":"win32","sourceOnly":true,"outsideRepository":true,"npmCi":true,"typecheck":true,"publicTests":11,"realHttp":true,"separateProcess":true}

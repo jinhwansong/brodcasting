@@ -1,0 +1,176 @@
+Owned Redis version: Redis server v=8.6.7 sha=00000000:1 malloc=jemalloc-5.3.0 bits=64 build=517a94ff123af50c
+✖ real Nest API enqueues and a separate application-context Worker processes it (2884.416ms)
+✖ queued work survives Worker shutdown and a new Worker consumes it (1167.6003ms)
+✔ HTTP rejects extra fields and malformed job IDs (649.4405ms)
+✖ accepts exactly the allowed job shape (0.7978ms)
+✔ rejects unknown fields, identifiers, non-integer and excessive failures (0.3539ms)
+✔ accepts only a dedicated loopback Redis URL (0.173ms)
+✖ enqueue without a Worker remains waiting and stores only validated data (1054.0659ms)
+✖ real Worker retries two failures and completes its third attempt (10.3816ms)
+✖ retained jobId deduplicates additions and removal permits a new job (6.8239ms)
+✖ retry bound ends in failed after three attempts (6.4552ms)
+✖ Worker close waits for in-flight processor completion (6.7665ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 3
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4766.0838
+
+✖ failing tests:
+
+test at checks\runtime-03\bootstrap.test.mjs:20:1
+✖ real Nest API enqueues and a separate application-context Worker processes it (2884.416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  400 !== 201
+
+      at file:///E:/code/brodcasting/checks/runtime-03/bootstrap.test.mjs:22:156
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-03/bootstrap.test.mjs:17:6)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at checks\runtime-03\bootstrap.test.mjs:26:1
+✖ queued work survives Worker shutdown and a new Worker consumes it (1167.6003ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  400 !== 201
+
+      at file:///E:/code/brodcasting/checks/runtime-03/bootstrap.test.mjs:28:54
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async fixture (file:///E:/code/brodcasting/checks/runtime-03/bootstrap.test.mjs:17:6)
+      at async Test.run (node:internal/test_runner/test:1208:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 201,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at checks\runtime-03\queue.test.mjs:19:1
+✖ accepts exactly the allowed job shape (0.7978ms)
+  BadRequestException: Notice parser is not implemented
+      at parseNotice (file:///E:/code/brodcasting/labs/runtime-03/dist/jobs.js:4:11)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:19:67)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.start (node:internal/test_runner/test:1096:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    response: { message: 'Notice parser is not implemented', error: 'Bad Request', statusCode: 400 },
+    status: 400,
+    options: {},
+    cause: undefined,
+    errorCode: undefined
+  }
+
+test at checks\runtime-03\queue.test.mjs:26:1
+✖ enqueue without a Worker remains waiting and stores only validated data (1054.0659ms)
+  BadRequestException: Notice parser is not implemented
+      at parseNotice (file:///E:/code/brodcasting/labs/runtime-03/dist/jobs.js:4:11)
+      at file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:27:33
+      at fixture (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:15:12)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:26:89)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:831:7) {
+    response: { message: 'Notice parser is not implemented', error: 'Bad Request', statusCode: 400 },
+    status: 400,
+    options: {},
+    cause: undefined,
+    errorCode: undefined
+  }
+
+test at checks\runtime-03\queue.test.mjs:29:1
+✖ real Worker retries two failures and completes its third attempt (10.3816ms)
+  BadRequestException: Notice parser is not implemented
+      at parseNotice (file:///E:/code/brodcasting/labs/runtime-03/dist/jobs.js:4:11)
+      at file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:30:53
+      at fixture (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:15:12)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:29:82)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    response: { message: 'Notice parser is not implemented', error: 'Bad Request', statusCode: 400 },
+    status: 400,
+    options: {},
+    cause: undefined,
+    errorCode: undefined
+  }
+
+test at checks\runtime-03\queue.test.mjs:32:1
+✖ retained jobId deduplicates additions and removal permits a new job (6.8239ms)
+  BadRequestException: Notice parser is not implemented
+      at parseNotice (file:///E:/code/brodcasting/labs/runtime-03/dist/jobs.js:4:11)
+      at file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:34:35
+      at fixture (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:15:12)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:32:85)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    response: { message: 'Notice parser is not implemented', error: 'Bad Request', statusCode: 400 },
+    status: 400,
+    options: {},
+    cause: undefined,
+    errorCode: undefined
+  }
+
+test at checks\runtime-03\queue.test.mjs:38:1
+✖ retry bound ends in failed after three attempts (6.4552ms)
+  BadRequestException: Notice parser is not implemented
+      at parseNotice (file:///E:/code/brodcasting/labs/runtime-03/dist/jobs.js:4:11)
+      at file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:39:53
+      at fixture (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:15:12)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:38:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    response: { message: 'Notice parser is not implemented', error: 'Bad Request', statusCode: 400 },
+    status: 400,
+    options: {},
+    cause: undefined,
+    errorCode: undefined
+  }
+
+test at checks\runtime-03\queue.test.mjs:41:1
+✖ Worker close waits for in-flight processor completion (6.7665ms)
+  BadRequestException: Notice parser is not implemented
+      at parseNotice (file:///E:/code/brodcasting/labs/runtime-03/dist/jobs.js:4:11)
+      at file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:44:33
+      at fixture (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:15:12)
+      at TestContext.<anonymous> (file:///E:/code/brodcasting/checks/runtime-03/queue.test.mjs:41:71)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1201:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:831:18)
+      at Test.postRun (node:internal/test_runner/test:1330:19)
+      at Test.run (node:internal/test_runner/test:1258:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+    response: { message: 'Notice parser is not implemented', error: 'Bad Request', statusCode: 400 },
+    status: 400,
+    options: {},
+    cause: undefined,
+    errorCode: undefined
+  }

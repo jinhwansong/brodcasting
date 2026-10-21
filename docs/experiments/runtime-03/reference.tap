@@ -1,0 +1,20 @@
+Owned Redis version: Redis server v=8.6.7 sha=00000000:1 malloc=jemalloc-5.3.0 bits=64 build=517a94ff123af50c
+✔ real Nest API enqueues and a separate application-context Worker processes it (8295.1989ms)
+✔ queued work survives Worker shutdown and a new Worker consumes it (1984.4483ms)
+✔ HTTP rejects extra fields and malformed job IDs (958.7996ms)
+✔ accepts exactly the allowed job shape (2.9287ms)
+✔ rejects unknown fields, identifiers, non-integer and excessive failures (0.9893ms)
+✔ accepts only a dedicated loopback Redis URL (0.5639ms)
+✔ enqueue without a Worker remains waiting and stores only validated data (604.5656ms)
+✔ real Worker retries two failures and completes its third attempt (293.7668ms)
+✔ retained jobId deduplicates additions and removal permits a new job (76.2714ms)
+✔ retry bound ends in failed after three attempts (293.1593ms)
+✔ Worker close waits for in-flight processor completion (10.8648ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11332.2207
