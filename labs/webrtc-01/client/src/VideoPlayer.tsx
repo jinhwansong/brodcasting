@@ -1,0 +1,9 @@
+import {useEffect,useRef,useState} from 'react';
+const labels={loading:'영상을 준비하고 있어요',ready:'재생 버튼을 눌러 시작하세요',playing:'재생 중',waiting:'영상을 기다리고 있어요',paused:'일시 정지',ended:'샘플 영상이 끝났어요',error:'영상을 불러오지 못했어요'};
+export function VideoPlayer({src,poster}:{src:string;poster:string}){const [attempt,setAttempt]=useState(0);return <Media key={src+attempt} src={src} poster={poster} retry={()=>setAttempt(n=>n+1)}/>;}
+function Media({src,poster,retry}:{src:string;poster:string;retry:()=>void}){
+ const video=useRef<HTMLVideoElement>(null),alive=useRef(false);const [state,setState]=useState<keyof typeof labels>('loading'),[error,setError]=useState('');
+ useEffect(()=>{const node=video.current!;alive.current=true;if(node.getAttribute('src')!==src)node.setAttribute('src',src);const states:Record<string,keyof typeof labels>={loadstart:'loading',loadedmetadata:'ready',playing:'playing',waiting:'waiting',pause:'paused',ended:'ended',error:'error'};const handlers=Object.entries(states).map(([name,next])=>{const handler=()=>{if(alive.current){setState(next);if(next==='error')setError('파일이나 연결을 확인한 뒤 다시 불러오세요.');}};node.addEventListener(name,handler);return{name,handler};});return()=>{alive.current=false;for(const {name,handler}of handlers)node.removeEventListener(name,handler);node.pause();node.removeAttribute('src');node.load();};},[]);
+ async function play(){setError('');try{await video.current!.play();}catch{if(alive.current)setError('영상의 재생 버튼을 직접 눌러 주세요.');}}
+ return <section className="video-player" aria-label="샘플 영상"><video ref={video} src={src} poster={poster} controls playsInline preload="metadata" aria-label="샘플 영상 플레이어"><track kind="captions" src="/media/captions.ko.vtt" srcLang="ko" label="한국어" default/></video><div className="player-status"><span role="status">{labels[state]}</span><button onClick={()=>void play()}>영상 재생</button><button onClick={retry}>다시 불러오기</button></div>{error&&<p role="alert">{error}</p>}</section>;
+}

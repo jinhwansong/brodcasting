@@ -1,0 +1,46 @@
+{
+  "node": "v24.15.0",
+  "platform": "win32",
+  "reference": {
+    "server": 7,
+    "client": 12,
+    "passed": 19
+  },
+  "exercise": {
+    "passed": 13,
+    "intendedFailures": 6
+  },
+  "realDbHttpSocketChecks": 9,
+  "toolchainPolicy": 21,
+  "standalone": {
+    "node": "v24.15.0",
+    "platform": "win32",
+    "sourceOnly": true,
+    "outsideRepository": true,
+    "npmCi": true,
+    "typecheck": true,
+    "serverBuild": true,
+    "clientBuild": true,
+    "unitTests": 19,
+    "realDbHttpSocketChecks": 9,
+    "actualTls": false,
+    "browserMedia": false
+  },
+  "siteStandalone": {
+    "node": "v24.15.0",
+    "platform": "win32",
+    "sourceOnly": true,
+    "outsideRepository": true,
+    "npmCi": true,
+    "typecheck": true,
+    "serverBuild": true,
+    "clientBuild": true,
+    "envExcluded": true,
+    "httpSmoke": false
+  },
+  "actualTls": false,
+  "physicalTwoPc": false,
+  "cameraMicrophoneScreen": false,
+  "learner": "part00-unstarted",
+  "logWhitespaceNormalized": true
+}

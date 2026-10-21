@@ -6,12 +6,15 @@ on:
       - '.github/workflows/broadcast.yml'
       - 'apps/broadcast/**'
       - 'checks/broadcast/**'
+      - 'checks/webrtc-01/**'
+      - 'labs/webrtc-01/**'
+      - 'reference-solutions/webrtc-01/**'
       - 'reference-solutions/part-08/src/Player.tsx'
       - 'reference-solutions/part-10/client/src/Player.tsx'
       - 'labs/part-10/client/src/Player.tsx'
       - 'package*.json'
   pull_request:
-    paths: ['apps/broadcast/**', 'checks/broadcast/**', 'package*.json']
+    paths: ['apps/broadcast/**', 'checks/broadcast/**', 'checks/webrtc-01/**', 'labs/webrtc-01/**', 'reference-solutions/webrtc-01/**', 'package*.json']
 permissions:
   contents: read
 jobs:
@@ -28,6 +31,9 @@ jobs:
       - run: npm run typecheck:broadcast
       - run: npm run build:broadcast
       - run: npm run check:broadcast
+      - run: npm run check:broadcast:rtc
+      - run: npm run check:reference:webrtc-01
       - run: npm run check:reference:part-08
       - run: npm run check:reference:part-10
       - run: npm run verify:broadcast:standalone
+      - run: npm run verify:webrtc-01:standalone

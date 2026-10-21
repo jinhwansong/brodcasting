@@ -1,0 +1,33 @@
+
+> check:toolchain
+> node --test checks/part-00/engines.test.mjs
+
+✔ reference source packages keep all local dependency links inside their copy (13.903ms)
+✔ root advertises only Node versions supported by locked dependencies (8.2548ms)
+✔ reference-solutions/part-00/ advertises only Node versions supported by locked dependencies (1.4018ms)
+✔ reference-solutions/part-01/ advertises only Node versions supported by locked dependencies (1.2425ms)
+✔ reference-solutions/part-02/ advertises only Node versions supported by locked dependencies (1.441ms)
+✔ reference-solutions/part-03/ advertises only Node versions supported by locked dependencies (1.8439ms)
+✔ reference-solutions/part-04/ advertises only Node versions supported by locked dependencies (1.9732ms)
+✔ reference-solutions/part-05/ advertises only Node versions supported by locked dependencies (1.55ms)
+✔ reference-solutions/part-06/ advertises only Node versions supported by locked dependencies (1.6558ms)
+✔ reference-solutions/part-07/ advertises only Node versions supported by locked dependencies (0.6566ms)
+✔ reference-solutions/part-08/ advertises only Node versions supported by locked dependencies (0.7615ms)
+✔ reference-solutions/part-09/ advertises only Node versions supported by locked dependencies (1.1507ms)
+✔ reference-solutions/part-10/ advertises only Node versions supported by locked dependencies (1.6128ms)
+✔ reference-solutions/part-11/ advertises only Node versions supported by locked dependencies (0.708ms)
+✔ reference-solutions/runtime-01/ advertises only Node versions supported by locked dependencies (0.2386ms)
+✔ reference-solutions/runtime-02/ advertises only Node versions supported by locked dependencies (1.2428ms)
+✔ reference-solutions/runtime-03/ advertises only Node versions supported by locked dependencies (0.8311ms)
+✔ reference-solutions/runtime-04/ advertises only Node versions supported by locked dependencies (1.2886ms)
+✔ apps/broadcast/ advertises only Node versions supported by locked dependencies (1.2298ms)
+✔ reference-solutions/webrtc-01/ advertises only Node versions supported by locked dependencies (2.4288ms)
+✔ labs/webrtc-01/ advertises only Node versions supported by locked dependencies (2.4787ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.1834

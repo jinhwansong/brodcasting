@@ -19,10 +19,13 @@ export class SessionRuntime implements OnModuleDestroy{
  private readonly store:InstanceType<typeof PgStore>;
  private readonly users:UserRepository;
  private readonly ttl:number;
- constructor(pool:Pool,options:Pick<AppOptions,'secret'|'schemaName'|'sessionTtlMs'>){
+ private readonly cookie:typeof COOKIE_OPTIONS|Omit<typeof COOKIE_OPTIONS,'secure'>&{secure:true};
+ constructor(pool:Pool,options:Pick<AppOptions,'secret'|'schemaName'|'sessionTtlMs'|'browserOrigin'>){
   this.users=new UserRepository(pool);this.ttl=options.sessionTtlMs??SESSION_TTL_MS;
   this.store=new PgStore({pool,schemaName:options.schemaName??'public',tableName:'sessions',createTableIfMissing:false,disableTouch:true,pruneSessionInterval:900,errorLog:()=>{}});
-  this.middleware=session({name:SESSION_COOKIE,secret:options.secret,store:this.store,resave:false,saveUninitialized:false,rolling:false,cookie:{...COOKIE_OPTIONS,maxAge:this.ttl}});
+  const secure=options.browserOrigin.startsWith('https:');this.cookie={...COOKIE_OPTIONS,secure};
+  // HTTPS terminates in the explicitly configured local Vite proxy; the API binds loopback only.
+  this.middleware=session({name:SESSION_COOKIE,secret:options.secret,store:this.store,proxy:secure,resave:false,saveUninitialized:false,rolling:false,cookie:{...this.cookie,maxAge:this.ttl}});
   const csrf=csrfSync();this.generateToken=csrf.generateToken;this.csrfProtection=csrf.csrfSynchronisedProtection;
  }
  async currentUser(req:SessionRequest):Promise<User|null>{
@@ -56,7 +59,7 @@ export class SessionRuntime implements OnModuleDestroy{
   const csrfToken=this.generateToken(req);await action(done=>req.session.save(done));return{user,csrfToken};
  }
  async end(req:SessionRequest,res:Response):Promise<void>{
-  await action(done=>req.session.destroy(done));res.clearCookie(SESSION_COOKIE,COOKIE_OPTIONS);
+  await action(done=>req.session.destroy(done));res.clearCookie(SESSION_COOKIE,this.cookie);
  }
  async onModuleDestroy():Promise<void>{await this.store.close();}
 }

@@ -12,6 +12,7 @@
 - 알림2주: runtime-02의 실제 Nest 두 프로세스·HTTP/종료6검사, 독립 새 설치·쉬운 교재를 제작했습니다. [검증](docs/verification/runtime-02.md).
 - 알림1주: [runtime-01 교재](docs/tasks/runtime-01/README.md)·15검사·실제5모드3회·독립 소스 복사본 검증을 제작했습니다. [검증](docs/verification/runtime-01.md).
 - 통합 화면: [온에어 라운지](apps/broadcast/README.md)의 어두운 탐색·썸네일·시청·회원·팔로우·공지·DB 채팅을 구현했습니다. 실제 브라우저와 데스크톱/모바일 배치·13검사를 확인했습니다. [검증](docs/verification/broadcast-visual.md). 알림함과 최종 복구 연결 전이므로 전체 사이트 완성은 아닙니다.
+- WebRTC 추가 실습: [시작 코드·쉬운 교재](docs/tasks/webrtc-01/README.md)·독립 완성본·사이트 실습실을 제작했습니다. 단위19개·실제 일회용 DB/HTTP/소켓9항목·저장소 밖 새 설치를 검증했고, 실제 두 탭의640×360 영상·수신 프레임 증가·모바일·종료/새로고침/로그아웃 정리를 확인했습니다. [검증](docs/verification/webrtc-01.md). 카메라·마이크·화면 공유·물리 PC 두 대·신뢰 인증서/LAN HTTPS는 수동 확인이 남습니다. 시청자 간 재전송·SFU/CDN은 구현하지 않았습니다.
 - 남은 제작: 알림5~7주, 프론트 F1/F2/F3, 통합 사이트의 알림함·최종 복구 검증. [추가 과정 진입점](notification-runtime-curriculum.md).
 - 실제 브라우저: 0/1 검색·즐겨찾기·오류복구·상세·메뉴,7의1,000보관/가상화,8의실제재생·오류·복구를 관찰하는 중입니다. 부분 관찰을 전체 브라우저 검사 완료로 세지 않습니다.
 - 학습자는0·미시작 유지. 원래 미추적 docs/PROJECT_PLAN.md·docs/REMAINING_WORK.md는 수정·게시하지 않습니다.

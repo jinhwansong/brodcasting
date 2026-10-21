@@ -1,0 +1,11 @@
+
+> typecheck:broadcast
+> npm run typecheck --workspace apps/broadcast/server && npm run typecheck --workspace apps/broadcast/client
+
+
+> @brodcasting/broadcast-server@0.0.0 typecheck
+> tsc --noEmit
+
+
+> @brodcasting/broadcast-client@0.0.0 typecheck
+> tsc --noEmit

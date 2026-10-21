@@ -1,0 +1,23 @@
+
+> check:broadcast:rtc
+> node node_modules/vitest/vitest.mjs run --config checks/broadcast/server.config.ts && node node_modules/vitest/vitest.mjs run --config checks/broadcast/rtc-client.config.ts && node checks/broadcast/rtc-smoke.mjs
+
+
+ RUN  v5.0.5 E:/code/brodcasting
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  19:11:17
+   Duration  549ms (import 84%, transform 11%, tests 4%, worker 2%)
+
+
+ RUN  v5.0.5 E:/code/brodcasting
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  19:11:18
+   Duration  1.43s (environment 90%, transform 4%, import 3%, tests 2%, worker 1%)
+
+{"node":"v24.15.0","platform":"win32","realPostgres":true,"restrictedRole":true,"realHttpSessionAndCsrf":true,"realSocketNamespace":true,"httpsProxySecureCookie":true,"actualTls":false,"checks":9,"mediaTransportTest":false}

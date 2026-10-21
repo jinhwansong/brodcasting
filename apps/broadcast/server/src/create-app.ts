@@ -20,6 +20,8 @@ import {RawInputKeysPipe} from './raw-input-keys.pipe.js';
 import {IoAdapter} from '@nestjs/platform-socket.io';
 import type {ServerOptions} from 'socket.io';
 import {ChatGateway} from './chat.gateway.js';
+import {RtcGateway} from './rtc.gateway.js';
+import {RtcRooms} from './rtc-rooms.js';
 import {ChatService} from './chat.service.js';
 import {SafeExceptionFilter} from './safe-exception.filter.js';
 export type {AppOptions} from './app-config.js';
@@ -30,7 +32,7 @@ class LocalIoAdapter extends IoAdapter{
   server.engine.opts.allowRequest=(req,callback)=>callback(null,req.headers.origin===this.origin);return server;
  }
 }
-@Module({controllers:[AuthController,BroadcastsController],providers:[AuthGuard,BroadcastsService,ChatGateway]})
+@Module({controllers:[AuthController,BroadcastsController],providers:[AuthGuard,BroadcastsService,ChatGateway,RtcGateway]})
 class ApiModule{}
 export async function createApp(pool:Pool,options:AppOptions):Promise<NestExpressApplication>{
  assertAppOptions(options);
@@ -41,6 +43,7 @@ export async function createApp(pool:Pool,options:AppOptions):Promise<NestExpres
   app=await NestFactory.create<NestExpressApplication>({module:ApiModule,providers:[
    {provide:SessionRuntime,useValue:sessions},{provide:AuthRateLimiter,useValue:limiter},
    {provide:ChatService,useValue:new ChatService(pool)},
+   {provide:RtcRooms,useValue:new RtcRooms()},
    {provide:BroadcastRepository,useValue:new BroadcastRepository(pool)},
    {provide:AuthService,useValue:new AuthService(new UserRepository(pool),passwords,dummyHash)}
   ]},{logger:false,abortOnError:false});

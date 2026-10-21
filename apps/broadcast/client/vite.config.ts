@@ -1,3 +1,10 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
-export default defineConfig({plugins:[react()],server:{host:'127.0.0.1',port:5190,strictPort:true,proxy:{'/api':{target:'http://127.0.0.1:3006',changeOrigin:false},'/socket.io':{target:'http://127.0.0.1:3006',ws:true,changeOrigin:false}}}});
+import {readFileSync} from 'node:fs';
+import {isPrivateIpv4} from '../server/src/app-config';
+const host=process.env.BROADCAST_LAN_HOST??'127.0.0.1',cert=process.env.BROADCAST_HTTPS_CERT,key=process.env.BROADCAST_HTTPS_KEY;
+if(host!=='127.0.0.1'&&!isPrivateIpv4(host))throw new Error('Use a private IPv4 LAN address');
+if(Boolean(cert)!==Boolean(key)||host!=='127.0.0.1'&&(!cert||!key))throw new Error('LAN practice requires a trusted HTTPS certificate and key');
+const rawPort=process.env.BROADCAST_API_PORT??'3006';if(!/^\d{1,5}$/.test(rawPort)||Number(rawPort)<1||Number(rawPort)>65535)throw new Error('Invalid local API port');
+const target='http://127.0.0.1:'+rawPort;
+export default defineConfig({plugins:[react()],server:{host,port:5190,strictPort:true,https:cert&&key?{cert:readFileSync(cert),key:readFileSync(key)}:undefined,proxy:{'/api':{target,changeOrigin:false,xfwd:true},'/socket.io':{target,ws:true,changeOrigin:false,xfwd:true},'/rtc.io':{target,ws:true,changeOrigin:false,xfwd:true}}}});

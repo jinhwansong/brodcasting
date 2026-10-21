@@ -250,6 +250,10 @@ docs/experiments/         # 측정 조건, 원시 결과, 비교와 한계
 - Next.js·SSR은 검색 노출·초기 표시 등 해결할 문제가 생겼을 때 추가한다.
 - Kubernetes, Kafka, MSA, 자체 인코더, 결제·후원, 추천 알고리즘은 이번 핵심 과정에서 제외한다.
 
+## 추가 승인 — WebRTC 송출·시청 실습
+
+기본0~11 뒤의 별도 [WebRTC 실습](docs/tasks/webrtc-01/README.md)을 추가합니다. 샘플 파일 재생과 실제 브라우저 송수신을 구분하고 ICE 대기·방 소유권·종료 정리를 배웁니다. [쉬운 설명](docs/tasks/webrtc-01/lesson.md)에 두 탭 실습과 다른 PC의 LAN HTTPS 조건을 적었습니다. 알림7주·프론트 보안3강도 별도로 계속 제작하며 학습자의 현재0·미시작 상태는 바꾸지 않습니다.
+
 ## 참고할 공식 자료
 
 - React 학습: https://react.dev/learn

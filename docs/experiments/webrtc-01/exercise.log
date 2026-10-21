@@ -1,0 +1,176 @@
+
+> check:webrtc-01
+> node checks/webrtc-01/run.mjs exercise
+
+
+ RUN  v5.0.5 E:/code/brodcasting/labs/webrtc-01
+
+ ❯ checks/rooms.test.ts (7 tests | 1 failed) 12ms
+   ❯ WebRTC 입력과 소유한 방 (7)
+     × 송출자와 같은 방의 시청자 사이에서만 올바른 SDP 방향을 허용한다 4ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 6 passed (7)
+   Start at  19:11:32
+   Duration  320ms (import 88%, tests 6%, transform 4%, worker 2%)
+
+
+ RUN  v5.0.5 E:/code/brodcasting/labs/webrtc-01
+
+ ❯ checks/client.test.ts (12 tests | 5 failed) 21ms
+   ❯ RTC resource lifetime (6)
+     × waits for complete candidates instead of sending a partial description 4ms
+     × accepts already complete gathering 2ms
+     × times out without leaving event handlers behind 4ms
+   ❯ RTC session cleanup and stale signals (6)
+     × closes the peer, source tracks and drawing loop when the owner stops 4ms
+     × answers the offer on the pre-created receiving peer 1ms
+
+ Test Files  1 failed (1)
+      Tests  5 failed | 7 passed (12)
+   Start at  19:11:33
+   Duration  830ms (environment 94%, tests 3%, import 2%, transform 1%, worker 1%)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  checks/rooms.test.ts > WebRTC 입력과 소유한 방 > 송출자와 같은 방의 시청자 사이에서만 올바른 SDP 방향을 허용한다
+AssertionError: expected [Function] to not throw an error but 'ForbiddenException: TODO: RTC peer au…' was thrown
+
+- Expected:
+undefined
+
++ Received:
+"ForbiddenException: TODO: RTC peer authorization"
+
+ ❯ checks/rooms.test.ts:11:282
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  checks/client.test.ts > RTC resource lifetime > waits for complete candidates instead of sending a partial description
+Error: TODO: ICE gathering
+ ❯ Module.gatherIce client/src/rtc-client.ts:8:8
+      6| export async function gatherIce(_peer:RTCPeerConnection,_abort:AbortSi…
+      7|  // TODO A: ICE 완료·중단·8초 제한을 처리하고 이벤트와 타이머를 정리하세요.
+      8|  throw new Error('TODO: ICE gathering');
+       |        ^
+      9| }
+     10| export function releaseMedia(media:CapturedMedia):void{media.cleanup()…
+ ❯ checks/client.test.ts:19:80
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  checks/client.test.ts > RTC resource lifetime > accepts already complete gathering
+AssertionError: promise rejected "Error: TODO: ICE gathering" instead of resolving
+ ❯ checks/client.test.ts:23:187
+
+
+Caused by: Error: TODO: ICE gathering
+ ❯ Module.gatherIce client/src/rtc-client.ts:8:8
+ ❯ checks/client.test.ts:23:121
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  checks/client.test.ts > RTC resource lifetime > times out without leaving event handlers behind
+AssertionError: expected "removeEventListener" to be called with arguments: [ 'icegatheringstatechange', …(1) ]
+
+Number of calls: 0
+
+ ❯ checks/client.test.ts:26:349
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  checks/client.test.ts > RTC session cleanup and stale signals > closes the peer, source tracks and drawing loop when the owner stops
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'rtc:signal', ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   "rtc:signal",
+-   ObjectContaining {
+-     "target": "viewer",
+-     "type": "offer",
+-   },
++   "rtc:list",
++   {},
+  ]
+
+  2nd vi.fn() call:
+
+  [
+-   "rtc:signal",
+-   ObjectContaining {
+-     "target": "viewer",
+-     "type": "offer",
++   "rtc:publish",
++   {
++     "title": "title",
+    },
+  ]
+
+
+Number of calls: 2
+
+ ❯ checks/client.test.ts:31:250
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  checks/client.test.ts > RTC session cleanup and stale signals > answers the offer on the pre-created receiving peer
+AssertionError: expected "vi.fn()" to be called with arguments: [ 'rtc:signal', ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   "rtc:signal",
+-   ObjectContaining {
+-     "roomId": "room",
+-     "target": "publisher",
+-     "type": "answer",
+-   },
++   "rtc:list",
++   {},
+  ]
+
+  2nd vi.fn() call:
+
+  [
+-   "rtc:signal",
+-   ObjectContaining {
++   "rtc:watch",
++   {
+      "roomId": "room",
+-     "target": "publisher",
+-     "type": "answer",
+    },
+  ]
+
+  3rd vi.fn() call:
+
+  [
+-   "rtc:signal",
+-   ObjectContaining {
+-     "roomId": "room",
+-     "target": "publisher",
+-     "type": "answer",
+-   },
++   "rtc:leave",
++   {},
+  ]
+
+
+Number of calls: 3
+
+ ❯ checks/client.test.ts:38:246
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯

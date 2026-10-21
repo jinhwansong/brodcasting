@@ -1,0 +1,21 @@
+
+> check:reference:webrtc-01
+> node checks/webrtc-01/run.mjs reference
+
+
+ RUN  v5.0.5 E:/code/brodcasting/reference-solutions/webrtc-01
+
+
+ Test Files  1 passed (1)
+      Tests  7 passed (7)
+   Start at  19:11:30
+   Duration  311ms (import 89%, tests 5%, transform 4%, worker 2%)
+
+
+ RUN  v5.0.5 E:/code/brodcasting/reference-solutions/webrtc-01
+
+
+ Test Files  1 passed (1)
+      Tests  12 passed (12)
+   Start at  19:11:30
+   Duration  872ms (environment 95%, tests 2%, import 2%, transform 1%, worker 1%)

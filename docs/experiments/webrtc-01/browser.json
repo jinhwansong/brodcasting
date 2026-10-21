@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-21",
+  "environment": "disposable own PostgreSQL; loopback UI5191/API3007",
+  "source": "canvas.captureStream(10), no camera/mic/screen permission requested",
+  "finalDesktop": {
+    "stats": "연결 상대1명처리한 영상 프레임246장영상 데이터352,064 bytes",
+    "status": "WebRTC 영상이 연결됐어요.",
+    "video": [
+      {
+        "currentTime": 25.450472,
+        "height": 360,
+        "paused": false,
+        "readyState": 4,
+        "src": null,
+        "width": 640
+      }
+    ]
+  },
+  "mobile": {
+    "scroll": 345,
+    "stats": "연결 상대1명처리한 영상 프레임306장영상 데이터435,512 bytes",
+    "status": "WebRTC 영상이 연결됐어요.",
+    "videoWidth": 640,
+    "width": 345
+  },
+  "priorObservation": {
+    "frames": 54,
+    "bytes": 89121,
+    "videoWidth": 640,
+    "videoHeight": 360
+  },
+  "publisherStop": {
+    "observed": true,
+    "viewerStatus": "송출자가 방송을 종료했어요.",
+    "roomRemoved": true
+  },
+  "viewerReload": {
+    "observed": true,
+    "publisherRoomViewers": 0,
+    "publisherPeerCount": 0
+  },
+  "republishAndRejoin": true,
+  "logout": {
+    "roomCount": 0,
+    "stats": "연결 상대0명처리한 영상 프레임0장영상 데이터0 bytes",
+    "status": "연결이 끝났어요. 계정을 다시 확인해 주세요.",
+    "video": [
+      {
+        "height": 0,
+        "paused": true,
+        "readyState": 0,
+        "width": 0
+      }
+    ]
+  },
+  "physicalTwoPc": false,
+  "actualTls": false,
+  "cameraMicrophoneScreen": false,
+  "latencyMeasured": false
+}
