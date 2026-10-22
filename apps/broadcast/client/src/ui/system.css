@@ -7,7 +7,8 @@
   button, input, textarea, select { font: inherit; }
   button { color: inherit; border: 0; background: transparent; cursor: pointer; }
   button:disabled { cursor: not-allowed; opacity: .45; }
-  button, a, input, select, textarea, [tabindex] { outline-offset: 4px; }
+  button, a, input, select, textarea, [tabindex] { outline-offset: -2px; }
+  :focus:not(:focus-visible) { outline: none; }
   :focus-visible { outline: 2px solid var(--color-accent); }
   a { color: inherit; }
   h1, h2, h3, p { margin: 0; }

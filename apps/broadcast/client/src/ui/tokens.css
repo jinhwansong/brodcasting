@@ -36,9 +36,9 @@
     --color-avatar-e: #493e6b;
     --color-avatar-f: #794a64;
     --text-caption: 12px;
-    --text-small: 13px;
-    --text-body: 14px;
-    --text-title: 16px;
+    --text-small: 14px;
+    --text-body: 16px;
+    --text-title: 20px;
     --text-section: 20px;
     --text-subpage: 24px;
     --text-page: 30px;
@@ -69,6 +69,6 @@
     --line: var(--color-border);
   }
   @media (max-width: 720px) {
-    :root { --control-height: 44px; --control-small-height: 44px; --header-height: 64px; --sidebar-width: 0px; }
+    :root { --text-body: 14px; --text-small: 14px; --control-height: 44px; --control-small-height: 44px; --header-height: 64px; --sidebar-width: 0px; }
   }
 }

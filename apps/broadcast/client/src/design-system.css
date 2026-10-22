@@ -1,5 +1,10 @@
 @layer reset, tokens, app, components;
 @layer app {
+ .guide-preview { margin:var(--space-8) 0; }
+ .guide-preview img { width:100%; height:auto; border-radius:var(--radius-panel); }
+ .guide-preview figcaption { color:var(--color-text-secondary); font-size:var(--text-small); line-height:1.7; margin-top:var(--space-3); }
+}
+@layer app {
   .design-guide { max-width: 1180px; padding-bottom: var(--space-12); }
   .guide-intro { padding: var(--space-4) 0 var(--space-8); max-width: 760px; }
   .guide-intro h1 { margin: var(--space-4) 0; font-size: clamp(28px, 3vw, 40px); letter-spacing: -.045em; font-weight: 800; }
