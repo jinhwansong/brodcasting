@@ -33,6 +33,9 @@ jobs:
       - run: npm run check:broadcast
       - run: npm run check:broadcast:design
       - run: npm run check:broadcast:rtc
+      - run: npm run check:broadcast:notifications
+      - run: node --test checks/broadcast/security-headers.test.mjs
+      - run: node --test checks/broadcast/built-proxy.test.mjs
       - run: npm run check:reference:webrtc-01
       - run: npm run check:reference:part-08
       - run: npm run check:reference:part-10

@@ -1,0 +1,14 @@
+
+> brodcasting-runtime-07-reference@1.0.0 check
+> node --test checks/compose.test.mjs
+
+✔ local compose keeps only the API published and its data services internal (13.1611ms)
+✔ API and Worker receive secrets and Worker joins the internal network (1.4606ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 138.9165

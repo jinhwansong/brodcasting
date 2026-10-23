@@ -1,0 +1,14 @@
+
+> brodcasting-security-f3-reference@1.0.0 check
+> node --test checks/policy.test.mjs
+
+✔ report-only and enforce select actual HTTP header names (1.0154ms)
+✔ policy allows only same origin assets and explicit local websocket (0.4844ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 110.075

@@ -78,3 +78,29 @@ export async function updateNotice(id:string,notice:string,csrf:string):Promise<
  const room=roomView(await readJson('/api/rooms/'+encodeURIComponent(id)+'/notice',{method:'PUT',headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},body:JSON.stringify({notice})}),id);
  if(room.notice!==notice)throw invalid('잘못된 공지 저장 응답');return room;
 }
+
+export type Notification={id:string;seq:string;body:string;createdAt:string;readAt:string|null};
+export type NotificationPage={items:Notification[];hasMore:boolean;nextCursor:string|null};
+function notification(value:unknown):value is Notification{
+ return record(value)&&exact(value,['id','seq','body','createdAt','readAt'])&&typeof value.id==='string'&&uuid.test(value.id)&&typeof value.seq==='string'&&/^[1-9][0-9]{0,18}$/.test(value.seq)&&BigInt(value.seq)<=9223372036854775807n&&typeof value.body==='string'&&Array.from(value.body).length<=500&&!!value.body.trim()&&typeof value.createdAt==='string'&&Number.isFinite(Date.parse(value.createdAt))&&(value.readAt===null||typeof value.readAt==='string'&&Number.isFinite(Date.parse(value.readAt)));
+}
+export async function listNotifications(query:{before?:string;after?:string},signal:AbortSignal):Promise<NotificationPage>{
+ const value=await readJson('/api/notifications?'+new URLSearchParams(query),{signal});
+ if(!record(value)||!exact(value,['items','hasMore','nextCursor'])||!Array.isArray(value.items)||value.items.length>20||!value.items.every(notification)||typeof value.hasMore!=='boolean'||!(value.nextCursor===null||typeof value.nextCursor==='string'&&/^[1-9][0-9]{0,18}$/.test(value.nextCursor)))throw invalid('잘못된 알림 목록');
+ const ascending=query.after!==undefined,items=value.items as Notification[];
+ if(items.some(row=>query.after!==undefined&&BigInt(row.seq)<=BigInt(query.after)||query.before!==undefined&&BigInt(row.seq)>=BigInt(query.before)))throw invalid('잘못된 알림 경계');
+ if(new Set(items.map(row=>row.id)).size!==items.length||items.some((row,index)=>index>0&&(ascending?BigInt(items[index-1].seq)>=BigInt(row.seq):BigInt(items[index-1].seq)<=BigInt(row.seq)))||value.hasMore&&(items.length!==20||value.nextCursor!==items.at(-1)?.seq)||!value.hasMore&&value.nextCursor!==null)throw invalid('잘못된 알림 순서');
+ return{items,hasMore:value.hasMore,nextCursor:value.nextCursor};
+}
+const writeOptions=(body:object,csrf:string):RequestInit=>({method:'POST',headers:{'Content-Type':'application/json','X-CSRF-Token':csrf},body:JSON.stringify(body)});
+export async function createNotification(input:{clientKey:string;body:string},csrf:string):Promise<{id:string;duplicate:boolean;queued:boolean}>{
+ const value=await readJson('/api/notifications/demo',writeOptions(input,csrf));if(!record(value)||!exact(value,['id','duplicate','queued'])||typeof value.id!=='string'||!uuid.test(value.id)||typeof value.duplicate!=='boolean'||typeof value.queued!=='boolean')throw invalid('잘못된 알림 접수');return{id:value.id,duplicate:value.duplicate,queued:value.queued};
+}
+export async function readNotification(id:string,csrf:string):Promise<{id:string;readAt:string}>{
+ const value=await readJson('/api/notifications/'+encodeURIComponent(id)+'/read',writeOptions({},csrf));if(!record(value)||!exact(value,['id','readAt'])||value.id!==id||typeof value.readAt!=='string'||!Number.isFinite(Date.parse(value.readAt)))throw invalid('잘못된 읽음 응답');return{id,readAt:value.readAt};
+}
+export async function replayNotifications(csrf:string):Promise<{pending:number;queued:number}>{
+ const value=await readJson('/api/notifications/replay',writeOptions({},csrf));if(!record(value)||!exact(value,['pending','queued'])||!Number.isInteger(value.pending)||!Number.isInteger(value.queued)||Number(value.pending)<0||Number(value.pending)>50||Number(value.queued)<0||Number(value.queued)>Number(value.pending))throw invalid('잘못된 복구 접수');return{pending:Number(value.pending),queued:Number(value.queued)};
+}
+
+export async function unreadNotifications(signal:AbortSignal):Promise<number>{const value=await readJson('/api/notifications/unread',{signal});if(!record(value)||!exact(value,['count'])||!Number.isSafeInteger(value.count)||Number(value.count)<0)throw invalid('잘못된 안 읽은 알림 수');return Number(value.count);}

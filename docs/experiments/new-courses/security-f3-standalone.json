@@ -1,0 +1,29 @@
+{
+  "node": "v24.15.0",
+  "platform": "win32",
+  "id": "security-f3",
+  "sourceOnly": true,
+  "outsideRepository": true,
+  "results": [
+    {
+      "command": "ci --ignore-scripts --no-audit --no-fund",
+      "exitCode": 0
+    },
+    {
+      "command": "run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "run check",
+      "exitCode": 0
+    },
+    {
+      "command": "run build",
+      "exitCode": 0
+    },
+    {
+      "command": "run experiment",
+      "exitCode": 0
+    }
+  ]
+}

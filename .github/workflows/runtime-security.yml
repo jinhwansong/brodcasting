@@ -7,6 +7,10 @@ on:
       - 'labs/runtime-*/**'
       - 'reference-solutions/runtime-*/**'
       - 'checks/runtime-*/**'
+      - 'labs/security-f*/**'
+      - 'reference-solutions/security-f*/**'
+      - 'checks/security-f*/**'
+      - 'checks/courseware-standalone.mjs'
       - 'package*.json'
   pull_request:
     paths:
@@ -14,9 +18,32 @@ on:
       - 'labs/runtime-*/**'
       - 'reference-solutions/runtime-*/**'
       - 'checks/runtime-*/**'
+      - 'labs/security-f*/**'
+      - 'reference-solutions/security-f*/**'
+      - 'checks/security-f*/**'
+      - 'checks/courseware-standalone.mjs'
 permissions:
   contents: read
 jobs:
+  new-courses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        course: [runtime-05, runtime-06, runtime-07, security-f1, security-f2, security-f3]
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with: {persist-credentials: false}
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with: {node-version: '24.19.0'}
+      - run: npm --prefix reference-solutions/${{ matrix.course }} ci --ignore-scripts --no-audit --no-fund
+      - run: npm --prefix reference-solutions/${{ matrix.course }} run check
+      - run: npm run verify:${{ matrix.course }}:standalone
+      - if: matrix.course == 'runtime-06'
+        run: npm --prefix reference-solutions/runtime-06 run measure
+      - if: matrix.course == 'runtime-07'
+        run: node reference-solutions/runtime-07/checks/recovery.mjs
   runtime-01:
     runs-on: ubuntu-latest
     timeout-minutes: 5

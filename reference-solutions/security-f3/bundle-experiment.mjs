@@ -1,0 +1,8 @@
+import {build} from 'vite';import {mkdtemp,mkdir,writeFile,readFile,readdir,realpath,rm} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join,sep} from 'node:path';import assert from 'node:assert/strict';
+const temp=await mkdtemp(join(tmpdir(),'brodcasting-f3-')),sentinel='COURSE_PUBLIC_SENTINEL';
+async function contains(dir){for(const row of await readdir(dir,{withFileTypes:true})){const path=join(dir,row.name);if(row.isDirectory()){if(await contains(path))return true;}else if((await readFile(path,'utf8')).includes(sentinel))return true;}return false;}
+try{
+ await mkdir(join(temp,'src'));await writeFile(join(temp,'index.html'),'<div id="root"></div><script type="module" src="/src/main.js"></script>');
+ const previous=process.env.VITE_INTERNAL_SECRET;try{process.env.VITE_INTERNAL_SECRET=sentinel;await writeFile(join(temp,'src/main.js'),"document.getElementById('root').textContent=import.meta.env.VITE_INTERNAL_SECRET");await build({root:temp,configFile:false,logLevel:'silent'});assert.equal(await contains(join(temp,'dist')),true);await writeFile(join(temp,'src/main.js'),"document.getElementById('root').textContent='공개 설정만 사용합니다'");await build({root:temp,configFile:false,logLevel:'silent'});assert.equal(await contains(join(temp,'dist')),false);}finally{if(previous===undefined)delete process.env.VITE_INTERNAL_SECRET;else process.env.VITE_INTERNAL_SECRET=previous;}
+ console.log(JSON.stringify({fakeSentinelOnly:true,exposedBefore:true,absentAfter:true,realViteBuild:true}));
+}finally{const base=await realpath(tmpdir()),target=await realpath(temp);assert.ok(target.startsWith(base+sep)&&target.split(sep).at(-1).startsWith('brodcasting-f3-'));await rm(target,{recursive:true,force:true,maxRetries:3});}

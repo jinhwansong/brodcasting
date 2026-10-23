@@ -4,6 +4,8 @@
 
 사용자 요청에 따라 **프론트 보안 전용 3강**을 제공하고 **BunkerWeb을 전체 과정의 맨 마지막 강의**에 둡니다. 기존 0~11단계와 알림 7주 과정의 번호·기간은 보존합니다. 보안 연결 과제는 해당 단계의 시간을 배분해 수행하고, 전용 강의는 추가 시간입니다. 원본의 총 주차 표현과 단계별 합계가 다르므로 새 전체 주차 합계는 확정하지 않습니다.
 
+2026-10-23: **F1/F2/F3의 독립 시작 코드·완성본·검사·쉬운 설명을 제작했습니다.** [F1](docs/tasks/security-f1/README.md) · [F2](docs/tasks/security-f2/README.md) · [F3](docs/tasks/security-f3/README.md) · [실행 검증](docs/verification/notifications-security-integrated.md). 알림7주 Compose도 실제 복구를 확인했습니다. BunkerWeb은 별도 후속입니다.
+
 ## 배우는 순서와 산출물
 
 | 구간 | 연결 위치 | 배울 것 / 직접 남길 증거 | 이번 교재 상태 |
@@ -20,7 +22,7 @@
 | F3 프론트 배포 경계 | 10단계 이후, 3~4시간 | Vite 번들 공개 범위·CSP·의존성·외부 스크립트. 응답 헤더·빌드 산출물·회귀 증거 | [강의·실습](docs/tasks/security-frontend/README.md#f3-번들과-배포-경계) 제공 |
 | 최종 BunkerWeb | **기본 11단계·알림 추가 과정·앞선 보안 과제 뒤, 맨 마지막**, 2주 / 주 6~8시간 권장 | Docker 네트워크·리버스 프록시·TLS·WAF·오탐·WebSocket·로그·롤백 | [강의·실습 절차](docs/tasks/security-bunkerweb/README.md) 제공. Compose 코드·실행 증거는 후속 제작 |
 
-위의 ‘제공’ 중 프론트 보안 전용 강의와 BunkerWeb은 강의 본문과 과제 제공을 뜻하며 전용 코드·Compose 구현은 후속 제작입니다.2단계 서버 입력과3단계 데이터 경계는 시작 코드·완성본·직접 거부 검증을 제공합니다.3단계 실제 DB container는 Actions에서 실행했습니다. 전용 프론트/BunkerWeb의 브라우저·Docker 실행은 후속이며,3단계 본인 로컬 Compose도 미실행입니다. 이후 기능도 안전한 기본 구현과 실패 재현 검증을 함께 제작합니다.
+표의 초기 제작 기록 중 F1/F2/F3 전용 코드와 알림 Compose는 위 최신 검증으로 갱신합니다. BunkerWeb은 강의 본문과 과제만 제공하며 구현은 후속입니다.2단계 서버 입력과3단계 데이터 경계는 시작 코드·완성본·직접 거부 검증을 제공합니다.3단계 실제 DB container는 Actions에서 실행했습니다. 전용 프론트/BunkerWeb의 브라우저·Docker 실행은 후속이며,3단계 본인 로컬 Compose도 미실행입니다. 이후 기능도 안전한 기본 구현과 실패 재현 검증을 함께 제작합니다.
 
 ## 기초 과제: 무엇을 누가 바꿀 수 있는가
 

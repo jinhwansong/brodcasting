@@ -1,0 +1,14 @@
+
+> brodcasting-security-f3-reference@1.0.0 build
+> vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 47 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.32 kB │ gzip:  0.26 kB
+dist/assets/index-DHVDXTN_.css    8.10 kB │ gzip:  2.28 kB
+dist/assets/index-Cyw-RzcG.js   262.81 kB │ gzip: 82.11 kB
+
+✓ built in 256ms

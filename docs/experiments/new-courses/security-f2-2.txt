@@ -1,0 +1,38 @@
+
+> brodcasting-security-f2-reference@1.0.0 check
+> node check.mjs && node node_modules/vitest/vitest.mjs run --config checks/client.config.ts
+
+Owned services: Redis 8.6.7; PostgreSQL 18.6; restricted runtime05_app
+✔ input boundaries reject receiver spoofing and unstable cursor formats (451.3771ms)
+✔ durable event creation is idempotent per user and rejects changed body (25.3088ms)
+✔ four concurrent duplicate deliveries leave exactly one inbox row and sequence (22.3636ms)
+✔ failed INSERT rolls back the inbox counter as well as the notification (12.5762ms)
+✔ different concurrent deliveries allocate unique committed per-user sequences (28.8311ms)
+✔ before pagination has a fixed twenty-row stable boundary even with identical timestamps (415.1293ms)
+✔ after recovery returns ascending exclusive pages without gaps (2.876ms)
+✔ read ownership is enforced and repeat read keeps the first timestamp (17.3448ms)
+✔ HTTP rejects anonymous reads, missing CSRF and wrong Origin (8.9666ms)
+✔ HTTP receiver is the session user and the real queue contains only the event ID (17.9492ms)
+✔ HTTP list and read never return another user notification (24.4292ms)
+✔ explicit replay is restricted to the current session owner (21.0978ms)
+✔ a real closed queue leaves a durable event with queued:false rather than losing it (10.9447ms)
+✔ a separate Worker replays the durable gap after restart and has no HTTP server (1000.807ms)
+✔ API restart keeps the session and retrieves the durable inbox (41.3988ms)
+✔ logout invalidates the old session for future inbox reads (5.8518ms)
+✔ the hundred-event cap serializes concurrent new requests and still permits duplicates (416.036ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3532.1189
+
+ RUN  v5.0.5 C:/Users/song7/AppData/Local/Temp/brodcasting-security-f2-3V1bI8
+
+
+ Test Files  3 passed (3)
+      Tests  10 passed (10)
+   Start at  00:08:31
+   Duration  1.64s (environment 78%, tests 10%, import 7%, transform 5%)

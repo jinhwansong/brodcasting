@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 export type Migration={version:string;sql:string};
 export async function applyMigrations(pool:Pool,migrations?:readonly Migration[]):Promise<number> {
-  const files=migrations??await Promise.all(['001-schema.sql'].map(async version=>({version,sql:await readFile(new URL('../migrations/'+version,import.meta.url),'utf8')})));
+  const files=migrations??await Promise.all(['001-schema.sql','002-notifications.sql'].map(async version=>({version,sql:await readFile(new URL('../migrations/'+version,import.meta.url),'utf8')})));
   const client=await pool.connect();
   try {
     await client.query('BEGIN');

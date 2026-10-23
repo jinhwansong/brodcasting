@@ -1,0 +1,5 @@
+
+> brodcasting-security-f3-reference@1.0.0 experiment
+> node bundle-experiment.mjs
+
+{"fakeSentinelOnly":true,"exposedBefore":true,"absentAfter":true,"realViteBuild":true}

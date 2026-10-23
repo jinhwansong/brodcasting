@@ -1,0 +1,67 @@
+services:
+  db:
+    image: postgres:18.6
+    environment:
+      POSTGRES_USER: course_operator
+      POSTGRES_DB: brodcasting_runtime05_lab
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes:
+      - db_data:/var/lib/postgresql
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./docker/init.sh:/docker-entrypoint-initdb.d/02-role.sh:ro
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -h 127.0.0.1 -U course_operator -d brodcasting_runtime05_lab"]
+      interval: 2s
+      timeout: 2s
+      retries: 40
+    networks: [backend]
+  cache:
+    image: redis:8.6.7-alpine
+    command: [redis-server, --appendonly, 'yes', --maxmemory, 64mb, --maxmemory-policy, noeviction]
+    volumes: [redis_data:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+    networks: [backend]
+  api:
+    build: .
+    environment: &app_env
+      NODE_ENV: development
+      RUNTIME07_CONTAINER: local-practice
+      PORT: '3015'
+      RUNTIME05_BROWSER_ORIGIN: http://127.0.0.1:5195
+      RUNTIME05_REDIS_URL: redis://cache:6379/0
+      RUNTIME05_QUEUE_PREFIX: course_r05_1234567890abcdef
+    secrets: [db_password, session_secret]
+    ports: ["127.0.0.1::3015"]
+    depends_on:
+      db: {condition: service_healthy}
+      cache: {condition: service_healthy}
+    healthcheck: &health
+      test: [CMD, node, health.mjs]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+    networks: [backend, frontend]
+  worker:
+    build: .
+    command: [node, dist/worker.js]
+    environment: *app_env
+    secrets: [db_password, session_secret]
+    depends_on:
+      db: {condition: service_healthy}
+      cache: {condition: service_healthy}
+    healthcheck: *health
+    networks: [backend]
+networks:
+  frontend: {}
+  backend: {internal: true}
+volumes:
+  db_data:
+  redis_data:
+secrets:
+  db_password: {file: ./.secrets/db_password}
+  session_secret: {file: ./.secrets/session_secret}

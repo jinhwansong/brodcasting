@@ -12,6 +12,9 @@ directories.push('reference-solutions/runtime-04/');
 directories.push('apps/broadcast/');
 directories.push('reference-solutions/webrtc-01/');
 directories.push('labs/webrtc-01/');
+for (const course of ['runtime-05', 'runtime-06', 'runtime-07', 'security-f1', 'security-f2', 'security-f3']) {
+  directories.push('reference-solutions/' + course + '/', 'labs/' + course + '/');
+}
 test('reference source packages keep all local dependency links inside their copy', () => {
   for (const dir of directories.slice(1)) {
     const base = new URL('../../' + dir, import.meta.url);

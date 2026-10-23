@@ -1,3 +1,6 @@
+import {InboxService} from './notification-inbox.js';
+import {NoticeQueue,type QueueOptions} from './notification-queue.js';
+import {InboxController} from './notification.controller.js';
 import 'reflect-metadata';
 import {randomBytes} from 'node:crypto';
 import {BadRequestException,ForbiddenException,Module,PayloadTooLargeException,ServiceUnavailableException,ValidationPipe} from '@nestjs/common';
@@ -5,7 +8,7 @@ import {NestFactory} from '@nestjs/core';
 import type {NestExpressApplication} from '@nestjs/platform-express';
 import type {Request,Response,NextFunction} from 'express';
 import type {Pool} from 'pg';
-import {assertAppOptions,type AppOptions} from './app-config.js';
+import {assertAppOptions,type AppOptions as SessionOptions} from './app-config.js';
 import {SessionRuntime} from './session.js';
 import {AuthRateLimiter} from './auth-rate-limit.js';
 import {PasswordService} from './passwords.js';
@@ -24,7 +27,7 @@ import {RtcGateway} from './rtc.gateway.js';
 import {RtcRooms} from './rtc-rooms.js';
 import {ChatService} from './chat.service.js';
 import {SafeExceptionFilter} from './safe-exception.filter.js';
-export type {AppOptions} from './app-config.js';
+export type AppOptions=SessionOptions&{notifications?:QueueOptions};
 class LocalIoAdapter extends IoAdapter{
  constructor(app:NestExpressApplication,private readonly origin:string){super(app);}
  createIOServer(port:number,options?:ServerOptions){
@@ -32,16 +35,17 @@ class LocalIoAdapter extends IoAdapter{
   server.engine.opts.allowRequest=(req,callback)=>callback(null,req.headers.origin===this.origin);return server;
  }
 }
-@Module({controllers:[AuthController,BroadcastsController],providers:[AuthGuard,BroadcastsService,ChatGateway,RtcGateway]})
+@Module({controllers:[AuthController,BroadcastsController,InboxController],providers:[AuthGuard,BroadcastsService,ChatGateway,RtcGateway]})
 class ApiModule{}
 export async function createApp(pool:Pool,options:AppOptions):Promise<NestExpressApplication>{
  assertAppOptions(options);
  const passwords=new PasswordService(),dummyHash=await passwords.hash(randomBytes(32).toString('hex'));
- const sessions=new SessionRuntime(pool,options),limiter=new AuthRateLimiter(options.authRateLimit);
+ const sessions=new SessionRuntime(pool,options),limiter=new AuthRateLimiter(options.authRateLimit),inbox=new InboxService(pool);
+ const notices=options.notifications?new NoticeQueue(inbox,options.notifications):{enqueue:async()=>false,replay:async(userId:string)=>({pending:(await inbox.pending(userId)).length,queued:0})};
  let app:NestExpressApplication|undefined;
  try{
   app=await NestFactory.create<NestExpressApplication>({module:ApiModule,providers:[
-   {provide:SessionRuntime,useValue:sessions},{provide:AuthRateLimiter,useValue:limiter},
+   {provide:InboxService,useValue:inbox},{provide:NoticeQueue,useValue:notices},{provide:SessionRuntime,useValue:sessions},{provide:AuthRateLimiter,useValue:limiter},
    {provide:ChatService,useValue:new ChatService(pool)},
    {provide:RtcRooms,useValue:new RtcRooms()},
    {provide:BroadcastRepository,useValue:new BroadcastRepository(pool)},
@@ -79,7 +83,7 @@ export async function createApp(pool:Pool,options:AppOptions):Promise<NestExpres
   app.useGlobalFilters(new SafeExceptionFilter());
   return app;
  }catch(error){
-  if(app)await app.close();else{await sessions.onModuleDestroy();limiter.onModuleDestroy();}
+  if(app)await app.close();else{if(notices instanceof NoticeQueue)await notices.onModuleDestroy();await sessions.onModuleDestroy();limiter.onModuleDestroy();}
   throw error;
  }
 }

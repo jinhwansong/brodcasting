@@ -1,0 +1,70 @@
+@layer reset, tokens, app, components;
+@import './tokens.css';
+
+@layer reset {
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--color-text); background: var(--color-canvas); font: var(--text-body)/var(--line-body) var(--font-ui); font-synthesis: none; }
+  button, input, textarea, select { font: inherit; }
+  button { color: inherit; border: 0; background: transparent; cursor: pointer; }
+  button:disabled { cursor: not-allowed; opacity: .45; }
+  button, a, input, select, textarea, [tabindex] { outline-offset: -2px; }
+  :focus:not(:focus-visible) { outline: none; }
+  :focus-visible { outline: 2px solid var(--color-accent); }
+  a { color: inherit; }
+  h1, h2, h3, p { margin: 0; }
+  h1, h2, h3 { line-height: var(--line-heading); }
+  ul { padding: 0; list-style: none; }
+  img, video { display: block; max-width: 100%; }
+  svg { flex-shrink: 0; }
+  i { font-style: normal; }
+  input, textarea, select { background: var(--color-input); border: 1px solid var(--color-border); border-radius: var(--radius-control); color: inherit; padding: 10px 12px; }
+  input::placeholder, textarea::placeholder { color: var(--color-text-secondary); }
+  textarea { resize: vertical; max-width: 100%; }
+}
+
+@layer components {
+  .ui-button { display: inline-flex; justify-content: center; align-items: center; gap: var(--space-2); min-height: var(--control-height); padding: 8px 16px; border: 1px solid transparent; border-radius: var(--radius-control); font-size: var(--text-small); font-weight: 650; line-height: 1.4; text-decoration: none; transition: background var(--motion-fast), border-color var(--motion-fast); }
+  .ui-button[data-variant=primary] { color: var(--color-on-accent); background: var(--color-accent); border-color: var(--color-accent); }
+  .ui-button[data-variant=primary]:hover:enabled { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+  .ui-button[data-variant=secondary] { color: var(--color-text); background: var(--color-surface); border-color: var(--color-border-strong); }
+  .ui-button[data-variant=secondary]:hover:enabled { background: var(--color-surface-hover); }
+  .ui-button[data-variant=ghost] { color: var(--color-text-secondary); background: transparent; }
+  .ui-button[data-variant=ghost]:hover:enabled { color: var(--color-text); background: var(--color-surface-hover); }
+  .ui-button[data-variant=danger] { color: var(--color-danger); background: var(--color-danger-surface); border-color: var(--color-danger-border); }
+  .ui-button[data-variant=danger]:hover:enabled { border-color: var(--color-danger); }
+  .ui-button[data-variant=ghost][aria-pressed=true], .ui-button[data-variant=ghost][aria-current=page] { color: var(--color-accent); background: var(--color-accent-surface); }
+  .ui-button[data-size=small] { min-height: var(--control-small-height); padding: 6px 12px; font-size: var(--text-caption); }
+  .ui-button:disabled { opacity: .48; }
+  .ui-icon-button { width: var(--control-height); min-width: var(--control-height); padding: 0; }
+  .ui-icon-button svg { width: 20px; height: 20px; }
+  .ui-field { display: grid; gap: var(--space-2); min-width: 0; width: 100%; }
+  .ui-field > label { color: var(--color-text); font-size: var(--text-small); font-weight: 600; }
+  .ui-input { width: 100%; min-width: 0; min-height: var(--control-height); padding: 10px 12px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-control); background: var(--color-input); color: var(--color-text); font-size: var(--text-body); line-height: 1.5; }
+  .ui-input:hover:enabled { border-color: var(--color-text-secondary); }
+  .ui-input:focus-visible { border-color: var(--color-accent); }
+  .ui-input[aria-invalid=true] { border-color: var(--color-danger); }
+  .ui-input:disabled { opacity: .5; cursor: not-allowed; }
+  .ui-field-hint, .ui-field-error { font-size: var(--text-caption); line-height: 1.6; }
+  .ui-field-hint { color: var(--color-text-secondary); }
+  .ui-field-error { color: var(--color-danger); }
+  .ui-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 7px; border-radius: var(--radius-small); font-size: var(--text-caption); font-weight: 600; line-height: 1.4; white-space: nowrap; }
+  .ui-badge[data-tone=neutral] { color: var(--color-text); background: var(--color-overlay); border: 1px solid var(--color-overlay-border); }
+  .ui-badge[data-tone=accent] { color: var(--color-accent); background: var(--color-accent-surface); }
+  .ui-badge[data-tone=live] { color: var(--color-live); background: var(--color-overlay); }
+  .ui-badge[data-tone=warning] { color: var(--color-warning); background: var(--color-warning-surface); }
+  .ui-live-dot { width: 6px; height: 6px; border-radius: var(--radius-round); background: currentColor; }
+  .ui-notice { padding: var(--space-3) var(--space-4); border-radius: var(--radius-control); border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text-secondary); font-size: var(--text-small); line-height: 1.7; }
+  .ui-notice[data-tone=error] { color: var(--color-danger); background: var(--color-danger-surface); border-color: var(--color-danger-border); }
+  .ui-notice[data-tone=success] { color: var(--color-accent); background: var(--color-accent-surface); }
+  .ui-notice[data-tone=warning] { color: var(--color-warning); background: var(--color-warning-surface); }
+  .ui-empty { padding: var(--space-10) var(--space-5); text-align: center; color: var(--color-text-secondary); }
+  .ui-empty h3 { color: var(--color-text); font-size: var(--text-title); margin-bottom: var(--space-2); }
+  .ui-empty p { font-size: var(--text-small); margin-bottom: var(--space-4); }
+  .ui-empty-icon { display: grid; place-items: center; margin: 0 auto var(--space-4); }
+  .ui-empty-icon svg { width: 28px; height: 28px; }
+  .ui-dialog { width: min(440px, calc(100% - 32px)); max-height: calc(100dvh - 40px); overflow: auto; background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border-strong); border-radius: var(--radius-panel); padding: var(--space-8); box-shadow: var(--shadow-dialog); }
+  .ui-dialog::backdrop { background: var(--color-backdrop); backdrop-filter: blur(4px); }
+  .ui-spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: var(--radius-round); animation: ui-spin .8s linear infinite; }
+  @keyframes ui-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .ui-button { transition: none; } .ui-spinner { animation: none; } }
+}

@@ -1,0 +1,9 @@
+import {mkdtemp,cp,rm,realpath,mkdir,writeFile} from 'node:fs/promises';import {spawnSync} from 'node:child_process';import {tmpdir} from 'node:os';import {join,sep} from 'node:path';import {fileURLToPath} from 'node:url';import assert from 'node:assert/strict';
+const id=process.argv[2];if(!['runtime-05','runtime-06','runtime-07','security-f1','security-f2','security-f3'].includes(id)||process.argv.length!==3)throw new Error('Select an approved course');if(!process.env.npm_execpath)throw new Error('Run through npm');
+const temp=await mkdtemp(join(tmpdir(),'brodcasting-'+id+'-')),evidence=new URL('../docs/experiments/new-courses/',import.meta.url);await mkdir(evidence,{recursive:true});const results=[];
+try{
+ await cp(new URL('../reference-solutions/'+id+'/',import.meta.url),temp,{recursive:true,filter:p=>!/(^|[\\/])(node_modules|dist|\.secrets)([\\/]|$)/.test(p)});
+ const commands=[['ci','--ignore-scripts','--no-audit','--no-fund'],['run','typecheck'],['run','check'],['run','build'],...(id==='security-f3'?[['run','experiment']]:[])];
+ for(let index=0;index<commands.length;index++){const args=commands[index],result=spawnSync(process.execPath,[process.env.npm_execpath,...args],{cwd:temp,encoding:'utf8',timeout:180000});await writeFile(new URL(id+'-'+index+'.txt',evidence),(result.stdout??'')+(result.stderr??''));results.push({command:args.join(' '),exitCode:result.status});assert.equal(result.status,0,id+' '+args.join(' ')+' failed; see recorded log');}
+ const record={node:process.version,platform:process.platform,id,sourceOnly:true,outsideRepository:true,results};await writeFile(new URL(id+'-standalone.json',evidence),JSON.stringify(record,null,2)+'\n');console.log(JSON.stringify(record));
+}finally{const root=await realpath(tmpdir()),target=await realpath(temp);assert.ok(target.startsWith(root+sep)&&target.split(sep).at(-1).startsWith('brodcasting-'+id+'-'));await rm(target,{recursive:true,force:true,maxRetries:3,retryDelay:200});}

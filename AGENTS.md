@@ -1,5 +1,9 @@
 # AI 작업 규칙
 
+## 2026-10-23 알림·보안 제작 완료
+
+알림5~7·F1~F3·통합 알림함/CSP를 제작했습니다. [최신 검증](docs/verification/notifications-security-integrated.md)과 루트 REMAINING_WORK.md를 먼저 따릅니다. 아래 제작 중 표현은 과거 기록입니다. 시작 코드 TODO·학습0·미시작을 유지합니다. 기존0~11 미확인 브라우저와 물리 PC WebRTC는 별도 후속이며 BunkerWeb은 이번 범위 밖입니다.
+
 ## 최신 UI 지시 — 디자인 시스템 기준
 
 2026-10-21 사용자는 UI를 중요하게 보며 디자인 시스템을 먼저 만들라고 요청했다. [설계](docs/superpowers/specs/2026-10-21-onair-design-system.md)·[사용법](apps/broadcast/DESIGN_SYSTEM.md)을 따른다. 공통 원본은 `apps/broadcast/client/src/ui`이며 색·글자·간격·조작 상태는 이 기준을 재사용한다. `#/design-system`에서 실제 부품을 확인한다. 독립 WebRTC 교재의 제공 UI 복사본도 맞추되 학습 TODO는 보존한다. 이후 알림함 화면도 같은 기준을 사용한다. [검증](docs/verification/design-system.md)과 현재 남은 작업을 구분하며 학습0·미시작을 유지한다.

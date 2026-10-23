@@ -2,9 +2,25 @@
 
 SOOP·치지직처럼 방송을 탐색하고 시청하는 구조의 **학습용 사이트**입니다. 어두운 화면·상단 검색·채널 탐색·직접 그린 썸네일·팔로우·시청 페이지·실제 로그인/공지/DB 채팅을 연결했습니다. 휴대폰에서는 영상 아래에 채팅을 배치합니다. 기존 여섯 방송과 시청자 수는 샘플이고, 별도 WebRTC 실습실은 실제 브라우저 영상을 송출·시청합니다.
 
-현재 알림함과 최종 환경 복구 연결은 제작 중입니다. [전체 진행](../../REMAINING_WORK.md)과 [화면 방향](../../docs/superpowers/specs/2026-10-21-broadcast-visual-refresh.md)을 확인하세요. 기본0단계의 학습 폴더와 별개이며 이 사이트 제작이 학습 통과를 뜻하지 않습니다.
+로그인한 본인의 알림함·읽음·안 읽은 수와 실제 큐/Worker 복구를 연결했습니다. [전체 진행](../../REMAINING_WORK.md)과 [화면 방향](../../docs/superpowers/specs/2026-10-21-broadcast-visual-refresh.md)을 확인하세요. 기본0단계의 학습 폴더와 별개이며 이 사이트 제작이 학습 통과를 뜻하지 않습니다.
 
 화면은 [온에어 디자인 시스템](DESIGN_SYSTEM.md)을 기준으로 만듭니다. 실행 후 ‘디자인 가이드’에서 실제 공통 부품과 상태를 보고, [쉬운 수정 설명](client/src/ui/README.md)을 따라 색·간격·조작을 함께 바꿀 수 있습니다.
+
+## 한 명령으로 일회용 실습 켜기
+
+Docker Desktop을 실행하고 저장소 루트에서 npm ci를 마친 뒤 아래 명령을 실행하세요.
+
+```sh
+node apps/broadcast/dev-lab.mjs
+```
+
+http://127.0.0.1:5199 에서 새 실습 계정을 만들고 상단 종 모양의 ‘내 알림’을 누릅니다. 알림을 접수한 뒤 ‘최신 목록’을 눌러 확인하고 읽음으로 바꿔 보세요. 자동 푸시 방식은 아니므로 도착한 새 알림은 직접 조회합니다. 한 계정은 사건100개, 한 페이지20개까지입니다.
+
+실행한 터미널에 worker-stop을 입력하고 알림을 접수하면 DB에는 남지만 알림함에는 아직 도착하지 않습니다. worker-start 후 최신 목록을 누르면 복구됩니다. api-stop/api-start로 API 재시작도 연습합니다. stop은 이 명령이 만든 일회용 프로세스와 컨테이너만 정리하며 이 실습 데이터도 사라집니다.
+
+실제 빌드에 CSP를 적용한 화면은 node apps/broadcast/dev-lab.mjs --built로 켭니다. 주소는 http://127.0.0.1:5198 입니다. 개발 모드와 별도의 일회용 DB를 사용합니다.
+
+[쉬운 알림 교재](../../docs/tasks/runtime-05/README.md) · [보안3강](../../docs/tasks/security-frontend/README.md) · [검증 결과](../../docs/verification/notifications-security-integrated.md).
 
 ## 설치와 화면 실행
 
@@ -71,4 +87,4 @@ npm run verify:webrtc-01:standalone
 
 위 명령은 저장소 루트 기준이며 첫째·셋째는 일회용 Docker DB를 사용합니다. [실제 WebRTC 검증](../../docs/verification/webrtc-01.md). [학습 시작 코드](../../docs/tasks/webrtc-01/README.md)는 별도로 분리했습니다.
 
-알림함·7주 Compose·보안 전용 실습은 후속 작업입니다. 공개 배포·운영 보안을 검증한 사이트로 사용하지 않습니다. [기존 화면 검증 기록](../../docs/verification/broadcast-visual.md).
+알림함·7주 Compose·보안 전용 실습을 제공했습니다. 공개 배포·운영 보안을 검증한 사이트로 사용하지 않습니다. [기존 화면 검증 기록](../../docs/verification/broadcast-visual.md).

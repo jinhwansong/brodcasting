@@ -1,0 +1,3 @@
+
+> brodcasting-runtime-06-reference@1.0.0 build
+> tsc -p service/tsconfig.json

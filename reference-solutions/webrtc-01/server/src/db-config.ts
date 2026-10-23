@@ -26,7 +26,8 @@ export async function grantAppAccess(pool:Pick<Pool,'query'>,role:string,schema=
  GRANT SELECT ON broadcasts,rooms,room_admins,room_members TO ${role};
  GRANT SELECT,INSERT,DELETE ON favorites TO ${role};
  GRANT UPDATE(notice) ON rooms TO ${role};
- GRANT SELECT,INSERT,UPDATE,DELETE ON sessions TO ${role}`);
+ GRANT SELECT,INSERT,UPDATE,DELETE ON sessions TO ${role};
+ GRANT SELECT,INSERT,UPDATE ON notification_accounts,notification_events,notifications TO ${role}`);
 }
 export async function grantRoomAdmin(pool:Pool,username:string,roomId:string):Promise<void>{
  const client=await pool.connect();

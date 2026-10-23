@@ -1,0 +1,7 @@
+
+> brodcasting-runtime-07-reference@1.0.0 typecheck
+> tsc --noEmit && npm run typecheck --workspace client
+
+
+> brodcasting-runtime-05-reference-client@0.0.0 typecheck
+> tsc --noEmit

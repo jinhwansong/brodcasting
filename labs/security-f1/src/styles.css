@@ -1,0 +1,2 @@
+@layer reset, tokens, app, components;
+@layer app {main{max-width:800px;margin:0 auto;padding:24px;}h1{font-size:var(--text-page);}h2{font-size:var(--text-title);}p{font-size:var(--text-body);line-height:1.8;}article{margin-top:32px;padding:24px;background:var(--color-surface);border-radius:var(--radius-panel);overflow-wrap:anywhere;}.ui-field{margin-block:16px;}a{color:var(--color-accent);}}

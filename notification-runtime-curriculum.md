@@ -8,9 +8,9 @@
 | 2 | runtime-02 | 같은 Nest 모듈을 HTTP API와 독립 application context로 시작·종료 | [시작 코드와 쉬운 설명](docs/tasks/runtime-02/README.md), [검증](docs/verification/runtime-02.md) |
 | 3 | runtime-03 | Redis·BullMQ Queue/Worker·작업 상태·재시도·중복 경계 | [시작 코드와 쉬운 설명](docs/tasks/runtime-03/README.md), [검증](docs/verification/runtime-03.md) |
 | 4 | runtime-04 | 가짜 발송기·일시/영구 실패·멱등 처리·종료 중 작업 | [시작 코드와 쉬운 설명](docs/tasks/runtime-04/README.md), [검증](docs/verification/runtime-04.md) |
-| 5 | runtime-05 | PostgreSQL 알림함·사용자별 목록·읽음·재접속 복구 | 제작 대기 |
-| 6 | runtime-06 | API/Worker 자원 경쟁·작은 실제 부하·원시 비교·분리 판단 | 제작 대기 |
-| 7 | runtime-07 | API/Worker/Redis/DB Compose·내부 네트워크·재시작·복구 | 제작 대기 |
+| 5 | runtime-05 | PostgreSQL 알림함·사용자별 목록·읽음·재접속 복구 | [시작 코드와 쉬운 설명](docs/tasks/runtime-05/README.md), [검증](docs/verification/runtime-05.md) |
+| 6 | runtime-06 | API/Worker 자원 경쟁·작은 실제 부하·원시 비교·분리 판단 | [시작 코드와 쉬운 설명](docs/tasks/runtime-06/README.md), [검증](docs/verification/runtime-06.md) |
+| 7 | runtime-07 | API/Worker/Redis/DB Compose·내부 네트워크·재시작·복구 | [시작 코드와 쉬운 설명](docs/tasks/runtime-07/README.md), [검증](docs/verification/runtime-07.md) |
 
 각 주는 예상→공식 근거→첫 구현→정상/실패 실행→쉬운 해설→설명3개→정답 없는 독립 변경→빈 제출을 제공합니다. 별도 완성본은 제작자와 첫 시도 뒤 비교할 사람을 위한 자료입니다. 완성본의 통과는 학습자의 통과가 아닙니다.
 

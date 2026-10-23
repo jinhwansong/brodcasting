@@ -1,0 +1,14 @@
+
+> brodcasting-runtime-06-reference@1.0.0 check
+> node --test checks/summary.test.mjs
+
+✔ percentiles use numeric order without mutating raw evidence (1.1715ms)
+✔ one sample and invalid measurements are explicit (0.2611ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.2837

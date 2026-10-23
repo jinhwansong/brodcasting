@@ -1,0 +1,12 @@
+
+> brodcasting-security-f1-reference@1.0.0 check
+> vitest run --config vitest.config.ts
+
+
+ RUN  v5.0.5 C:/Users/song7/AppData/Local/Temp/brodcasting-security-f1-yY8MwK
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  00:09:24
+   Duration  1.90s (environment 62%, import 22%, tests 12%, transform 4%)
