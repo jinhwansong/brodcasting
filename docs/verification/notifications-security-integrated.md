@@ -44,3 +44,9 @@ Code review: skipped (ce-code-review unavailable)
 ## 한계와 별도 후속
 
 알림은 사이트 내부 실습 알림입니다. 메일/FCM/OS 푸시가 아니며 목록·안 읽은 수는 진입/조회/읽음 처리 때 갱신합니다. 자동 실시간 푸시를 제공하지 않습니다. 공개 배포·외부 부하·BunkerWeb·기존0~11 전체 브라우저 검증·물리 PC 두 대의 카메라/마이크/LAN HTTPS는 이번 완료 범위 밖입니다. 원격 CI 결과는 실제 확인 후 별도로 기록합니다.
+
+## 원격 검증 후속
+
+2026-10-23, `e1b7686`의 [통합 사이트 CI](https://github.com/jinhwansong/brodcasting/actions/runs/39942861326)가 성공했습니다. 알림7주 복구의 첫 Linux 실행에서는 secret 파일을 컨테이너 사용자로 읽지 못해 실패했습니다. 호스트 전용 디렉터리0700 안에서 마운트 파일을0444로 만들고 복구 검사도 같은 생성 스크립트를 사용하도록 수정했습니다. 기존 secret 파일은 덮어쓰지 않습니다.
+
+수정 커밋 `b6ed986`의 [알림·보안 CI](https://github.com/jinhwansong/brodcasting/actions/runs/39943191845)는 R1~R7·F1~F3 총10작업이 모두 성공했습니다. R7의 실제 소스 Docker 빌드·재시작·복구도 여기에 포함됩니다. 수정 후 로컬 Docker 재실행은 엔진이 꺼져 있어 수행하지 못했으며 Linux CI 성공과 구분합니다.
