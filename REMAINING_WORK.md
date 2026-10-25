@@ -2,6 +2,8 @@
 
 기준일: 2026-10-23 · **사용자 명시 요청으로 제작 재개**
 
+2026-10-25 후속: [브라우저 검증 기록](docs/verification/browser-2026-10-25.md)을 추가했습니다. F2 계정 전환·API 재시작,0~4·7·8의 명시한 시나리오를 실제 확인했습니다. 카메라 영상은 사용자 확인과 실제 시청으로 관찰했으나 **수신 음성·물리 PC 두 대·신뢰되는 HTTPS/10단계 브라우저·보조공학/정량 기기 성능은 미확인**입니다. BunkerWeb은 사용자가 다시 제외했습니다. 과거의 ‘브라우저 전체 보류’ 표현보다 최신 항목별 결과를 우선합니다.
+
 ## 최신 상태 — 알림·보안 제작 완료
 
 알림1~7주, 프론트 보안 F1~F3, 통합 사이트 알림함·큐 복구·CSP의 코드와 실습 교재를 제작하고 로컬 검증했습니다. [결과와 실행 범위](docs/verification/notifications-security-integrated.md), [알림 교재](notification-runtime-curriculum.md), [보안 교재](docs/tasks/security-frontend/README.md)를 따릅니다. 학습자는 **0단계·미시작**입니다.

@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-25",
+  "observations": [
+    {
+      "case": "F2 A logout clears inbox",
+      "visibleA": 0
+    },
+    {
+      "case": "R7 real browser after 60sec",
+      "observedAfterSeconds": 81,
+      "button": "재생 시작",
+      "draft": "500건 중 입력 유지",
+      "retained": "1000",
+      "rows": 11
+    },
+    {
+      "case": "F2 B owns empty inbox",
+      "account": "내 계정\n\n현재 계정 verify_b\n\n로그아웃\n로그인했어요.\n계정 다시 확인",
+      "items": ""
+    },
+    {
+      "case": "F2 session/read preserved after API restart",
+      "body": "A 전용 알림 20261025\n\n순번 1 · 2026. 10. 25. 오후 3:11:36\n읽음읽음으로 표시"
+    },
+    {
+      "case": "part01 mobile",
+      "scrollWidth": 1265,
+      "width": 1265
+    },
+    {
+      "case": "part00 mobile search",
+      "headings": [
+        "React 상태 실험",
+        "새벽 React 작업실"
+      ],
+      "scrollWidth": 1265,
+      "width": 1265
+    },
+    {
+      "case": "part00 mobile corrected viewport",
+      "headings": [
+        "React 상태 실험",
+        "새벽 React 작업실"
+      ],
+      "scrollWidth": 375,
+      "width": 375
+    },
+    {
+      "case": "part01 mobile corrected viewport",
+      "scrollWidth": 375,
+      "width": 375
+    },
+    {
+      "case": "part02 missing detail",
+      "detail": "상세 닫기\n방송 상세\n\n방송을 찾을 수 없습니다.\n\n상세 다시 시도"
+    },
+    {
+      "case": "part03 API stopped error",
+      "text": ""
+    },
+    {
+      "case": "part03 saved favorite survives API restart",
+      "favoriteLabel": "true"
+    },
+    {
+      "case": "part02 HTTP recovery",
+      "list": "방송 목록\n\n6개 표시\n\nReact 상태 실험\n\n리프\n\n시청자 450명\n☆\n새벽 React 작업실\n\n세모\n\n시청자 210명\n☆\n작은 서버 만들기\n\nNodeLab\n\n시청자 130명\n☆\nTypeScript 클리닉\n\n루프\n\n시청자 84명\n☆\n주말 산책 라디오\n\n모노\n\n시청자 84명\n☆\n재즈와 코딩\n\njazzLab\n\n시청자 35명\n☆"
+    },
+    {
+      "case": "part04 session/favorite reload",
+      "account": "내 계정\n\n현재 계정 browser_check\n\n로그아웃\n계정 다시 확인",
+      "saved": "true"
+    },
+    {
+      "case": "part08 actual playback",
+      "currentTime": 0.2964,
+      "height": 180,
+      "paused": false,
+      "tracks": [
+        {
+          "label": "한국어",
+          "mode": "showing"
+        }
+      ],
+      "width": 320
+    },
+    {
+      "case": "part08 missing file actual error",
+      "events": "loadstart\nerror"
+    },
+    {
+      "case": "part08 recover changed source",
+      "paused": false,
+      "readyState": 4,
+      "source": "http://127.0.0.1:4288/media/alternate.webm",
+      "tracks": [
+        {
+          "label": "한국어",
+          "mode": "showing"
+        }
+      ],
+      "width": 320
+    },
+    {
+      "case": "part04 logout removes account favorites",
+      "account": "내 계정\n아이디\n비밀번호\n\n아이디는 소문자로 시작하는 영문·숫자·밑줄 3~24자, 비밀번호는 15~128자입니다.\n\n로그인\n회원가입으로 전환\n\n로그아웃했어요.\n\n계정 다시 확인"
+    }
+  ]
+}
